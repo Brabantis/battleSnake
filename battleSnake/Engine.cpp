@@ -9,169 +9,117 @@
 #include <new>
 
 #include "Engine.h"
-#include "Character classes/Youngster.h"
-#include "Character classes/Oldlady.h"
-#include "Character classes/Hippie.h"
-#include "Character classes/Bully.h"
-#include "Character classes/Vandal.h"
-#include "Character classes/Nerd.h"
-#include "Character classes/Karateka.h"
-#include "Character classes/Snob.h"
-
 
 Engine::Engine() {
-    moveBuffer[0] = NORTH;
-    moveBuffer[1] = NORTH;
-    moveBuffer[2] = NORTH;
+    teamsize = 0;
+    enemysize = 0;
+    moveBuffer.push_back(NORTH);
+    lastTriggered = EVE_DEFAULT;
 }
 
-// in addTeamMember I need some sort of control, to avoid having duplicate characters
-void Engine::addTeamMember(Characters choice) {     // Of course temporary stats. Alpha and Beta testing will tell me what to balance.
-    PartyMember* player;
+// in addFleetMember I need some sort of control, to avoid having duplicate characters
+void Engine::addFleetMember(Characters choice) {
+    FleetMember* player;
     switch (choice) {
-        case YOUNGSTER:
+        case FIGHTER:
         {
-            player = new Youngster("Youngster");
+            player = new Fighter("Fighter");
             break;
         }
-        case OLD_LADY:
+        case CORVETTE:
         {
             
-            player = new Oldlady("Old lady");
+            player = new Corvette("Corvette");
             break;
         }
-        case HIPPIE:
+        case FRIGATE:
         {
-            player = new Hippie("Hippie");
+            player = new Frigate("Frigate");
             break;
         }
-        case BULLY:
+        case DESTROYER:
         {
-            player = new Bully("Bully");
+            player = new Destroyer("Destroyer");
             break;
         }
-        case VANDAL:
+        case CRUISER:
         {
-            player = new Vandal("Vandal");
-            break;
-        }
-
-        case NERD:
-        {
-            player = new Nerd("Nerd");
-            break;
-        }
-
-        case KARATEKA:
-        {
-            player = new Karateka("Karateka");
-            break;
-        }
-
-        case SNOB:
-        {
-            player = new Snob("Snob");
+            player = new Cruiser("Cruiser");
             break;
         }
         default:
             player = nullptr;
-            cerr << "This was never meant to happen! Invalid team member!" << endl;
+            cerr << "This was never meant to happen! Invalid fleet member!" << endl;
             break;
     }
-    team.push_back(*player);
-}
-
-// This one is temporary. As soon as I have implemented the 8 player classes, this function is going to change.
-void Engine::teamBuilder(Screens &lastDisplayed, bool &isLMD, bool &isND, Graphics graph) {
-    // Graphics::setView(CHARACTER_SELECT, lastDisplayed, isLMD, isND, renderer, texture); // I don't need it yet. YET.
-    // INSERT text rendering, a little triangle next to the selection and the chance to choose the team. The checker could be something that grays out and makes inaccessible what you just picked, IDK how but it's feasible. Remember vector.size.
-    bool completed = false;
-    int teamsize = 0;
-    int choice = 1;
-    int tmpY = 5;
-    while (!completed) {
-        // CHANGE WITH SDL EVENTS ASAP
-        cout << "Choose next member through 1-8 code; " << 4-teamsize << " remaining" << endl;
-        cin >> choice;  // Problem with some non-number values of choice apparently
-        if (choice >= 1 && choice <= 8) {
-            addTeamMember(convertIntsToCharacter(choice));
-            team[teamsize].setX(5);
-            team[teamsize].setY(tmpY);
-            teamsize++;
-            tmpY ++;
-            if (teamsize == MAX_TEAMSIZE) {
-                completed = true;
-            }
+    fleet.push_back(*player);
+    if (teamsize == 0) {
+        fleet[teamsize].setX(5);
+        fleet[teamsize].setY(5);
+    }
+    else {
+        fleet[teamsize].setX(fleet[teamsize-1].getX());
+        fleet[teamsize].setY(fleet[teamsize-1].getY());
+        switch (fleet[teamsize-1].getDirection()) {
+            case NORTH:
+                fleet[teamsize].move(SOUTH);
+                fleet[teamsize].setDirection(NORTH);
+                break;
+            case EAST:
+                fleet[teamsize].move(WEST);
+                fleet[teamsize].setDirection(EAST);
+                break;
+            case SOUTH:
+                fleet[teamsize].move(NORTH);
+                fleet[teamsize].setDirection(SOUTH);
+                break;
+            case WEST:
+                fleet[teamsize].move(EAST);
+                fleet[teamsize].setDirection(WEST);
+                break;
+            default:
+                break;
         }
-        else {
-            cout << "Invalid value" << endl;
-        }
+    }
+    teamsize++;
+    //moveBuffer.push_back(moveBuffer[teamsize-1]);
+}
+
+// I don't need a fleetbuilder
+
+void Engine::drawFleet(Graphics graph) {
+    for (int i = 0; i<teamsize; i++) {
+        fleet[i].drawOnScene(graph);
     }
 }
 
-void Engine::drawTeam(Graphics graph) {
-    for (int i = 0; i<MAX_TEAMSIZE; i++) {
-        team[i].drawOnScene(graph);
+void Engine::drawEnemyFleet(Graphics graph) {
+    for (int i = 0; i<enemysize; i++) {
+        enemyFleet[i].drawEnemyOnScene(graph);
     }
 }
 
-// Horrible tool that will find its way to deletion as soon as i link SDL input
-Characters Engine::convertIntsToCharacter(int toConvert) {
-    Characters result = SPRITES_TOTAL;  // SPRITES_TOTAL is my invalid value
-    switch (toConvert) {
-        case 1:
-            result = YOUNGSTER;
-            break;
-        case 2:
-            result = OLD_LADY;
-            break;
-        case 3:
-            result = HIPPIE;
-            break;
-        case 4:
-            result = BULLY;
-            break;
-        case 5:
-            result = VANDAL;
-            break;
-        case 6:
-            result = NERD;
-            break;
-        case 7:
-            result = KARATEKA;
-            break;
-        case 8:
-            result = SNOB;
-            break;
-        default:
-            result = SPRITES_TOTAL;
-            cerr << "Valore non valido!" << endl;
-            break;
-    }
-    return result;
-}
-
-void Engine::printTeamStats() {
-    for (int i = 0; i<MAX_TEAMSIZE; i++) {
-        cout << "Member in position " << i+1 << ": a " << team[i].getClass() << " called " << team[i].getName() << " who has these values for attack, defense and health: " << team[i].getAtk() << ", " << team[i].getDef() << ", " << team[i].getHP() << "." << endl;
+void Engine::printFleetStats() {
+    for (int i = 0; i<teamsize; i++) {
+        cout << "Member in position " << i+1 << ": a " << fleet[i].getClass() << " called " << fleet[i].getName() << " who has these values for attack, defense and health: " << fleet[i].getAtk() << ", " << fleet[i].getDef() << ", " << fleet[i].getHP() << "." << endl;
     }
 }
 
-void Engine::moveTeamOnMap(Direction dest, Level currLevel) {
-    int tmpX = team[0].getX();
-    int tmpY = team[0].getY();
+void Engine::moveFleetOnMap(Direction dest, Level currLevel) {
+    int tmpX = fleet[0].getX();
+    int tmpY = fleet[0].getY();
     switch (dest) {
         case NORTH:
-            tmpY -= 1;
+            tmpY--;
             break;
         case EAST:
-            tmpX += 1;
+            tmpX++;
             break;
         case SOUTH:
-            tmpY += 1;
+            tmpY++;
             break;
         case WEST:
-            tmpX -= 1;
+            tmpX--;
             break;
         default:
             cerr << "Invalid destination for team! How is this possible?" << endl;
@@ -185,31 +133,55 @@ void Engine::moveTeamOnMap(Direction dest, Level currLevel) {
         case 1:
             break;
         case 2:
-            team[0].move(dest);
-            team[1].move(moveBuffer[0]);
-            team[2].move(moveBuffer[1]);
-            team[3].move(moveBuffer[2]);
-            moveBuffer[2] = moveBuffer[1];
-            moveBuffer[1] = moveBuffer[0];
+            fleet[0].move(dest);
+            // Works like a charm, adding at the end and changing the buffer. But HOW COME the buffer works if it's always formed by only one element? For now, I'll accept it as a mystery
+            for (int i = 1; i<teamsize; i++) {
+                fleet[i].move(moveBuffer[i-1]);
+            }
+            for (int i = teamsize-1; i>0; i--) {
+                moveBuffer[i] = moveBuffer[i-1];
+            }
             moveBuffer[0] = dest;
             break;
         case 3:         // Different codes for different events
         case 4:
         case 5:
         case 6:
-            team[0].move(dest);
-            team[1].move(moveBuffer[0]);
-            team[2].move(moveBuffer[1]);
-            team[3].move(moveBuffer[2]);
-            moveBuffer[2] = moveBuffer[1];
-            moveBuffer[1] = moveBuffer[0];
+            fleet[0].move(dest);
+            for (int i = 1; i<teamsize; i++) {
+                fleet[i].move(moveBuffer[i-1]);
+            }
+            for (int i = teamsize-1; i>0; i--) {
+                moveBuffer[i] = moveBuffer[i-1];
+            }
             moveBuffer[0] = dest;
             // Commands are repeated, but either writing a function or adding a check boolean or two seems an overkill at this stage
-            setLastEvent(currLevel.getEventFromCode(currLevel.getTileCode(tmpX, tmpY)));
+            setLastEvent(currLevel.getEventFromCode(y));
             break;
         default:
             break;
     }
+}
+
+int Engine::getRandInSpan(int lower, int upper) {
+    if (lower>=upper) {
+        return 0;
+    }
+    int result = rand() % (upper - lower +1) + lower;
+    return result;
+}
+
+void Engine::spawnEnemy(int x, int y, Level current) {
+    // Some permission stuff forbids me from changing here the tile code.
+    Enemy spawned(100, 100, 100, "Bob", {x, y, NORTH});
+    enemyFleet.push_back(spawned);
+    enemysize++;
+}
+
+void Engine::eatEnemy() {
+    enemyFleet.pop_back();
+    enemysize--;
+    addFleetMember(FIGHTER);
 }
 
 void Engine::setLastEvent(Event lastEvent) {
@@ -221,22 +193,14 @@ Event Engine::getLastEvent() {
     return lastTriggered;
 }
 
-void Engine::specialEvent(Event triggered) {    // You can say it's incomplete
-    switch (triggered) {
-        case LEV_CLOSURE:
-            break;
-        case BAT_TUTORIAL:
-            break;
-        default:
-            break;
-    }
-}
-
 // the main function, transferred in engine. Setting all the graphics stuff as children of Graphics and so on may allow me to make the functions slimmer
 int Engine::start()
 {
-    Level currentLevel("Borboroth");
+    srand ((int)time(NULL));
+    Level currentLevel;
     Graphics graphEngine;
+    
+    int tmpx = 2, tmpy = 2;
     
     //Start up SDL and create window
 	if( !graphEngine.init() )
@@ -264,16 +228,20 @@ int Engine::start()
             
             //Reminder of the last displayed
             Screens gLastDisplayed = MAIN_CAMERA;
-            bool isLowerMenuDisplayed = false;
-            bool isNarrationDisplayed = false;
+
+            // Moving direction
+            Direction choice = NORTH;
             
-            // Teambuilding
-            teamBuilder(gLastDisplayed, isLowerMenuDisplayed, isNarrationDisplayed, graphEngine);
+            // Is there an enemy?
+            bool enemyOnScreen = false;
+            
+            // First ship   THIS IS GOING TO BE A FUNCTION
+            addFleetMember(FIGHTER);
             
             //First drawing
             SDL_RenderClear(graphEngine.getRenderer());
-            graphEngine.setView(MAIN_CAMERA, gLastDisplayed, isLowerMenuDisplayed, isNarrationDisplayed);
-            drawTeam(graphEngine);
+            graphEngine.setView(MAIN_CAMERA, gLastDisplayed);
+            drawFleet(graphEngine);
             SDL_RenderPresent(graphEngine.getRenderer());
             
             // THIS BLOODY THING WAS SENDING MY CLOSE() INTO CONFUSION!!! HOW?
@@ -288,7 +256,7 @@ int Engine::start()
             
             // The funtion works, apparently. the program does NOT;
             
-			while( !quit )  // REMEMBER REMEMBER THE FIFTH OF NOVEMBER setView ed addSubMenu create screens and menus
+			while( !quit )
 			{
 				//Handle events on queue
 				while( SDL_PollEvent( &e ) != 0 )
@@ -303,53 +271,57 @@ int Engine::start()
 					{
 						switch( e.key.keysym.sym )
 						{
-                                // If I wished, I could control them separately by using a currentControlled int and moving engi.team[currentControlled], then switching control on the press of 1, 2, 3, 4.
 							case SDLK_UP:
-                                moveTeamOnMap(NORTH, currentLevel);
+                                choice = NORTH;
                                 break;
 							case SDLK_DOWN:
-                                moveTeamOnMap(SOUTH, currentLevel);
+                                choice = SOUTH;
                                 break;
 							case SDLK_LEFT:
-                                moveTeamOnMap(WEST, currentLevel);
+                                choice = WEST;
                                 break;
 							case SDLK_RIGHT:
-                                moveTeamOnMap(EAST, currentLevel);
-                                break;
-                            case SDLK_1:
-                                // I predict that the characters will disappear. THEY DO NOT, though they are on a higher level.
-                                // This might mean that I do not need to do much to set the rendering view, just some kind of rect when I'm rendering in the maincamera
-                                graphEngine.addSubMenu(LOWER_MENU, gLastDisplayed, isLowerMenuDisplayed, isNarrationDisplayed);
-                                break;
-							default:
+                                choice = EAST;
+                            default:
                                 break;
 						}
                         
                         // APPARENTLY what is not on the renderer is destroyed when you present it. BAD thing, but I just need to use gLastDisplayed and the boolean sisters and redraw everything.
-                        
-                        graphEngine.setView(gLastDisplayed, gLastDisplayed, isLowerMenuDisplayed, isNarrationDisplayed);
-                        drawTeam(graphEngine);
-                        
-                        //write the coordinates for checking
-                        cout << team[0].getX() << ", " << team[0].getY() << endl;
-                        
-                        // Update screen    // ATTENTION, CALLING IT AT EVERY CYCLE SLOWS EVERYTHING DOWN DRAMATICALLY. Still, it might be the only viable solution for animations.
-                        // I COULD call it every half a second or so, this way i can animate idle and keep dynamic response. multithreading needed? I hope not.
-                        SDL_RenderPresent(graphEngine.getRenderer());
-                        
-                        switch (lastTriggered) {
-                            case LEV_CLOSURE:
-                                quit = true;
-                                break;
-                            case LEV_START:
-                                graphEngine.setView(MAIN_CAMERA, gLastDisplayed, isLowerMenuDisplayed, isNarrationDisplayed);
-                            default:
-                                specialEvent(lastTriggered);
-                                break;
-                        }
 					}
+                // Things over this brace are only invoked at the press of a button
 				}
-			}
+                // Here I invoke the functions I need each time
+                switch (lastTriggered) {
+                    case LEV_CLOSURE:
+                        quit = true;
+                        break;
+                    case EAT_ENEMY: // When I'm on a tile with a trigger, the trigger is fired continuously
+                        enemyOnScreen = false;
+                        eatEnemy();
+                        currentLevel.giveCodeToTile(tmpx, tmpy, WALK);  // If I can, I should include those in eatEnemy();
+                        lastTriggered = EVE_DEFAULT;
+                        tmpx++;
+                        tmpy++;
+                        break;
+                    default:
+                        break;
+                }
+                
+                if (!enemyOnScreen) {
+                    tmpx = getRandInSpan(2, 19);
+                    tmpy = getRandInSpan(2, 14);
+                    spawnEnemy(tmpx, tmpy, currentLevel);
+                    currentLevel.giveCodeToTile(tmpx, tmpy, ENEMY_HERE);
+                    enemyOnScreen = true;
+                }
+                
+                graphEngine.setView(gLastDisplayed, gLastDisplayed);
+                drawFleet(graphEngine);
+                drawEnemyFleet(graphEngine);
+                moveFleetOnMap(choice, currentLevel);
+                SDL_RenderPresent(graphEngine.getRenderer());
+                SDL_Delay(150);
+			}   // Here ends the main loop
 		}
 	}
 	//Free resources and close SDL

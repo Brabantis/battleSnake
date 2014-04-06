@@ -19,15 +19,26 @@
 
 #include "Graphics.h"
 
-const int MAPWIDTH = 30; // Temporary
+const int MAPWIDTH = 20; // Temporary
+const int MAPHEIGHT = 15;
+
+// The codes for the tiles
+enum Code {
+    UNACCESSIBLE,
+    NOT_WALK,
+    WALK,
+    GAME_CLOSE,
+    ENEMY_HERE,
+    SPEC_EVENT_2,
+    SPEC_EVENT_3,
+};
 
 enum Event {
     // THIS will be filled with event codes. BAT for BATtles, NAR for NARration.
     ERR_LEVEL,
-    BAT_TUTORIAL,
-    NAR_TUTORIALEND,
-    LEV_START,
-    LEV_CLOSURE
+    LEV_CLOSURE,
+    EAT_ENEMY,
+    EVE_DEFAULT,
     // ...
 };
 
@@ -37,11 +48,11 @@ private:
     short int map[MAPWIDTH*MAPWIDTH];
     SDL_Texture* graphicMap;
 public:
-    Level(string name);    // to instantiate level from map, put there characters, then give back control
+    Level();    // to instantiate level from map
     int getTileCode(int x, int y);
     Event getEventFromCode(int code);
     void printMap();
-    // A method to check for triggers should be here
+    void giveCodeToTile(int x, int y, Code tileCode);
 };
 
 

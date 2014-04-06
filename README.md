@@ -1,6 +1,3 @@
-Versione 0.0.1
-Altro non è che il codice copiato dall’altro gioco, e neanche la versione più recente.
-DA FARE
-eliminare il teambuilder, all’inizio si parte con una nave
-cambiare il nome di tutte le classi e vari metodi
-creare un sistema di spawn e di combattimento
+Version 0.0.2  
+Made basic Snake. Yet I have no formula for collisions. Need to: disable moving backwards; find a more fluid way of moving; add some kind of wreckage system (eating
+wreckage gives a ship) and dogfighting; remake screens.

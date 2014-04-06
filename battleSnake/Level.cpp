@@ -9,19 +9,17 @@
 #include "Level.h"
 
 // Of course this is not the final one. I will give him maps from a file.
-Level::Level(string name) {
-    for (int i = 0; i<MAPWIDTH*MAPWIDTH; i++) {
+Level::Level() {
+    for (int i = 0; i<MAPWIDTH*MAPHEIGHT; i++) {
         map[i]=2;
     }
-    // To check that the functions work
-    map[8 + MAPWIDTH*6] = 3;    // 9,7
-    map[5 + MAPWIDTH*2] = 4;    // 6,3
     // A fence on the outside
     for (int i = 0; i<MAPWIDTH; i++) {
-        map[i + MAPWIDTH*0] = 1;
-        map[0 + MAPWIDTH*i] = 1;
-        map[-1 + MAPWIDTH*(i+1)] = 1;
-        map[i + MAPWIDTH*(MAPWIDTH-1)] = 1;
+        for (int j = 0; j<MAPHEIGHT; j++) {
+            if (j == 0 || j == MAPHEIGHT-1 || i == 0 || i == MAPWIDTH-1) {
+                map[i + MAPWIDTH * j] = 1;
+            }
+        }
     }
 }
 
@@ -31,11 +29,11 @@ int Level::getTileCode(int x, int y) {
 
 Event Level::getEventFromCode(int code) {
     switch (code) {
-        case 3:     // Once again, totally temporary
+        case GAME_CLOSE:     // Once again, totally temporary
             return LEV_CLOSURE;
             break;
-        case 4:
-            return LEV_START;
+        case ENEMY_HERE:
+            return EAT_ENEMY;
             break;
         default:
             return ERR_LEVEL;
@@ -44,10 +42,14 @@ Event Level::getEventFromCode(int code) {
 }
 
 void Level::printMap() {
-    for (int i = 0; i<MAPWIDTH; i++) {
+    for (int i = 0; i<MAPHEIGHT; i++) {
         for (int j = 0; j<MAPWIDTH; j++) {
             cout << map[j + MAPWIDTH*i] << ", ";
         }
         cout << endl;
     }
+}
+
+void Level::giveCodeToTile(int x, int y, Code tileCode) {
+    map[(x-1) + MAPWIDTH * (y-1)] = tileCode;   // Assign a code to a tile
 }

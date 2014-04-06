@@ -110,19 +110,7 @@ bool Graphics::loadMedia()
 		cout << "Failed to load texture image!" << endl;
 		success = false;
 	}
-    gTexture[LOWER_MENU] = loadTexture( "BGimages/lower_menu.png");
-	if( gTexture[LOWER_MENU] == 0 )
-	{
-		cout << "Failed to load texture image!" << endl;
-		success = false;
-	}
-    gTexture[NARRATION] = loadTexture( "BGimages/narration.png");
-	if( gTexture[NARRATION] == 0 )
-	{
-		cout << "Failed to load texture image!" << endl;
-		success = false;
-	}
-    gTexture[SELECTION_MENU] = loadTexture( "BGimages/selection_menu.png");
+    gTexture[SELECTION_MENU] = loadTexture( "BGimages/char_select.png");
 	if( gTexture[SELECTION_MENU] == 0 )
 	{
 		cout << "Failed to load texture image!" << endl;
@@ -131,170 +119,56 @@ bool Graphics::loadMedia()
     
     
     //Loading sprites
-    gSprites[YOUNGSTER][NORTH] = loadTexture("CharSprites/player1_n.png");
-    if (gSprites[YOUNGSTER][NORTH] == 0) {
+    gAllies[FIGHTER] = loadTexture("CharSprites/fighter.png");
+    if (gAllies[FIGHTER] == 0) {
         cout << "Failed to load texture image!" << endl;
         success = false;
     }
-    gSprites[YOUNGSTER][EAST] = loadTexture("CharSprites/player1_e.png");
-    if (gSprites[YOUNGSTER][EAST] == 0) {
+    gAllies[CORVETTE] = loadTexture("CharSprites/corvette.png");
+    if (gAllies[CORVETTE] == 0) {
         cout << "Failed to load texture image!" << endl;
         success = false;
     }
-    gSprites[YOUNGSTER][SOUTH] = loadTexture("CharSprites/player1_s.png");
-    if (gSprites[YOUNGSTER][SOUTH] == 0) {
+    gAllies[FRIGATE] = loadTexture("CharSprites/frigate.png");
+    if (gAllies[FRIGATE] == 0) {
         cout << "Failed to load texture image!" << endl;
         success = false;
     }
-    gSprites[YOUNGSTER][WEST] = loadTexture("CharSprites/player1_w.png");
-    if (gSprites[YOUNGSTER][WEST] == 0) {
+    gAllies[DESTROYER] = loadTexture("CharSprites/destroyer.png");
+    if (gAllies[DESTROYER] == 0) {
         cout << "Failed to load texture image!" << endl;
         success = false;
     }
-    
-    gSprites[OLD_LADY][NORTH] = loadTexture("CharSprites/player2_n.png");
-    if (gSprites[OLD_LADY][NORTH] == 0) {
-        cout << "Failed to load texture image!" << endl;
-        success = false;
-    }
-    gSprites[OLD_LADY][EAST] = loadTexture("CharSprites/player2_e.png");
-    if (gSprites[OLD_LADY][EAST] == 0) {
-        cout << "Failed to load texture image!" << endl;
-        success = false;
-    }
-    gSprites[OLD_LADY][SOUTH] = loadTexture("CharSprites/player2_s.png");
-    if (gSprites[OLD_LADY][SOUTH] == 0) {
-        cout << "Failed to load texture image!" << endl;
-        success = false;
-    }
-    gSprites[OLD_LADY][WEST] = loadTexture("CharSprites/player2_w.png");
-    if (gSprites[OLD_LADY][WEST] == 0) {
+    gAllies[CRUISER] = loadTexture("CharSprites/cruiser.png");
+    if (gAllies[CRUISER] == 0) {
         cout << "Failed to load texture image!" << endl;
         success = false;
     }
     
-    gSprites[HIPPIE][NORTH] = loadTexture("CharSprites/player3_n.png");
-    if (gSprites[HIPPIE][NORTH] == 0) {
+    const int SUBTRACT_ELEMENT = 5; // Half an array
+    // Loading enemies
+    gEnemies[EN_FIGHTER-SUBTRACT_ELEMENT] = loadTexture("EnemySprites/en_fighter.png");
+    if (gEnemies[EN_FIGHTER-SUBTRACT_ELEMENT] == 0) {
         cout << "Failed to load texture image!" << endl;
         success = false;
     }
-    gSprites[HIPPIE][EAST] = loadTexture("CharSprites/player3_e.png");
-    if (gSprites[HIPPIE][EAST] == 0) {
+    gEnemies[EN_CORVETTE-SUBTRACT_ELEMENT] = loadTexture("EnemySprites/en_fighter.png");
+    if (gEnemies[EN_CORVETTE-SUBTRACT_ELEMENT] == 0) {
         cout << "Failed to load texture image!" << endl;
         success = false;
     }
-    gSprites[HIPPIE][SOUTH] = loadTexture("CharSprites/player3_s.png");
-    if (gSprites[HIPPIE][SOUTH] == 0) {
+    gEnemies[EN_FRIGATE-SUBTRACT_ELEMENT] = loadTexture("EnemySprites/en_fighter.png");
+    if (gEnemies[EN_FRIGATE-SUBTRACT_ELEMENT] == 0) {
         cout << "Failed to load texture image!" << endl;
         success = false;
     }
-    gSprites[HIPPIE][WEST] = loadTexture("CharSprites/player3_w.png");
-    if (gSprites[HIPPIE][WEST] == 0) {
+    gEnemies[EN_DESTROYER-SUBTRACT_ELEMENT] = loadTexture("EnemySprites/en_fighter.png");
+    if (gEnemies[EN_DESTROYER-SUBTRACT_ELEMENT] == 0) {
         cout << "Failed to load texture image!" << endl;
         success = false;
     }
-    
-    gSprites[BULLY][NORTH] = loadTexture("CharSprites/player4_n.png");
-    if (gSprites[BULLY][NORTH] == 0) {
-        cout << "Failed to load texture image!" << endl;
-        success = false;
-    }
-    gSprites[BULLY][EAST] = loadTexture("CharSprites/player4_e.png");
-    if (gSprites[BULLY][EAST] == 0) {
-        cout << "Failed to load texture image!" << endl;
-        success = false;
-    }
-    gSprites[BULLY][SOUTH] = loadTexture("CharSprites/player4_s.png");
-    if (gSprites[BULLY][SOUTH] == 0) {
-        cout << "Failed to load texture image!" << endl;
-        success = false;
-    }
-    gSprites[BULLY][WEST] = loadTexture("CharSprites/player4_w.png");
-    if (gSprites[BULLY][WEST] == 0) {
-        cout << "Failed to load texture image!" << endl;
-        success = false;
-    }
-    
-    gSprites[VANDAL][NORTH] = loadTexture("CharSprites/player5_n.png");
-    if (gSprites[VANDAL][NORTH] == 0) {
-        cout << "Failed to load texture image!" << endl;
-        success = false;
-    }
-    gSprites[VANDAL][EAST] = loadTexture("CharSprites/player5_e.png");
-    if (gSprites[VANDAL][EAST] == 0) {
-        cout << "Failed to load texture image!" << endl;
-        success = false;
-    }
-    gSprites[VANDAL][SOUTH] = loadTexture("CharSprites/player5_s.png");
-    if (gSprites[VANDAL][SOUTH] == 0) {
-        cout << "Failed to load texture image!" << endl;
-        success = false;
-    }
-    gSprites[VANDAL][WEST] = loadTexture("CharSprites/player5_w.png");
-    if (gSprites[VANDAL][WEST] == 0) {
-        cout << "Failed to load texture image!" << endl;
-        success = false;
-    }
-    
-    gSprites[NERD][NORTH] = loadTexture("CharSprites/player6_n.png");
-    if (gSprites[NERD][NORTH] == 0) {
-        cout << "Failed to load texture image!" << endl;
-        success = false;
-    }
-    gSprites[NERD][EAST] = loadTexture("CharSprites/player6_e.png");
-    if (gSprites[NERD][EAST] == 0) {
-        cout << "Failed to load texture image!" << endl;
-        success = false;
-    }
-    gSprites[NERD][SOUTH] = loadTexture("CharSprites/player6_s.png");
-    if (gSprites[NERD][SOUTH] == 0) {
-        cout << "Failed to load texture image!" << endl;
-        success = false;
-    }
-    gSprites[NERD][WEST] = loadTexture("CharSprites/player6_w.png");
-    if (gSprites[NERD][WEST] == 0) {
-        cout << "Failed to load texture image!" << endl;
-        success = false;
-    }
-    
-    gSprites[KARATEKA][NORTH] = loadTexture("CharSprites/player7_n.png");
-    if (gSprites[KARATEKA][NORTH] == 0) {
-        cout << "Failed to load texture image!" << endl;
-        success = false;
-    }
-    gSprites[KARATEKA][EAST] = loadTexture("CharSprites/player7_e.png");
-    if (gSprites[KARATEKA][EAST] == 0) {
-        cout << "Failed to load texture image!" << endl;
-        success = false;
-    }
-    gSprites[KARATEKA][SOUTH] = loadTexture("CharSprites/player7_s.png");
-    if (gSprites[KARATEKA][SOUTH] == 0) {
-        cout << "Failed to load texture image!" << endl;
-        success = false;
-    }
-    gSprites[KARATEKA][WEST] = loadTexture("CharSprites/player7_w.png");
-    if (gSprites[KARATEKA][WEST] == 0) {
-        cout << "Failed to load texture image!" << endl;
-        success = false;
-    }
-    
-    gSprites[SNOB][NORTH] = loadTexture("CharSprites/player8_n.png");
-    if (gSprites[SNOB][NORTH] == 0) {
-        cout << "Failed to load texture image!" << endl;
-        success = false;
-    }
-    gSprites[SNOB][EAST] = loadTexture("CharSprites/player8_e.png");
-    if (gSprites[SNOB][EAST] == 0) {
-        cout << "Failed to load texture image!" << endl;
-        success = false;
-    }
-    gSprites[SNOB][SOUTH] = loadTexture("CharSprites/player8_s.png");
-    if (gSprites[SNOB][SOUTH] == 0) {
-        cout << "Failed to load texture image!" << endl;
-        success = false;
-    }
-    gSprites[SNOB][WEST] = loadTexture("CharSprites/player8_w.png");
-    if (gSprites[SNOB][WEST] == 0) {
+    gEnemies[EN_CRUISER-SUBTRACT_ELEMENT] = loadTexture("EnemySprites/en_fighter.png");
+    if (gEnemies[EN_CRUISER-SUBTRACT_ELEMENT] == 0) {
         cout << "Failed to load texture image!" << endl;
         success = false;
     }
@@ -310,11 +184,14 @@ void Graphics::close()
         gTexture[i] = 0;
     }
     
-    for (int i = 0; i<SPRITES_TOTAL; i++) {
-        for (int j = 0; j<DIRECTION_TOTAL; j++) {
-            SDL_DestroyTexture(gSprites[i][j]);
-            gSprites[i][j] = 0;
-        }
+    for (int i = 0; i<SHIP_TYPES; i++) {
+            SDL_DestroyTexture(gAllies[i]);
+            gAllies[i] = 0;
+    }
+    
+    for (int i = 0; i<SHIP_TYPES; i++) {
+        SDL_DestroyTexture(gEnemies[i]);
+        gEnemies[i] = 0;
     }
     
     //Remove font
@@ -332,18 +209,6 @@ void Graphics::close()
     TTF_Quit();
 	IMG_Quit();
 	SDL_Quit();
-}
-
-void Graphics::copyLowerLayerTexture(Screens last, bool lower, bool upper)
-{
-    SDL_RenderClear(gRenderer);
-    SDL_RenderCopy(gRenderer, gTexture[last], 0, 0);
-    if (lower) {
-        SDL_RenderCopy(gRenderer, gTexture[LOWER_MENU], 0, 0);
-    }
-    if (upper) {
-        SDL_RenderCopy(gRenderer, gTexture[NARRATION], 0, 0);
-    }
 }
 
 SDL_Texture* Graphics::loadTexture(string path)
@@ -400,51 +265,16 @@ SDL_Texture* Graphics::loadFromRenderedText(string textureText, SDL_Color textCo
 	return newTexture;
 }
 
-void Graphics::addSubMenu(Screens choice, Screens lastDisplayed, bool &isLowMenuDisplayed, bool &isNarrDisplayed) {
-    if (choice == NARRATION) {
-        if (!isNarrDisplayed) {
-            isNarrDisplayed = true;
-            copyLowerLayerTexture(lastDisplayed, isLowMenuDisplayed, isNarrDisplayed);
-            SDL_RenderCopy(gRenderer, gTexture[NARRATION], 0, 0);
-        }
-        else {
-            isNarrDisplayed = false;
-            copyLowerLayerTexture(lastDisplayed, isLowMenuDisplayed, isNarrDisplayed);
-        }
-    }
-    else if (choice == LOWER_MENU) {
-        if (!isLowMenuDisplayed) {
-            isLowMenuDisplayed = true;
-            copyLowerLayerTexture(lastDisplayed, isLowMenuDisplayed, isNarrDisplayed);
-            SDL_RenderCopy(gRenderer, gTexture[LOWER_MENU], 0, 0);
-        }
-        else {
-            isLowMenuDisplayed = false;
-            copyLowerLayerTexture(lastDisplayed, isLowMenuDisplayed, isNarrDisplayed);
-        }
-    }
-}
-
-void Graphics::setView (Screens choice, Screens &lastDisplayed, bool &isLowMenuDisplayed, bool &isNarrDisplayed) {
+void Graphics::setView (Screens choice, Screens &lastDisplayed) {
     if (lastDisplayed != choice) {
         SDL_RenderClear(gRenderer);
         SDL_RenderCopy(gRenderer, gTexture[choice], 0, 0);
-        isLowMenuDisplayed = false;
-        isNarrDisplayed = false;
         lastDisplayed = choice;
     }
     else {
         // This is basically redrawing everything, keeping the menus displayed. Otherwise the menus would disappear.
         SDL_RenderClear(gRenderer);
         SDL_RenderCopy(gRenderer, gTexture[choice], 0, 0);
-        if (isNarrDisplayed) {
-            copyLowerLayerTexture(lastDisplayed, isLowMenuDisplayed, isNarrDisplayed);
-            SDL_RenderCopy(gRenderer, gTexture[NARRATION], 0, 0);
-        }
-        if (isLowMenuDisplayed) {
-            copyLowerLayerTexture(lastDisplayed, isLowMenuDisplayed, isNarrDisplayed);
-            SDL_RenderCopy(gRenderer, gTexture[LOWER_MENU], 0, 0);
-        }
     }
 }
 
@@ -468,10 +298,14 @@ SDL_Texture* Graphics::getTexture(Screens texture) {
     return gTexture[texture];
 }
 
-SDL_Texture* Graphics::getSprites(Characters sprite, Direction facing) {
-    return gSprites[sprite][facing];
+SDL_Texture* Graphics::getSprite(Characters sprite) {
+    return gAllies[sprite];
 }
+
+SDL_Texture* Graphics::getEnFighterSprite() {
+    return gEnemies[0];
+}
+
 TTF_Font* Graphics::getFont() {
     return gFont;
 }
-

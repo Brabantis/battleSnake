@@ -40,21 +40,23 @@ enum Screens
 
 enum Characters
 {
-    YOUNGSTER,
-    OLD_LADY,
-    HIPPIE,
-    BULLY,
-    VANDAL,
-    NERD,
-    KARATEKA,
-    SNOB,
-    SPRITES_TOTAL
+    FIGHTER,
+    CORVETTE,
+    FRIGATE,
+    DESTROYER,
+    CRUISER,
+    EN_FIGHTER,
+    EN_CORVETTE,
+    EN_FRIGATE,
+    EN_DESTROYER,
+    EN_CRUISER,
 };
 
 const int SCREEN_WIDTH = 800;
 const int SCREEN_HEIGHT = 600;
 const int SPRITE_WIDTH = SCREEN_WIDTH/20;
-const int SPRITE_HEIGHT = SCREEN_HEIGHT/8;
+const int SPRITE_HEIGHT = SCREEN_HEIGHT/15;
+const int SHIP_TYPES = 5;
 
 class Graphics {
 private:
@@ -63,7 +65,8 @@ private:
     
     // NOOOOOOOOOOO I need a bidimensional array somehow. Therefore I will be able to call a sprite from gTexture[sprite][Direction] or something like that
     SDL_Texture* gTexture[TEXTURES_TOTAL];
-    SDL_Texture* gSprites[SPRITES_TOTAL][DIRECTION_TOTAL];
+    SDL_Texture* gAllies[SHIP_TYPES];
+    SDL_Texture* gEnemies[SHIP_TYPES];
     TTF_Font* gFont;
     
 public:
@@ -74,16 +77,12 @@ public:
     bool loadMedia();
     //Frees media and shuts down SDL
     void close();
-    //To apply upper level HUD-like GUI
-    void copyLowerLayerTexture(Screens last, bool lower, bool upper);
     //loads a texture and assigns it to an element in a texture array
     SDL_Texture* loadTexture( string path);
     //Texture from text
     SDL_Texture* loadFromRenderedText(string textureText, SDL_Color textColor);
-    //Adds a partial texture on top of another
-    void addSubMenu(Screens choice, Screens lastDisplayed, bool &isLMD, bool &isND);
     //Sets camera view to choice
-    void setView (Screens choice, Screens &lastDisplayed, bool &isLMD, bool &isND);
+    void setView (Screens choice, Screens &lastDisplayed);
     //Writes something from text on screen. Gives some trouble to close apparently.
     void printTextOnScreen (string txtInput, SDL_Rect* destination);
     
@@ -92,7 +91,8 @@ public:
     SDL_Renderer* getRenderer();
     // Again, when i'll have the multidimensional array or whatever, i'll get this from there
     SDL_Texture* getTexture(Screens texture);
-    SDL_Texture* getSprites(Characters sprite, Direction orient);
+    SDL_Texture* getSprite(Characters sprite);
+    SDL_Texture* getEnFighterSprite();
     TTF_Font* getFont();
 };
 
