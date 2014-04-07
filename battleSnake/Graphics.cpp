@@ -77,7 +77,6 @@ bool Graphics::init()
 	return success;
 }
 
-
 // This is a very long and copy-pasty function. Funny thing, writing another function to slow it down would likely not help. maybe I'll try later
 bool Graphics::loadMedia()
 {
@@ -110,69 +109,66 @@ bool Graphics::loadMedia()
 		cout << "Failed to load texture image!" << endl;
 		success = false;
 	}
-    gTexture[SELECTION_MENU] = loadTexture( "BGimages/char_select.png");
-	if( gTexture[SELECTION_MENU] == 0 )
+    gTexture[GAME_OVER] = loadTexture("BGimages/game_over.png");
+    if( gTexture[GAME_OVER] == 0 )
 	{
 		cout << "Failed to load texture image!" << endl;
 		success = false;
 	}
     
-    
     //Loading sprites
-    gAllies[FIGHTER] = loadTexture("CharSprites/fighter.png");
-    if (gAllies[FIGHTER] == 0) {
+    gSprites[FIGHTER] = loadTexture("CharSprites/fighter.png");
+    if (gSprites[FIGHTER] == 0) {
         cout << "Failed to load texture image!" << endl;
         success = false;
     }
-    gAllies[CORVETTE] = loadTexture("CharSprites/corvette.png");
-    if (gAllies[CORVETTE] == 0) {
+    gSprites[CORVETTE] = loadTexture("CharSprites/corvette.png");
+    if (gSprites[CORVETTE] == 0) {
         cout << "Failed to load texture image!" << endl;
         success = false;
     }
-    gAllies[FRIGATE] = loadTexture("CharSprites/frigate.png");
-    if (gAllies[FRIGATE] == 0) {
+    gSprites[FRIGATE] = loadTexture("CharSprites/frigate.png");
+    if (gSprites[FRIGATE] == 0) {
         cout << "Failed to load texture image!" << endl;
         success = false;
     }
-    gAllies[DESTROYER] = loadTexture("CharSprites/destroyer.png");
-    if (gAllies[DESTROYER] == 0) {
+    gSprites[DESTROYER] = loadTexture("CharSprites/destroyer.png");
+    if (gSprites[DESTROYER] == 0) {
         cout << "Failed to load texture image!" << endl;
         success = false;
     }
-    gAllies[CRUISER] = loadTexture("CharSprites/cruiser.png");
-    if (gAllies[CRUISER] == 0) {
+    gSprites[CRUISER] = loadTexture("CharSprites/cruiser.png");
+    if (gSprites[CRUISER] == 0) {
         cout << "Failed to load texture image!" << endl;
         success = false;
     }
     
-    const int SUBTRACT_ELEMENT = 5; // Half an array
     // Loading enemies
-    gEnemies[EN_FIGHTER-SUBTRACT_ELEMENT] = loadTexture("EnemySprites/en_fighter.png");
-    if (gEnemies[EN_FIGHTER-SUBTRACT_ELEMENT] == 0) {
+    gSprites[EN_FIGHTER] = loadTexture("EnemySprites/en_fighter.png");
+    if (gSprites[EN_FIGHTER] == 0) {
         cout << "Failed to load texture image!" << endl;
         success = false;
     }
-    gEnemies[EN_CORVETTE-SUBTRACT_ELEMENT] = loadTexture("EnemySprites/en_fighter.png");
-    if (gEnemies[EN_CORVETTE-SUBTRACT_ELEMENT] == 0) {
+    gSprites[EN_CORVETTE] = loadTexture("EnemySprites/en_fighter.png");
+    if (gSprites[EN_CORVETTE] == 0) {
         cout << "Failed to load texture image!" << endl;
         success = false;
     }
-    gEnemies[EN_FRIGATE-SUBTRACT_ELEMENT] = loadTexture("EnemySprites/en_fighter.png");
-    if (gEnemies[EN_FRIGATE-SUBTRACT_ELEMENT] == 0) {
+    gSprites[EN_FRIGATE] = loadTexture("EnemySprites/en_fighter.png");
+    if (gSprites[EN_FRIGATE] == 0) {
         cout << "Failed to load texture image!" << endl;
         success = false;
     }
-    gEnemies[EN_DESTROYER-SUBTRACT_ELEMENT] = loadTexture("EnemySprites/en_fighter.png");
-    if (gEnemies[EN_DESTROYER-SUBTRACT_ELEMENT] == 0) {
+    gSprites[EN_DESTROYER] = loadTexture("EnemySprites/en_fighter.png");
+    if (gSprites[EN_DESTROYER] == 0) {
         cout << "Failed to load texture image!" << endl;
         success = false;
     }
-    gEnemies[EN_CRUISER-SUBTRACT_ELEMENT] = loadTexture("EnemySprites/en_fighter.png");
-    if (gEnemies[EN_CRUISER-SUBTRACT_ELEMENT] == 0) {
+    gSprites[EN_CRUISER] = loadTexture("EnemySprites/en_fighter.png");
+    if (gSprites[EN_CRUISER] == 0) {
         cout << "Failed to load texture image!" << endl;
         success = false;
     }
-    
 	return success;
 }
 
@@ -185,13 +181,8 @@ void Graphics::close()
     }
     
     for (int i = 0; i<SHIP_TYPES; i++) {
-            SDL_DestroyTexture(gAllies[i]);
-            gAllies[i] = 0;
-    }
-    
-    for (int i = 0; i<SHIP_TYPES; i++) {
-        SDL_DestroyTexture(gEnemies[i]);
-        gEnemies[i] = 0;
+        SDL_DestroyTexture(gSprites[i]);
+        gSprites[i] = 0;
     }
     
     //Remove font
@@ -299,11 +290,7 @@ SDL_Texture* Graphics::getTexture(Screens texture) {
 }
 
 SDL_Texture* Graphics::getSprite(Characters sprite) {
-    return gAllies[sprite];
-}
-
-SDL_Texture* Graphics::getEnFighterSprite() {
-    return gEnemies[0];
+    return gSprites[sprite];
 }
 
 TTF_Font* Graphics::getFont() {

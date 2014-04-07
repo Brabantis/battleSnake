@@ -17,7 +17,7 @@ Level::Level() {
     for (int i = 0; i<MAPWIDTH; i++) {
         for (int j = 0; j<MAPHEIGHT; j++) {
             if (j == 0 || j == MAPHEIGHT-1 || i == 0 || i == MAPWIDTH-1) {
-                map[i + MAPWIDTH * j] = 1;
+                map[i + MAPWIDTH * j] = COLLISION; // This takes effect after a turn, I want to avoid it.
             }
         }
     }
@@ -29,8 +29,8 @@ int Level::getTileCode(int x, int y) {
 
 Event Level::getEventFromCode(int code) {
     switch (code) {
-        case GAME_CLOSE:     // Once again, totally temporary
-            return LEV_CLOSURE;
+        case COLLISION:     // Once again, totally temporary
+            return GAME_LOST;
             break;
         case ENEMY_HERE:
             return EAT_ENEMY;

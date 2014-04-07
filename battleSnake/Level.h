@@ -27,7 +27,7 @@ enum Code {
     UNACCESSIBLE,
     NOT_WALK,
     WALK,
-    GAME_CLOSE,
+    COLLISION,
     ENEMY_HERE,
     SPEC_EVENT_2,
     SPEC_EVENT_3,
@@ -36,7 +36,7 @@ enum Code {
 enum Event {
     // THIS will be filled with event codes. BAT for BATtles, NAR for NARration.
     ERR_LEVEL,
-    LEV_CLOSURE,
+    GAME_LOST,
     EAT_ENEMY,
     EVE_DEFAULT,
     // ...

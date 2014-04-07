@@ -8,12 +8,9 @@
 #include "Spaceship.h"
 
 Spaceship::Spaceship(int ba, int bd, int bh, location pos, string crname) {
-    base_atk = ba;
-    base_def = bd;
-    base_hp = bh;
-    atk = base_atk;
-    def = base_def;
-    hp = base_hp;
+    atk = ba;
+    def = bd;
+    hp = bh;
     
     // CAREFUL!!! Here we are using SDL coordinate system, which is flipped around the x axis.
     position = pos;

@@ -32,15 +32,21 @@
 #include "Spaceship classes/Frigate.h"
 #include "Spaceship classes/Destroyer.h"
 #include "Spaceship classes/Cruiser.h"
+#include "Enemies classes/Fighter.h"
+#include "Enemies classes/Corvette.h"
+#include "Enemies classes/Frigate.h"
+#include "Enemies classes/Destroyer.h"
+#include "Enemies classes/Cruiser.h"
 
 using namespace std;
 
+// At the end, I'll need to decide which ones must be private and which ones must be public. Likely all but start will be private.
 class Engine {
 private:
-    string narration[3];    // the narrated parts
-    int teamsize;
+    int fleetsize;
     int enemysize;
     void addFleetMember(Characters choice);
+    void addEnemyFleetMember(int x, int y, Characters choice);
     Event lastTriggered;
     
     map<string, Item> inventory;
@@ -52,14 +58,17 @@ public:
     Engine();
     void fleetBuilder(Screens &lastDisplayed, Graphics graph);
     void printFleetStats();
-    void moveFleetOnMap(Direction dest, Level currLevel);   // This must check the value of the destination tile, move the character both on the screen and on the map.
+    void moveFleetOnMap(Direction dest, Level currLevel);
     void startLevel(Level currentLevel);
     void endLevel();
     
     // The functions that spawn enemies
+    Characters intToCharacterConvert(int input);
     int getRandInSpan(int lower, int upper);
     void spawnEnemy(int x, int y, Level current);
     void eatEnemy();
+    
+    bool isOccupied(int x, int y);
     
     void setLastEvent(Event last);
     Event getLastEvent();

@@ -17,10 +17,9 @@ using namespace std;
 
 class Enemy : public Spaceship {
 private:
-    Characters sprite;
 public:
     Enemy() {};
-    Enemy(int ba, int bd, int bh, string plname = "Hero", location pos = {0, 0, NORTH});
+    Enemy(int ba, int bd, int bh, string plname = "Enemy", location pos = {0, 0, NORTH});
     string getClass();
     void drawEnemyOnScene(Graphics graph);
 };

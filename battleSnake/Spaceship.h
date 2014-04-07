@@ -32,9 +32,7 @@ struct location {
 
 class Spaceship {
 protected:
-    int base_atk, base_def, base_hp;
     int atk, def, hp;
-    int max_atk, max_def, max_hp;
     location position;
     Characters sprite;
     string name;
@@ -46,6 +44,7 @@ public:             //Solo le funzioni base per tutti
     void attack(Spaceship enemy, power strength);
     void takeDamage(int damage);
     void drawOnScene(Graphics graph);
+    void calculateStats();
     
     // the getters
     string getName();

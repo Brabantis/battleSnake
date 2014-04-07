@@ -30,11 +30,9 @@ enum Direction {NORTH, EAST, SOUTH, WEST, DIRECTION_TOTAL};
 enum Screens
 {
     MAIN_CAMERA,
-    LOWER_MENU,
     MAIN_MENU,
     BATTLE,
-    NARRATION,
-    SELECTION_MENU,
+    GAME_OVER,
     TEXTURES_TOTAL
 };
 
@@ -50,13 +48,13 @@ enum Characters
     EN_FRIGATE,
     EN_DESTROYER,
     EN_CRUISER,
+    SHIP_TYPES
 };
 
 const int SCREEN_WIDTH = 800;
 const int SCREEN_HEIGHT = 600;
 const int SPRITE_WIDTH = SCREEN_WIDTH/20;
 const int SPRITE_HEIGHT = SCREEN_HEIGHT/15;
-const int SHIP_TYPES = 5;
 
 class Graphics {
 private:
@@ -65,8 +63,7 @@ private:
     
     // NOOOOOOOOOOO I need a bidimensional array somehow. Therefore I will be able to call a sprite from gTexture[sprite][Direction] or something like that
     SDL_Texture* gTexture[TEXTURES_TOTAL];
-    SDL_Texture* gAllies[SHIP_TYPES];
-    SDL_Texture* gEnemies[SHIP_TYPES];
+    SDL_Texture* gSprites[SHIP_TYPES];
     TTF_Font* gFont;
     
 public:
@@ -92,7 +89,6 @@ public:
     // Again, when i'll have the multidimensional array or whatever, i'll get this from there
     SDL_Texture* getTexture(Screens texture);
     SDL_Texture* getSprite(Characters sprite);
-    SDL_Texture* getEnFighterSprite();
     TTF_Font* getFont();
 };
 
