@@ -16,6 +16,7 @@
 #define __GiocoLabInf__Graphics__
 
 #include <iostream>
+#include <sstream>
 
 #include <SDL2/SDL.h>
 #include <SDL2_image/SDL_image.h>
@@ -64,6 +65,8 @@ private:
     // NOOOOOOOOOOO I need a bidimensional array somehow. Therefore I will be able to call a sprite from gTexture[sprite][Direction] or something like that
     SDL_Texture* gTexture[TEXTURES_TOTAL];
     SDL_Texture* gSprites[SHIP_TYPES];
+    SDL_Texture* gScore;
+    SDL_Texture* gParts;
     TTF_Font* gFont;
     
 public:
@@ -89,7 +92,13 @@ public:
     // Again, when i'll have the multidimensional array or whatever, i'll get this from there
     SDL_Texture* getTexture(Screens texture);
     SDL_Texture* getSprite(Characters sprite);
+    SDL_Texture* getScore();
+    SDL_Texture* getParts();
     TTF_Font* getFont();
+    
+    string intToString(int input);    // Necessary for printing score and parts
+    void printScore(int score);     // TODO
+    void printParts(int parts);     // TODO
 };
 
 #endif /* defined(__GiocoLabInf__Graphics__) */

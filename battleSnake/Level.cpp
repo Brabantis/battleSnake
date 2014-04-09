@@ -11,13 +11,13 @@
 // Of course this is not the final one. I will give him maps from a file.
 Level::Level() {
     for (int i = 0; i<MAPWIDTH*MAPHEIGHT; i++) {
-        map[i]=2;
+        map[i]=WALK;
     }
     // A fence on the outside
     for (int i = 0; i<MAPWIDTH; i++) {
         for (int j = 0; j<MAPHEIGHT; j++) {
             if (j == 0 || j == MAPHEIGHT-1 || i == 0 || i == MAPWIDTH-1) {
-                map[i + MAPWIDTH * j] = COLLISION; // This takes effect after a turn, I want to avoid it.
+                map[i + MAPWIDTH * j] = COLLISION;
             }
         }
     }

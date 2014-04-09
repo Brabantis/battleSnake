@@ -32,19 +32,23 @@
 #include "Spaceship classes/Frigate.h"
 #include "Spaceship classes/Destroyer.h"
 #include "Spaceship classes/Cruiser.h"
-#include "Enemies classes/Fighter.h"
-#include "Enemies classes/Corvette.h"
-#include "Enemies classes/Frigate.h"
-#include "Enemies classes/Destroyer.h"
-#include "Enemies classes/Cruiser.h"
 
 using namespace std;
 
-// At the end, I'll need to decide which ones must be private and which ones must be public. Likely all but start will be private.
+const int DELAY = 200;
+
 class Engine {
+public:
+    Engine();
+    int start();
+
 private:
     int fleetsize;
     int enemysize;
+    int score;
+    int parts;
+    Level currentLevel;
+    
     void addFleetMember(Characters choice);
     void addEnemyFleetMember(int x, int y, Characters choice);
     Event lastTriggered;
@@ -52,30 +56,27 @@ private:
     map<string, Item> inventory;
     vector<Direction> moveBuffer;
     vector<FleetMember> fleet;
-    vector<Enemy> enemyFleet;
-    
-public:
-    Engine();
+    vector<Enemy> enemyFleet;   // Using the Enemy class allows me to create any kind of enemy, either alien or human or whatever, I just need to create a new class. I guess i COULD just make a better constructor.
     void fleetBuilder(Screens &lastDisplayed, Graphics graph);
     void printFleetStats();
-    void moveFleetOnMap(Direction dest, Level currLevel);
-    void startLevel(Level currentLevel);
-    void endLevel();
+    void moveFleetOnMap(Direction dest);
+    void startLevel(int levelCode);
+    void endLevel();                    // TODO; finisce la missione dopo un po'.
     
     // The functions that spawn enemies
     Characters intToCharacterConvert(int input);
     int getRandInSpan(int lower, int upper);
     void spawnEnemy(int x, int y, Level current);
-    void eatEnemy();
     
-    bool isOccupied(int x, int y);
+    void killEnemy();   // TO ADJUST
+    void collectParts(int amount);
+    
+    bool isOccupied(int x, int y, Level curr);
     
     void setLastEvent(Event last);
     Event getLastEvent();
     
     void loadEquipment();
-    
-    int start();
     
     // Here I write some graphic functions that have a huge benefit from being here, namely access to the inventory, the members and remove the need to include engine in Graphics. Graphics will just need to include the most basic functions.
     // Or, now that I switched the organization, I could give them a graph and let them do their magic. Will think later.

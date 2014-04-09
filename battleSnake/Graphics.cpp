@@ -83,7 +83,7 @@ bool Graphics::loadMedia()
 	//Loading success flag
 	bool success = true;
     
-    gFont = TTF_OpenFont( "Font/Computerfont.ttf", 28 );
+    gFont = TTF_OpenFont( "Font/5Identification.ttf", 28 );
     if( gFont == 0 )
     {
         printf( "Failed to load the font! SDL_ttf Error: %s\n", TTF_GetError() );
@@ -185,6 +185,12 @@ void Graphics::close()
         gSprites[i] = 0;
     }
     
+    SDL_DestroyTexture(gScore);
+    gScore = 0;
+    
+    SDL_DestroyTexture(gParts);
+    gParts = 0;
+    
     //Remove font
     TTF_CloseFont(gFont);
     gFont = 0;
@@ -277,6 +283,43 @@ void Graphics::printTextOnScreen (string txtInput, SDL_Rect* destination) {
     tempTexture = 0;
 }
 
+string Graphics::intToString(int input) {
+    string s;
+    stringstream out;
+    out << input;
+    s = out.str();
+    return s;
+}
+
+void Graphics::printScore(int score) {
+    gScore = loadFromRenderedText(intToString(score), {0, 0, 0});
+    int width = 0;
+    if (score == 0)
+        width = 30;
+    else if (score < 1000)
+        width = 90;
+    else if (score < 10000)
+        width = 120;
+    else
+        width = 150;
+    SDL_Rect dst = {40, 10, width, 30};
+    SDL_RenderCopy(gRenderer, gScore, 0, &dst);
+}
+
+void Graphics::printParts(int parts) {
+    gParts = loadFromRenderedText(intToString(parts), {0, 0, 0});
+    int width = 0;
+    if (parts < 10)
+        width = 30;
+    else if (parts < 100)
+        width = 60;
+    else if (parts < 1000)
+        width = 90;
+    else
+        width = 120;
+    SDL_Rect dst = {760-width, 10, width, 30};
+    SDL_RenderCopy(gRenderer, gParts, 0, &dst);
+}
 
 SDL_Window* Graphics::getWindow() {
     return gWindow;
@@ -291,6 +334,14 @@ SDL_Texture* Graphics::getTexture(Screens texture) {
 
 SDL_Texture* Graphics::getSprite(Characters sprite) {
     return gSprites[sprite];
+}
+
+SDL_Texture* Graphics::getScore() {
+    return gScore;
+}
+
+SDL_Texture* Graphics::getParts() {
+    return gParts;
 }
 
 TTF_Font* Graphics::getFont() {

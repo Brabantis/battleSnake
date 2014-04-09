@@ -15,11 +15,12 @@
 
 using namespace std;
 
+// Enemy is used to create any of the enemies
 class Enemy : public Spaceship {
 private:
 public:
-    Enemy() {};
-    Enemy(int ba, int bd, int bh, string plname = "Enemy", location pos = {0, 0, NORTH});
+    Enemy();
+    Enemy(int ba, int bd, int bh, Characters spritesrc, string plname = "Enemy", location pos = {0, 0, NORTH});
     string getClass();
     void drawEnemyOnScene(Graphics graph);
 };

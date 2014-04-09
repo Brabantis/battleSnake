@@ -14,6 +14,8 @@ Engine::Engine() {
     // Initializing things that give trouble if I don't initialize them
     fleetsize = 0;
     enemysize = 0;
+    score = 0;
+    parts = 0;
     moveBuffer.push_back(NORTH);
     lastTriggered = EVE_DEFAULT;
 }
@@ -87,42 +89,39 @@ void Engine::addFleetMember(Characters choice) {
 }
 
 void Engine::addEnemyFleetMember(int x, int y, Characters choice) {
-    Enemy* player;
+    Enemy* opponent;
     switch (choice) {
         case FIGHTER:
         {
-            player = new EnFighter("EnFighter");
+            opponent = new Enemy(100, 30, 100, EN_FIGHTER, "EnFighter", {x, y, SOUTH});
             break;
         }
         case CORVETTE:
         {
-            
-            player = new EnCorvette("EnCorvette");
+            opponent = new Enemy(150, 50, 100, EN_CORVETTE, "EnCorvette", {x, y, SOUTH});
             break;
         }
         case FRIGATE:
         {
-            player = new EnFrigate("EnFrigate");
+            opponent = new Enemy(300, 100, 500, EN_FRIGATE, "EnFrigate", {x, y, SOUTH});
             break;
         }
         case DESTROYER:
         {
-            player = new EnDestroyer("EnDestroyer");
+            opponent = new Enemy(500, 100, 500, EN_DESTROYER, "EnDestroyer", {x, y, SOUTH});
             break;
         }
         case CRUISER:
         {
-            player = new EnCruiser("EnCruiser");
+            opponent = new Enemy(1000, 150, 1000, EN_CRUISER, "EnCruiser", {x, y, SOUTH});
             break;
         }
         default:
-            player = nullptr;
+            opponent = nullptr;
             cerr << "This was never meant to happen! Invalid fleet member!" << endl;
             break;
     }
-    enemyFleet.push_back(*player);
-    enemyFleet[enemysize].setX(x);
-    enemyFleet[enemysize].setY(y);
+    enemyFleet.push_back(*opponent);
     enemysize++;
 }
 
@@ -169,7 +168,7 @@ void Engine::printFleetStats() {
     }
 }
 
-void Engine::moveFleetOnMap(Direction dest, Level currLevel) {
+void Engine::moveFleetOnMap(Direction dest) {
     int tmpX = fleet[0].getX();
     int tmpY = fleet[0].getY();
     switch (dest) {
@@ -189,15 +188,15 @@ void Engine::moveFleetOnMap(Direction dest, Level currLevel) {
             cerr << "Invalid destination for team! How is this possible?" << endl;
             break;
     }
-    short y = currLevel.getTileCode(tmpX, tmpY);
+    short y = currentLevel.getTileCode(tmpX, tmpY);
     switch (y) {
-        case 0:
+        case 0: // NULL
             cerr << "Accessed out of boundary zone! The character walked through walls!" << endl;
             break;
-        case 1:
+        case 1: // WALL
             break;
-        case 2:
-            if (isOccupied(tmpX, tmpY)) {
+        case 2: // WALKABLE
+            if (isOccupied(tmpX, tmpY, currentLevel)) {
                 setLastEvent(GAME_LOST);
             }
             fleet[0].move(dest);
@@ -209,12 +208,12 @@ void Engine::moveFleetOnMap(Direction dest, Level currLevel) {
                 moveBuffer[i] = moveBuffer[i-1];
             }
             moveBuffer[0] = dest;
-            break;
-        case 3:         // Different codes for different events
-        case 4:
+            break;  // Different codes for different events
+        case 3:     // COLLISION
+        case 4:     // ENEMY_HERE
         case 5:
         case 6:
-            if (isOccupied(tmpX, tmpY)) {
+            if (isOccupied(tmpX, tmpY, currentLevel)) {
                 setLastEvent(GAME_LOST);
             }
             fleet[0].move(dest);
@@ -226,19 +225,16 @@ void Engine::moveFleetOnMap(Direction dest, Level currLevel) {
             }
             moveBuffer[0] = dest;
             // Commands are repeated, but either writing a function or adding a check boolean or two seems an overkill at this stage
-            setLastEvent(currLevel.getEventFromCode(y));
+            setLastEvent(currentLevel.getEventFromCode(y));
             break;
         default:
             break;
     }
 }
 
-int Engine::getRandInSpan(int lower, int upper) {
-    if (lower>=upper) {
-        return 0;
-    }
-    int result = rand() % (upper - lower +1) + lower;
-    return result;
+void Engine::startLevel(int levelCode) {
+    // TODO: Un costruttore di livelli a partire dal codice
+    currentLevel = *(new Level());
 }
 
 void Engine::spawnEnemy(int x, int y, Level current) {
@@ -246,23 +242,41 @@ void Engine::spawnEnemy(int x, int y, Level current) {
     addEnemyFleetMember(x, y, intToCharacterConvert(getRandInSpan(0, 4)));
 }
 
-void Engine::eatEnemy() {
+void Engine::killEnemy() {
     enemyFleet.pop_back();
     enemysize--;
-    addFleetMember(intToCharacterConvert(getRandInSpan(0, 4)));
+    // TEMPORARY
+    parts += 1; // Instead of parts, I can use a credit system
+    //
+    score += 100;   // This is why I don't need a addPoints func
+}
+
+void Engine::collectParts(int amount) {
+    parts += amount;
 }
 
 void Engine::setLastEvent(Event lastEvent) {
     lastTriggered = lastEvent;
 }
 
-bool Engine::isOccupied(int x, int y) {
+bool Engine::isOccupied(int x, int y, Level curr) {
     bool result = false;
     for (int i = 0; i<fleetsize; i++) {
         if (fleet[i].getX() == x && fleet[i].getY() == y) {
             result = true;
         }
     }
+    if (curr.getTileCode(x, y) == COLLISION) {
+        result = true;
+    }
+    return result;
+}
+
+int Engine::getRandInSpan(int lower, int upper) {
+    if (lower>=upper) {
+        return 0;
+    }
+    int result = rand() % (upper - lower +1) + lower;
     return result;
 }
 
@@ -274,10 +288,9 @@ Event Engine::getLastEvent() {
 // the main function, transferred in engine. Setting all the graphics stuff as children of Graphics and so on allowed me to make the functions slimmer
 int Engine::start()
 {
-    srand ((int)time(NULL));
-    Level currentLevel;
+    srand (static_cast<int>(time(NULL)));
     Graphics graphEngine;
-    
+    startLevel(1);
     int tmpx = 2, tmpy = 2;
     
     //Start up SDL and create window
@@ -349,7 +362,7 @@ int Engine::start()
 					else if( e.type == SDL_KEYDOWN )
 					{
 						switch( e.key.keysym.sym )
-						{
+						{   // Potrebbe essere conveniente ruotare la texture e renderizzare appena un tasto viene premuto. Dovrebbe dare l'illusione di una maggior responsività
 							case SDLK_UP:
                                 if (fleet[0].getDirection() != SOUTH) {
                                     choice = NORTH;
@@ -369,6 +382,37 @@ int Engine::start()
                                 if (fleet[0].getDirection() != WEST) {
                                     choice = EAST;
                                 }
+                                break;
+                            case SDLK_1:
+                                if (parts >= 10) {
+                                    parts -= 10;
+                                    addFleetMember(FIGHTER);
+                                }
+                                break;
+                            case SDLK_2:
+                                if (parts >= 20) {
+                                    parts -= 20;
+                                    addFleetMember(CORVETTE);
+                                }
+                                break;
+                            case SDLK_3:
+                                if (parts >= 30) {
+                                    parts -= 30;
+                                    addFleetMember(FRIGATE);
+                                }
+                                break;
+                            case SDLK_4:
+                                if (parts >= 40) {
+                                    parts -= 40;
+                                    addFleetMember(DESTROYER);
+                                }
+                                break;
+                            case SDLK_5:
+                                if (parts >= 50) {
+                                    parts -= 50;
+                                    addFleetMember(CRUISER);
+                                }
+                                break;
                             default:
                                 break;
 						}
@@ -379,7 +423,8 @@ int Engine::start()
 				}
                 // Here I invoke the functions I need each time
                 
-                moveFleetOnMap(choice, currentLevel);
+                // I woulda coulda shoulda change this + drawfleet + drawEnemyFleet into something tweening
+                moveFleetOnMap(choice);
                 switch (lastTriggered) {
                     case GAME_LOST:
                         SDL_Delay(500);
@@ -387,8 +432,8 @@ int Engine::start()
                         break;
                     case EAT_ENEMY: // When I'm on a tile with a trigger, the trigger is fired continuously, beware
                         enemyOnScreen = false;
-                        eatEnemy();
-                        currentLevel.giveCodeToTile(tmpx, tmpy, WALK);  // If I can, I should include those in eatEnemy();
+                        killEnemy();
+                        currentLevel.giveCodeToTile(tmpx, tmpy, WALK);  // If I can, I should include those in killEnemy();
                         lastTriggered = EVE_DEFAULT;
                         tmpx++;
                         tmpy++;
@@ -397,22 +442,24 @@ int Engine::start()
                         break;
                 }
                 
-                if (!enemyOnScreen) {
+                if (!enemyOnScreen) {   // Spawning a new enemy
                     do {
-                        tmpx = getRandInSpan(2, 19);
-                        tmpy = getRandInSpan(2, 14);
+                        tmpx = getRandInSpan(1, 20);
+                        tmpy = getRandInSpan(1, 15);
                     }
-                    while (isOccupied(tmpx, tmpy));
+                    while (isOccupied(tmpx, tmpy, currentLevel));
                     spawnEnemy(tmpx, tmpy, currentLevel);
                     currentLevel.giveCodeToTile(tmpx, tmpy, ENEMY_HERE);
                     enemyOnScreen = true;
                 }
-                if (!quit) {
+                if (!quit) {    // No rendering on last loop
                     graphEngine.setView(gLastDisplayed, gLastDisplayed);
                     drawFleet(graphEngine);
                     drawEnemyFleet(graphEngine);
+                    graphEngine.printScore(score);
+                    graphEngine.printParts(parts);
                     SDL_RenderPresent(graphEngine.getRenderer());
-                    SDL_Delay(150);
+                    SDL_Delay(DELAY); // This is the delay every frame. Within my knowledge, unrensponsivity is unaddressable
                 }
 			}
             graphEngine.setView(GAME_OVER, gLastDisplayed);

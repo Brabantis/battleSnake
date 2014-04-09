@@ -23,8 +23,6 @@
 
 using namespace std;
 
-enum power {NONE, WEAK, MEDIUM, STRONG};
-
 struct location {
     int x, y; // coordinates divided by 10 to move on tiles
     Direction orient;
@@ -36,15 +34,19 @@ protected:
     location position;
     Characters sprite;
     string name;
+    
+    void shootLaser(int xtarget, int ytarget);
+    void takeDamage(int damage);
+    void calculateStats();
+    void explode();
+    
 public:             //Solo le funzioni base per tutti
     
     Spaceship() {}                                          // Default
     Spaceship(int ba, int bd, int bh, location pos = {0, 0, SOUTH}, string crname = "Mook");
-    //~Spaceship();                                          // Default destructor is OK
-    void attack(Spaceship enemy, power strength);
-    void takeDamage(int damage);
+    
+    // to draw on scene, duh
     void drawOnScene(Graphics graph);
-    void calculateStats();
     
     // the getters
     string getName();

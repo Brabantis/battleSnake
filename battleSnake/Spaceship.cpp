@@ -26,9 +26,12 @@ void Spaceship::takeDamage(int damage) {
     cout << name << " subisce " << damage << " danni; HP rimanenti = " << hp << endl;
 }
 
-void Spaceship::attack(Spaceship enemy, power strength) {
-    // ATTACK ANIMATION
-    enemy.takeDamage(atk*0.5*strength);
+void Spaceship::shootLaser(int xtarget, int ytarget){
+    // Shoots a MOTHERFRIGGIN' LAZERBEAM to a tile. If it collides with an enemy, it damages it. Else, it goes till it hits a wall.
+}
+
+void Spaceship::explode() {
+    // KABLEW!!! HAHAHAHAHAHA
 }
 
 // WARNING WARNING CODE BLUE
@@ -55,7 +58,25 @@ void Spaceship::drawOnScene(Graphics graph) {
     SDL_Rect renderZone = {(position.x-1) * SPRITE_WIDTH, (position.y-1) * SPRITE_HEIGHT, SPRITE_WIDTH, SPRITE_HEIGHT};
     SDL_RenderCopyEx(graph.getRenderer(), graph.getSprite(sprite), 0, &renderZone, rotation, 0, SDL_FLIP_NONE);
 }
+
 // x-1 and y-1 because we are working on an array
+
+// Not good for how i drew the map, I don't have a func to draw at a coordinate. I could have it, but I'll try something else first
+/*
+void Spaceship::smoothMove(Graphics graph, int xstart, int ystart, int xdest, int ydest, int steps) {
+    int xtemp = xstart, ytemp = ystart;
+    for (int i = 0; i<steps; i++) {
+        setX(xtemp);    // NO NO NO NO NO this way I move it on map, not on screen
+        setY(ytemp);
+        drawOnScene(graph);
+        xtemp += (xdest - xstart)/steps;
+        ytemp += (ydest - ystart)/steps;
+    }
+    setX(xdest);
+    setY(ydest);
+    drawOnScene(graph);
+}
+ */
 
 string Spaceship::getName() {
     return name;

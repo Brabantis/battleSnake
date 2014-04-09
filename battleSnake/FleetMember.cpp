@@ -10,8 +10,7 @@
 #include "Spaceship.h"
 #include "Item.h"
 
-FleetMember::FleetMember() {
-}
+FleetMember::FleetMember() {}
 
 FleetMember::FleetMember(int ba, int bd, int bh, string plname, location pos) : Spaceship(ba, bd, bh, pos, plname) {
     // The sprite will be left uninitialized if the FleetMember constructor is used instead of the character class one
@@ -24,7 +23,7 @@ string FleetMember::getClass() {
             value = "Fighter";
             break;
         case CORVETTE:
-            value = "Old bag";
+            value = "Corvette";
             break;
         case FRIGATE:
             value = "Frigate";
