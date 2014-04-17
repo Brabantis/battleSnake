@@ -169,6 +169,12 @@ bool Graphics::loadMedia()
         cout << "Failed to load texture image!" << endl;
         success = false;
     }
+    
+    gOther[LASER_BASIC] = loadTexture("OtherSprites/laser_all_basic.png");
+    if (gOther[LASER_BASIC] == 0) {
+        cout << "Failed to load texture image!" << endl;
+        success = false;
+    }
 	return success;
 }
 
@@ -334,6 +340,10 @@ SDL_Texture* Graphics::getTexture(Screens texture) {
 
 SDL_Texture* Graphics::getSprite(Characters sprite) {
     return gSprites[sprite];
+}
+
+SDL_Texture* Graphics::getOtherSprite(OtherSprites sprite) {
+    return gOther[sprite];
 }
 
 SDL_Texture* Graphics::getScore() {

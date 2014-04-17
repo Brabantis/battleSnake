@@ -150,6 +150,28 @@ Characters Engine::intToCharacterConvert(int input) {
     return output;
 }
 
+void Engine::coordsOfNearestEnemy(int &x, int &y, int index) {
+    Enemy nearest;
+    double minDist = 999;
+    for (int i = 0; i<enemysize; i++) {
+        double currDist = sqrt(pow((enemyFleet[i].getX() - fleet[index].getX()), 2) + pow((enemyFleet[i].getY() - fleet[index].getY()), 2));
+        if (currDist < minDist) {
+            nearest = enemyFleet[i];
+        }
+    }
+    x = nearest.getX();
+    y = nearest.getY();
+}
+
+void Engine::addLaserToMap() {
+    for (int i = 0; i<fleetsize; i++) {
+        int tmpx = 0, tmpy = 0;
+        coordsOfNearestEnemy(tmpx, tmpy, i);
+        Laser tmp = fleet[i].shootLaser(tmpx, tmpy);
+        lasersOnMap.push_back(tmp);
+    }
+}
+
 void Engine::drawFleet(Graphics graph) {
     for (int i = 0; i<fleetsize; i++) {
         fleet[i].drawOnScene(graph);
@@ -293,6 +315,16 @@ int Engine::start()
     startLevel(1);
     int tmpx = 2, tmpy = 2;
     
+    //Many counters for things that need to be done every few frames
+    
+    // For intermediate animations
+    int intervalCounter = 1;
+    
+    // For managing the laser shooting
+    RateOfFire rof = MEDIUM;
+    int lasercounter = 0;
+    bool readyToFire = true;
+    
     //Start up SDL and create window
 	if( !graphEngine.init() )
 	{
@@ -413,6 +445,9 @@ int Engine::start()
                                     addFleetMember(CRUISER);
                                 }
                                 break;
+                            case SDLK_SPACE:    // For a triggerable breakpoint
+                                cout << "Game Paused" << endl;
+                                break;
                             default:
                                 break;
 						}
@@ -422,25 +457,6 @@ int Engine::start()
                 // Things over this brace are only invoked at the press of a button
 				}
                 // Here I invoke the functions I need each time
-                
-                // I woulda coulda shoulda change this + drawfleet + drawEnemyFleet into something tweening
-                moveFleetOnMap(choice);
-                switch (lastTriggered) {
-                    case GAME_LOST:
-                        SDL_Delay(500);
-                        quit = true;
-                        break;
-                    case EAT_ENEMY: // When I'm on a tile with a trigger, the trigger is fired continuously, beware
-                        enemyOnScreen = false;
-                        killEnemy();
-                        currentLevel.giveCodeToTile(tmpx, tmpy, WALK);  // If I can, I should include those in killEnemy();
-                        lastTriggered = EVE_DEFAULT;
-                        tmpx++;
-                        tmpy++;
-                        break;
-                    default:
-                        break;
-                }
                 
                 if (!enemyOnScreen) {   // Spawning a new enemy
                     do {
@@ -452,15 +468,58 @@ int Engine::start()
                     currentLevel.giveCodeToTile(tmpx, tmpy, ENEMY_HERE);
                     enemyOnScreen = true;
                 }
-                if (!quit) {    // No rendering on last loop
-                    graphEngine.setView(gLastDisplayed, gLastDisplayed);
-                    drawFleet(graphEngine);
-                    drawEnemyFleet(graphEngine);
-                    graphEngine.printScore(score);
-                    graphEngine.printParts(parts);
-                    SDL_RenderPresent(graphEngine.getRenderer());
-                    SDL_Delay(DELAY); // This is the delay every frame. Within my knowledge, unrensponsivity is unaddressable
+                if (!quit && intervalCounter==4) {
+                    intervalCounter = 1;
+                    if (lasercounter == rof) {
+                        lasercounter -= rof;
+                        readyToFire = true;
+                    }
+                    else {
+                        lasercounter++;
+                    }
+                    moveFleetOnMap(choice); // I woulda coulda shoulda change this + drawfleet + drawEnemyFleet into something tweening
                 }
+                graphEngine.setView(gLastDisplayed, gLastDisplayed);
+                graphEngine.printScore(score);
+                graphEngine.printParts(parts);
+                
+                switch (lastTriggered) {
+                    case GAME_LOST:
+                        SDL_Delay(500);
+                        quit = true;
+                        break;
+                    case EAT_ENEMY:
+                        // THESE are the functions for destroying an enemy and will be eventually moved
+                        enemyOnScreen = false;
+                        killEnemy();
+                        currentLevel.giveCodeToTile(tmpx, tmpy, WALK);  // If I can, I should include those in killEnemy();
+                        lastTriggered = EVE_DEFAULT;
+                        tmpx++;
+                        tmpy++;
+                        break;
+                        
+                        break;
+                    default:
+                        break;
+                }
+                for (int i = 0; i<fleetsize; i++) {
+                    if (readyToFire) {
+                        readyToFire = false;
+                        // Forse è meglio se spara una volta ogni due turni
+                        addLaserToMap();
+                    }
+                    // Find a way to pop elements in the middle, since you must destroy the laser once it hits a target. Also, consider switching back to vector once you've found your way
+                }
+                for (int i = 0; i<lasersOnMap.size(); i++) {
+                    lasersOnMap[i].travel();
+                    lasersOnMap[i].drawOnScreen(graphEngine);
+                }
+                drawFleet(graphEngine);
+                drawEnemyFleet(graphEngine);
+                intervalCounter++;
+                // Right now it renders at about 20 FPS
+                SDL_RenderPresent(graphEngine.getRenderer());
+                SDL_Delay(DELAYFOURTH);
 			}
             graphEngine.setView(GAME_OVER, gLastDisplayed);
             SDL_RenderPresent(graphEngine.getRenderer());

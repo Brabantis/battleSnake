@@ -17,6 +17,7 @@
 #define __GiocoLabInf__Creature__
 
 #include "Graphics.h"
+#include "Laser.h"
 
 #include <iostream>
 #include <string>
@@ -35,7 +36,7 @@ protected:
     Characters sprite;
     string name;
     
-    void shootLaser(int xtarget, int ytarget);
+    void coordsOfNearestEnemy(int &x, int &y);
     void takeDamage(int damage);
     void calculateStats();
     void explode();
@@ -47,6 +48,8 @@ public:             //Solo le funzioni base per tutti
     
     // to draw on scene, duh
     void drawOnScene(Graphics graph);
+    
+    Laser shootLaser(int xdest, int ydest);
     
     // the getters
     string getName();

@@ -26,13 +26,33 @@ void Spaceship::takeDamage(int damage) {
     cout << name << " subisce " << damage << " danni; HP rimanenti = " << hp << endl;
 }
 
-void Spaceship::shootLaser(int xtarget, int ytarget){
+Laser Spaceship::shootLaser(int xdest, int ydest){
     // Shoots a MOTHERFRIGGIN' LAZERBEAM to a tile. If it collides with an enemy, it damages it. Else, it goes till it hits a wall.
+    double angle = 0;
+    if (xdest != position.x) {
+        double cosfact = (ydest - position.y);
+        double sinfact = (xdest - position.x);
+        angle = atan(cosfact / sinfact);
+        if (sinfact <= 0) {
+            angle -= pi;
+        }
+    }
+    else {
+        if (ydest > position.y) {
+            angle = pi/2;
+        }
+        else {
+            angle = -pi/2;
+        }
+    }
+    Laser tmp(atk, (position.x-1) * SPRITE_WIDTH + 20, (position.y-1) * SPRITE_HEIGHT + 20, angle, LASER_BASIC);
+    return tmp;
 }
 
 void Spaceship::explode() {
     // KABLEW!!! HAHAHAHAHAHA
 }
+
 
 // WARNING WARNING CODE BLUE
 // Drawing functions destroy rendered characters unless they are refreshed.
@@ -60,23 +80,6 @@ void Spaceship::drawOnScene(Graphics graph) {
 }
 
 // x-1 and y-1 because we are working on an array
-
-// Not good for how i drew the map, I don't have a func to draw at a coordinate. I could have it, but I'll try something else first
-/*
-void Spaceship::smoothMove(Graphics graph, int xstart, int ystart, int xdest, int ydest, int steps) {
-    int xtemp = xstart, ytemp = ystart;
-    for (int i = 0; i<steps; i++) {
-        setX(xtemp);    // NO NO NO NO NO this way I move it on map, not on screen
-        setY(ytemp);
-        drawOnScene(graph);
-        xtemp += (xdest - xstart)/steps;
-        ytemp += (ydest - ystart)/steps;
-    }
-    setX(xdest);
-    setY(ydest);
-    drawOnScene(graph);
-}
- */
 
 string Spaceship::getName() {
     return name;

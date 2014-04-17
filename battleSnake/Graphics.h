@@ -26,7 +26,14 @@ using namespace std;
 
 // These enums are used throughout the game
 
-enum Direction {NORTH, EAST, SOUTH, WEST, DIRECTION_TOTAL};
+enum Direction
+{
+    NORTH,
+    EAST,
+    SOUTH,
+    WEST,
+    DIRECTION_TOTAL
+};
 
 enum Screens
 {
@@ -52,6 +59,15 @@ enum Characters
     SHIP_TYPES
 };
 
+enum OtherSprites
+{
+    LASER_BASIC,
+    OTHER_TOTAL
+};
+
+// I define it here because I wouldn't know where to otherwise
+const double pi = 3.141592;
+
 const int SCREEN_WIDTH = 800;
 const int SCREEN_HEIGHT = 600;
 const int SPRITE_WIDTH = SCREEN_WIDTH/20;
@@ -65,8 +81,11 @@ private:
     // NOOOOOOOOOOO I need a bidimensional array somehow. Therefore I will be able to call a sprite from gTexture[sprite][Direction] or something like that
     SDL_Texture* gTexture[TEXTURES_TOTAL];
     SDL_Texture* gSprites[SHIP_TYPES];
+    SDL_Texture* gOther[OTHER_TOTAL];
+    
     SDL_Texture* gScore;
     SDL_Texture* gParts;
+    
     TTF_Font* gFont;
     
 public:
@@ -92,6 +111,7 @@ public:
     // Again, when i'll have the multidimensional array or whatever, i'll get this from there
     SDL_Texture* getTexture(Screens texture);
     SDL_Texture* getSprite(Characters sprite);
+    SDL_Texture* getOtherSprite(OtherSprites sprite);
     SDL_Texture* getScore();
     SDL_Texture* getParts();
     TTF_Font* getFont();

@@ -19,6 +19,7 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <cmath>
 
 #include <stdlib.h>
 #include <time.h>
@@ -35,7 +36,15 @@
 
 using namespace std;
 
-const int DELAY = 200;
+const int DELAYFOURTH = 50;
+
+enum RateOfFire {
+    UNUSED_1,
+    HIGH,
+    MEDIUM,
+    UNUSED_2,
+    LOW
+};
 
 class Engine {
 public:
@@ -49,19 +58,26 @@ private:
     int parts;
     Level currentLevel;
     
-    void addFleetMember(Characters choice);
-    void addEnemyFleetMember(int x, int y, Characters choice);
     Event lastTriggered;
     
-    map<string, Item> inventory;
+    map<string, Item> inventory;        // As of now, not implemented
     vector<Direction> moveBuffer;
     vector<FleetMember> fleet;
-    vector<Enemy> enemyFleet;   // Using the Enemy class allows me to create any kind of enemy, either alien or human or whatever, I just need to create a new class. I guess i COULD just make a better constructor.
+    vector<Enemy> enemyFleet;   // Using the Enemy class allows me to create any kind of enemy, either alien or human or whatever, I just need to create a new object. I guess i COULD just make a better constructor.
+    vector<Laser> lasersOnMap;   // I need something made so that I can BOTH access elements in order AND delete one in every position (pop). If there isn't one, I'll just have to create it myself.
+    
+    void addFleetMember(Characters choice);
+    void addEnemyFleetMember(int x, int y, Characters choice);
     void fleetBuilder(Screens &lastDisplayed, Graphics graph);
+    void coordsOfNearestEnemy(int &x, int &y, int index);
+    void addLaserToMap();
+    
     void printFleetStats();
     void moveFleetOnMap(Direction dest);
+    
+    void mainMenu();                    // TODO: Selezione nave, acquisto potenziamenti
     void startLevel(int levelCode);
-    void endLevel();                    // TODO; finisce la missione dopo un po'.
+    void endLevel();                    // TODO: finisce la missione dopo un po' di punti.
     
     // The functions that spawn enemies
     Characters intToCharacterConvert(int input);
@@ -76,7 +92,8 @@ private:
     void setLastEvent(Event last);
     Event getLastEvent();
     
-    void loadEquipment();
+    void buyEquipment();        // TODO
+    void loadEquipment();       // TODO
     
     // Here I write some graphic functions that have a huge benefit from being here, namely access to the inventory, the members and remove the need to include engine in Graphics. Graphics will just need to include the most basic functions.
     // Or, now that I switched the organization, I could give them a graph and let them do their magic. Will think later.
