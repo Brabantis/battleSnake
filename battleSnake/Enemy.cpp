@@ -10,6 +10,5 @@
 
 Enemy::Enemy() {}
 
-Enemy::Enemy(int ba, int bd, int bh, Characters spritesrc, string plname, location pos) : Spaceship(ba, bd, bh, pos, plname) {
-    sprite = spritesrc;
+Enemy::Enemy(int ba, int bd, int bh, Characters spritesrc, location pos) : Spaceship(ba, bd, bh, spritesrc, pos) {
 }

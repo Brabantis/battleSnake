@@ -7,14 +7,13 @@
 
 #include "Spaceship.h"
 
-Spaceship::Spaceship(int ba, int bd, int bh, location pos, string crname) {
+Spaceship::Spaceship(int ba, int bd, int bh, Characters spritesrc, location pos) {
     atk = ba;
     def = bd;
     hp = bh;
-    
+    sprite = spritesrc;
     // CAREFUL!!! Here we are using SDL coordinate system, which is flipped around the x axis.
     position = pos;
-    name = crname;
 }
 
 // I'll need to check in the game loop if the enemy is still alive.
@@ -23,7 +22,6 @@ void Spaceship::takeDamage(int damage) {
     double percentage = 100/((double)def + 100);    // LoL calculation
     damage *= percentage;
     hp -= damage;
-    cout << name << " subisce " << damage << " danni; HP rimanenti = " << hp << endl;
 }
 
 Laser Spaceship::shootLaser(int xdest, int ydest){
@@ -45,14 +43,33 @@ Laser Spaceship::shootLaser(int xdest, int ydest){
             angle = -pi/2;
         }
     }
-    Laser tmp(atk, (position.x-1) * SPRITE_WIDTH + 20, (position.y-1) * SPRITE_HEIGHT + 20, angle, LASER_BASIC);
+    Laser tmp(atk, (position.x-1) * SPRITE_WIDTH + 20, (position.y-1) * SPRITE_HEIGHT + 20, -angle, LASER_BASIC);
     return tmp;
+}
+
+void Spaceship::move(Direction dest) {
+    switch (dest) {
+        case NORTH:
+            position.y--;
+            break;
+        case EAST:
+            position.x++;
+            break;
+        case SOUTH:
+            position.y++;
+            break;
+        case WEST:
+            position.x--;
+            break;
+        default:
+            break;
+    }
+    position.orient = dest;
 }
 
 void Spaceship::explode() {
     // KABLEW!!! HAHAHAHAHAHA
 }
-
 
 // WARNING WARNING CODE BLUE
 // Drawing functions destroy rendered characters unless they are refreshed.
@@ -78,12 +95,7 @@ void Spaceship::drawOnScene(Graphics graph) {
     SDL_Rect renderZone = {(position.x-1) * SPRITE_WIDTH, (position.y-1) * SPRITE_HEIGHT, SPRITE_WIDTH, SPRITE_HEIGHT};
     SDL_RenderCopyEx(graph.getRenderer(), graph.getSprite(sprite), 0, &renderZone, rotation, 0, SDL_FLIP_NONE);
 }
-
 // x-1 and y-1 because we are working on an array
-
-string Spaceship::getName() {
-    return name;
-}
 
 int Spaceship::getAtk() {
     return atk;

@@ -20,34 +20,33 @@ Engine::Engine() {
     lastTriggered = EVE_DEFAULT;
 }
 
-// in addFleetMember I need some sort of control, to avoid having duplicate characters
 void Engine::addFleetMember(Characters choice) {
     FleetMember* player;
     switch (choice) {
         case FIGHTER:
         {
-            player = new Fighter("Fighter");
+            player = new FleetMember(100, 30, 100, FIGHTER);
             break;
         }
         case CORVETTE:
         {
             
-            player = new Corvette("Corvette");
+            player = new FleetMember(150, 50, 100, CORVETTE);
             break;
         }
         case FRIGATE:
         {
-            player = new Frigate("Frigate");
+            player = new FleetMember(300, 100, 500, FRIGATE);
             break;
         }
         case DESTROYER:
         {
-            player = new Destroyer("Destroyer");
+            player = new FleetMember(500, 100, 500, DESTROYER);
             break;
         }
         case CRUISER:
         {
-            player = new Cruiser("Cruiser");
+            player = new FleetMember(1000, 150, 1000, CRUISER);
             break;
         }
         default:
@@ -93,27 +92,27 @@ void Engine::addEnemyFleetMember(int x, int y, Characters choice) {
     switch (choice) {
         case FIGHTER:
         {
-            opponent = new Enemy(100, 30, 100, EN_FIGHTER, "EnFighter", {x, y, SOUTH});
+            opponent = new Enemy(100, 30, 100, EN_FIGHTER, {x, y, SOUTH});
             break;
         }
         case CORVETTE:
         {
-            opponent = new Enemy(150, 50, 100, EN_CORVETTE, "EnCorvette", {x, y, SOUTH});
+            opponent = new Enemy(150, 50, 100, EN_CORVETTE, {x, y, SOUTH});
             break;
         }
         case FRIGATE:
         {
-            opponent = new Enemy(300, 100, 500, EN_FRIGATE, "EnFrigate", {x, y, SOUTH});
+            opponent = new Enemy(300, 100, 500, EN_FRIGATE, {x, y, SOUTH});
             break;
         }
         case DESTROYER:
         {
-            opponent = new Enemy(500, 100, 500, EN_DESTROYER, "EnDestroyer", {x, y, SOUTH});
+            opponent = new Enemy(500, 100, 500, EN_DESTROYER, {x, y, SOUTH});
             break;
         }
         case CRUISER:
         {
-            opponent = new Enemy(1000, 150, 1000, EN_CRUISER, "EnCruiser", {x, y, SOUTH});
+            opponent = new Enemy(1000, 150, 1000, EN_CRUISER, {x, y, SOUTH});
             break;
         }
         default:
@@ -145,6 +144,25 @@ Characters Engine::intToCharacterConvert(int input) {
             output = CRUISER;
             break;
         default:
+            break;
+    }
+    return output;
+}
+
+Direction Engine::intToDirectionConvert(int input) {
+    Direction output = NORTH;
+    switch (input) {
+        case 0:
+            output = NORTH;
+            break;
+        case 1:
+            output = EAST;
+            break;
+        case 2:
+            output = SOUTH;
+            break;
+        case 3:
+            output = WEST;
             break;
     }
     return output;
@@ -186,7 +204,7 @@ void Engine::drawEnemyFleet(Graphics graph) {
 
 void Engine::printFleetStats() {
     for (int i = 0; i<fleetsize; i++) {
-        cout << "Member in position " << i+1 << ": a " << fleet[i].getClass() << " called " << fleet[i].getName() << " who has these values for attack, defense and health: " << fleet[i].getAtk() << ", " << fleet[i].getDef() << ", " << fleet[i].getHP() << "." << endl;
+        cout << "Member in position " << i+1 << ": a " << fleet[i].getClass() << " that has these values for attack, defense and health: " << fleet[i].getAtk() << ", " << fleet[i].getDef() << ", " << fleet[i].getHP() << "." << endl;
     }
 }
 
@@ -254,7 +272,7 @@ void Engine::moveFleetOnMap(Direction dest) {
     }
 }
 
-void Engine::startLevel(int levelCode) {
+void Engine::startLevel() {
     // TODO: Un costruttore di livelli a partire dal codice
     currentLevel = *(new Level());
 }
@@ -307,12 +325,15 @@ Event Engine::getLastEvent() {
     return lastTriggered;
 }
 
+0 = 1   // reminder to read this ;)
+// What there is to do: Directions work, collision does NOT; the system sees a 30000 dimension map, but positions are still limited. Need to overhaul movement, directions and position. Need something like a "herearespaceships" that marks for collision 10x10 tiles starting from the upper left corner
+
 // the main function, transferred in engine. Setting all the graphics stuff as children of Graphics and so on allowed me to make the functions slimmer
 int Engine::start()
 {
     srand (static_cast<int>(time(NULL)));
     Graphics graphEngine;
-    startLevel(1);
+    startLevel();
     int tmpx = 2, tmpy = 2;
     
     //Many counters for things that need to be done every few frames
@@ -366,20 +387,8 @@ int Engine::start()
             graphEngine.setView(MAIN_CAMERA, gLastDisplayed);
             drawFleet(graphEngine);
             SDL_RenderPresent(graphEngine.getRenderer());
-            SDL_Delay(3000);
-            
-            // THIS BLOODY THING WAS SENDING MY CLOSE() INTO CONFUSION!!! HOW?
-            // returning zero has no effect on this particular bug
-            // Attempt #3
-            
-            /*
-             SDL_Rect tempDest = {200, 100, 400, 100};
-             Graphics::printTextOnScreen(gRenderer, "third attempt", &tempDest, gFont);
-             SDL_RenderPresent(gRenderer);
-             */
-            
-            // The funtion works, apparently. the program does NOT;
-            
+            SDL_Delay(300); // TO DECUPLICATE
+
 			while( !quit )
 			{
 				//Handle events on queue
@@ -478,6 +487,17 @@ int Engine::start()
                         lasercounter++;
                     }
                     moveFleetOnMap(choice); // I woulda coulda shoulda change this + drawfleet + drawEnemyFleet into something tweening
+                    
+                    // This TECHNICALLY works. But VERY technically. Like "it's horrible and totally not understandable and it fucks up collision"
+                    /*
+                    for (int i = 0; i<enemyFleet.size(); i++) {
+                        int dir = getRandInSpan(0, 3);
+                        enemyFleet[i].move(intToDirectionConvert(dir));
+                        if (enemyFleet[i].getX() > 19 || enemyFleet[i].getX() < 2 ||
+                            enemyFleet[i].getY() > 14 || enemyFleet[i].getY() < 2) {
+                            enemyFleet[i].move(intToDirectionConvert((dir+2)%4));
+                        }
+                    }*/
                 }
                 graphEngine.setView(gLastDisplayed, gLastDisplayed);
                 graphEngine.printScore(score);
@@ -485,7 +505,7 @@ int Engine::start()
                 
                 switch (lastTriggered) {
                     case GAME_LOST:
-                        SDL_Delay(500);
+                        SDL_Delay(50); // TO DECUPLICATE
                         quit = true;
                         break;
                     case EAT_ENEMY:
@@ -510,6 +530,15 @@ int Engine::start()
                     }
                     // Find a way to pop elements in the middle, since you must destroy the laser once it hits a target. Also, consider switching back to vector once you've found your way
                 }
+                for (int i = static_cast<int>(lasersOnMap.size()) - 1; i>0; i--) {
+                    if (lasersOnMap[i].isHittingEnemy(currentLevel)) {
+                        lasersOnMap.erase(lasersOnMap.begin()+i);
+                        // Create a function that changes for 1 frame the sprite to explosion, then removes the laser. A possibility is to set a bool markedForDeletion, that is set with an impact func that also sets the sprite to explode, damages the target and stops the travel. Then a sweeper function removes all the markedForDeletion. Also the hit ship must not move between the impact and the destruction. Check with the frame intervals
+                    }
+                    if (lasersOnMap[i].isHittingWall(currentLevel)) {
+                        lasersOnMap.erase(lasersOnMap.begin()+i);
+                    }
+                }
                 for (int i = 0; i<lasersOnMap.size(); i++) {
                     lasersOnMap[i].travel();
                     lasersOnMap[i].drawOnScreen(graphEngine);
@@ -523,7 +552,7 @@ int Engine::start()
 			}
             graphEngine.setView(GAME_OVER, gLastDisplayed);
             SDL_RenderPresent(graphEngine.getRenderer());
-            SDL_Delay(2000);
+            SDL_Delay(200); // TO DECUPLICATE
             // Here ends the main loop
 		}
 	}

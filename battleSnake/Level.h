@@ -18,35 +18,16 @@
 #include <iostream>
 
 #include "Graphics.h"
+#include "Tile.h"
 
-const int MAPWIDTH = 20; // Temporary
-const int MAPHEIGHT = 15;
-
-// The codes for the tiles
-enum Code {
-    UNACCESSIBLE,
-    NOT_WALK,
-    WALK,
-    COLLISION,
-    ENEMY_HERE,
-    SPEC_EVENT_2,
-    SPEC_EVENT_3,
-};
-
-enum Event {
-    // THIS will be filled with event codes. BAT for BATtles, NAR for NARration.
-    ERR_LEVEL,
-    GAME_LOST,
-    EAT_ENEMY,
-    EVE_DEFAULT,
-    // ...
-};
+const int MAP_HEIGHT = SCREEN_HEIGHT/TILE_HEIGHT;
+const int MAP_WIDTH = SCREEN_WIDTH/TILE_WIDTH;
+const int dimension = MAP_HEIGHT*MAP_WIDTH;
 
 class Level {
 private:
     // Mapping the map: 0 for empty, 1 for wall, 2 for walkable, 3 for trigger
-    short int map[MAPWIDTH*MAPWIDTH];
-    SDL_Texture* graphicMap;
+    Tile battlefield[dimension];
 public:
     Level();    // to instantiate level from map
     int getTileCode(int x, int y);

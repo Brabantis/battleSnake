@@ -8,23 +8,20 @@
 
 #include "Level.h"
 
-// Of course this is not the final one. I will give him maps from a file.
 Level::Level() {
-    for (int i = 0; i<MAPWIDTH*MAPHEIGHT; i++) {
-        map[i]=WALK;
+    // TODO al momento non aggiunge x e y alle tiles
+    for (int i = 0; i<MAP_WIDTH*MAP_HEIGHT; i++) {
+        battlefield[i].setTileCode(WALK);
     }
+    
     // A fence on the outside
-    for (int i = 0; i<MAPWIDTH; i++) {
-        for (int j = 0; j<MAPHEIGHT; j++) {
-            if (j == 0 || j == MAPHEIGHT-1 || i == 0 || i == MAPWIDTH-1) {
-                map[i + MAPWIDTH * j] = COLLISION;
+    for (int i = 0; i<MAP_WIDTH; i++) {
+        for (int j = 0; j<MAP_HEIGHT; j++) {
+            if (j == 0 || j == MAP_HEIGHT-1 || i == 0 || i == MAP_WIDTH-1) {
+                battlefield[i + MAP_WIDTH * j].setTileCode(COLLISION);
             }
         }
     }
-}
-
-int Level::getTileCode(int x, int y) {
-    return map[(x-1) + MAPWIDTH*(y-1)];
 }
 
 Event Level::getEventFromCode(int code) {
@@ -41,15 +38,13 @@ Event Level::getEventFromCode(int code) {
     };
 }
 
-void Level::printMap() {
-    for (int i = 0; i<MAPHEIGHT; i++) {
-        for (int j = 0; j<MAPWIDTH; j++) {
-            cout << map[j + MAPWIDTH*i] << ", ";
-        }
-        cout << endl;
-    }
+int Level::getTileCode(int x, int y) {
+    return battlefield[x + MAP_WIDTH * y].getTileCode();
 }
 
 void Level::giveCodeToTile(int x, int y, Code tileCode) {
-    map[(x-1) + MAPWIDTH * (y-1)] = tileCode;   // Assign a code to a tile
+    battlefield[x + MAP_WIDTH * y].setTileCode(tileCode);
 }
+
+
+

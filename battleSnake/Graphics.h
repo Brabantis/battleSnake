@@ -117,8 +117,8 @@ public:
     TTF_Font* getFont();
     
     string intToString(int input);    // Necessary for printing score and parts
-    void printScore(int score);     // TODO
-    void printParts(int parts);     // TODO
+    void printScore(int score);
+    void printParts(int parts);
 };
 
 #endif /* defined(__GiocoLabInf__Graphics__) */

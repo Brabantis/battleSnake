@@ -31,8 +31,7 @@ private:
     
 public:
     FleetMember();
-    FleetMember(int ba, int bd, int bh, string plname = "Hero", location pos = {0, 0, NORTH});
-    void move(Direction dest);
+    FleetMember(int ba, int bd, int bh, Characters sprite, location pos = {0, 0, NORTH});
     string getClass();
     void equip(Item equip);
     void calculateStats();

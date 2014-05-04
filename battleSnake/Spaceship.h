@@ -34,9 +34,7 @@ protected:
     int atk, def, hp;
     location position;
     Characters sprite;
-    string name;
     
-    void coordsOfNearestEnemy(int &x, int &y);
     void takeDamage(int damage);
     void calculateStats();
     void explode();
@@ -44,7 +42,9 @@ protected:
 public:             //Solo le funzioni base per tutti
     
     Spaceship() {}                                          // Default
-    Spaceship(int ba, int bd, int bh, location pos = {0, 0, SOUTH}, string crname = "Mook");
+    Spaceship(int ba, int bd, int bh, Characters spritesrc, location pos = {0, 0, SOUTH});
+    
+    void move(Direction dest);
     
     // to draw on scene, duh
     void drawOnScene(Graphics graph);
@@ -52,7 +52,6 @@ public:             //Solo le funzioni base per tutti
     Laser shootLaser(int xdest, int ydest);
     
     // the getters
-    string getName();
     int getAtk();
     int getDef();
     int getHP();

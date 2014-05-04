@@ -28,11 +28,6 @@
 #include "Graphics.h"
 #include "Level.h"
 #include "Enemy.h"
-#include "Spaceship classes/Fighter.h"
-#include "Spaceship classes/Corvette.h"
-#include "Spaceship classes/Frigate.h"
-#include "Spaceship classes/Destroyer.h"
-#include "Spaceship classes/Cruiser.h"
 
 using namespace std;
 
@@ -66,21 +61,22 @@ private:
     vector<Enemy> enemyFleet;   // Using the Enemy class allows me to create any kind of enemy, either alien or human or whatever, I just need to create a new object. I guess i COULD just make a better constructor.
     vector<Laser> lasersOnMap;   // I need something made so that I can BOTH access elements in order AND delete one in every position (pop). If there isn't one, I'll just have to create it myself.
     
+    void coordsOfNearestEnemy(int &x, int &y, int index);
     void addFleetMember(Characters choice);
     void addEnemyFleetMember(int x, int y, Characters choice);
     void fleetBuilder(Screens &lastDisplayed, Graphics graph);
-    void coordsOfNearestEnemy(int &x, int &y, int index);
     void addLaserToMap();
     
     void printFleetStats();
     void moveFleetOnMap(Direction dest);
     
     void mainMenu();                    // TODO: Selezione nave, acquisto potenziamenti
-    void startLevel(int levelCode);
+    void startLevel();
     void endLevel();                    // TODO: finisce la missione dopo un po' di punti.
     
     // The functions that spawn enemies
     Characters intToCharacterConvert(int input);
+    Direction intToDirectionConvert(int input);
     int getRandInSpan(int lower, int upper);
     void spawnEnemy(int x, int y, Level current);
     

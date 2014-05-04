@@ -6,6 +6,13 @@
 //  Copyright (c) 2014 Enrico Migliorini. All rights reserved.
 //
 
+//==================================================//
+//                                                  //
+//   Lasers are fired from ships to enemies         //
+//                                                  //
+//==================================================//
+
+
 #ifndef __battleSnake__Laser__
 #define __battleSnake__Laser__
 

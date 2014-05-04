@@ -12,8 +12,7 @@
 
 FleetMember::FleetMember() {}
 
-FleetMember::FleetMember(int ba, int bd, int bh, string plname, location pos) : Spaceship(ba, bd, bh, pos, plname) {
-    // The sprite will be left uninitialized if the FleetMember constructor is used instead of the character class one
+FleetMember::FleetMember(int ba, int bd, int bh, Characters sprite, location pos) : Spaceship(ba, bd, bh, sprite, pos) {
 }
 
 string FleetMember::getClass() {
@@ -39,24 +38,4 @@ string FleetMember::getClass() {
             break;
     }
     return value;
-}
-
-void FleetMember::move(Direction dest) {
-    switch (dest) {
-        case NORTH:
-            position.y--;
-            break;
-        case EAST:
-            position.x++;
-            break;
-        case SOUTH:
-            position.y++;
-            break;
-        case WEST:
-            position.x--;
-            break;
-        default:
-            break;
-    }
-    position.orient = dest;
 }
