@@ -1,0 +1,981 @@
+TbattleSnake
+v6
+r1
+cCheck dependencies
+cCompileC build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Laser.o /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Laser.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/FleetMember.o /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/FleetMember.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Enemy.o /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Enemy.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Graphics.o /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Graphics.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/main.o /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/main.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Spaceship.o /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Spaceship.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Level.o /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Level.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Engine.o /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Engine.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Item.o /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Item.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Tile.o /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Tile.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
+cAnalyzeShallow /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Laser.cpp
+cAnalyzeShallow /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/FleetMember.cpp
+cAnalyzeShallow /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Enemy.cpp
+cAnalyzeShallow /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Graphics.cpp
+cAnalyzeShallow /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/main.cpp
+cAnalyzeShallow /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Spaceship.cpp
+cAnalyzeShallow /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Level.cpp
+cAnalyzeShallow /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Engine.cpp
+cAnalyzeShallow /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Item.cpp
+cAnalyzeShallow /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Tile.cpp
+cLd /Users/Enrico/Documents/Sviluppo/battleSnake/build/Debug/battleSnake normal x86_64
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk
+c000000005349AA1900000000000000AA
+t1397336601
+s170
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/SDKSettings.plist
+c00000000527D3FA1000000000000044C
+t1383940001
+s1100
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/CoreServices/SystemVersion.plist
+c00000000531FC5A000000000000001DE
+t1394591136
+s478
+
+N/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/5.1/include/module.map
+c00000000531FC5A40000000000000ADC
+t1394591140
+s2780
+
+N/Library/checker-276/lib/clang/3.5/include/module.map
+c0000000051B263880000000000000A5B
+t1370645384
+s2651
+
+N/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Enemy.cpp
+c00000000535769D40000000000000130
+t1398237652
+s304
+
+N/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Engine.cpp
+c00000000536D0D8E0000000000004BC7
+t1399655822
+s19399
+
+N/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/FleetMember.cpp
+c000000005357853B0000000000000397
+t1398244667
+s919
+
+N/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Graphics.cpp
+c000000005357743600000000000025B6
+t1398240310
+s9654
+
+N/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Item.cpp
+c00000000533DE6AA00000000000000A6
+t1396565674
+s166
+
+N/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Laser.cpp
+c00000000536D0BA40000000000000613
+t1399655332
+s1555
+
+N/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Level.cpp
+c00000000536A68CD00000000000005A4
+t1399482573
+s1444
+
+N/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Spaceship.cpp
+c00000000536CFF1B0000000000000D3F
+t1399652123
+s3391
+
+N/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Tile.cpp
+c00000000536A5DB9000000000000030E
+t1399479737
+s782
+
+N/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/main.cpp
+c00000000534E4C14000000000000026B
+t1397640212
+s619
+
+N/Users/Enrico/Documents/Sviluppo/battleSnake/build/Debug/battleSnake
+t2
+s0
+
+N/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Enemy.o
+t1399658711
+s41432
+
+N/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Engine.o
+t1399658714
+s395792
+
+N/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/FleetMember.o
+t1399658711
+s46268
+
+N/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Graphics.o
+t1399658712
+s172680
+
+N/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Item.o
+t1399658714
+s2052
+
+N/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Laser.o
+t1399658711
+s41692
+
+N/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Level.o
+t1399658713
+s7144
+
+N/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Spaceship.o
+t1399658713
+s47116
+
+N/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Tile.o
+t1399658714
+s3616
+
+N/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/battleSnake.LinkFileList
+c00000000536D18D600000000000004D9
+t1399658710
+s1241
+
+N/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/main.o
+t1399658713
+s177472
+
+N/var/folders/q1/jw59r72j72n9m9335z17vk7w0000gn/T/scan-build-2014-05-09-200509-49688-1/StaticAnalyzer/battleSnake/battleSnake/normal/x86_64/Enemy.plist
+t2
+s0
+
+N/var/folders/q1/jw59r72j72n9m9335z17vk7w0000gn/T/scan-build-2014-05-09-200509-49688-1/StaticAnalyzer/battleSnake/battleSnake/normal/x86_64/Engine.plist
+t2
+s0
+
+N/var/folders/q1/jw59r72j72n9m9335z17vk7w0000gn/T/scan-build-2014-05-09-200509-49688-1/StaticAnalyzer/battleSnake/battleSnake/normal/x86_64/FleetMember.plist
+t2
+s0
+
+N/var/folders/q1/jw59r72j72n9m9335z17vk7w0000gn/T/scan-build-2014-05-09-200509-49688-1/StaticAnalyzer/battleSnake/battleSnake/normal/x86_64/Graphics.plist
+t2
+s0
+
+N/var/folders/q1/jw59r72j72n9m9335z17vk7w0000gn/T/scan-build-2014-05-09-200509-49688-1/StaticAnalyzer/battleSnake/battleSnake/normal/x86_64/Item.plist
+t2
+s0
+
+N/var/folders/q1/jw59r72j72n9m9335z17vk7w0000gn/T/scan-build-2014-05-09-200509-49688-1/StaticAnalyzer/battleSnake/battleSnake/normal/x86_64/Laser.plist
+t2
+s0
+
+N/var/folders/q1/jw59r72j72n9m9335z17vk7w0000gn/T/scan-build-2014-05-09-200509-49688-1/StaticAnalyzer/battleSnake/battleSnake/normal/x86_64/Level.plist
+t2
+s0
+
+N/var/folders/q1/jw59r72j72n9m9335z17vk7w0000gn/T/scan-build-2014-05-09-200509-49688-1/StaticAnalyzer/battleSnake/battleSnake/normal/x86_64/Spaceship.plist
+t2
+s0
+
+N/var/folders/q1/jw59r72j72n9m9335z17vk7w0000gn/T/scan-build-2014-05-09-200509-49688-1/StaticAnalyzer/battleSnake/battleSnake/normal/x86_64/Tile.plist
+t2
+s0
+
+N/var/folders/q1/jw59r72j72n9m9335z17vk7w0000gn/T/scan-build-2014-05-09-200509-49688-1/StaticAnalyzer/battleSnake/battleSnake/normal/x86_64/main.plist
+t2
+s0
+
+CAnalyzeShallow /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Enemy.cpp
+s421351514.422437
+e421351514.754072
+r1
+xAnalyzeShallow
+x/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Enemy.cpp
+oIn file included from /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Enemy.cpp:9:
+o[1m/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Enemy.h:12:10: [0m[0;1;31mfatal error: [0m[1m'iostream' file not found[0m
+o#include <iostream>
+o[0;1;32m         ^
+o[0m1 error generated.
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection84"Analyze (shallow) /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Enemy.cpp52"[1mAnalyzeShallow[0m [1mbattleSnake/Enemy.cpp[0m67606c5a501db941^0f0bc15a501db941^-295"In file included from /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Enemy.cpp:9:[1m/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Enemy.h:12:10: [0m[0;1;31mfatal error: [0m[1m'iostream' file not found[0m#include <iostream>[0;1;32m         ^[0m1 error generated.1(36%IDEActivityLogAnalyzerWarningMessage2@46"Analyzer skipped this file due to parse errors-421351514#18446744073709551615#0#1(2@37"[0m[1m'iostream' file not found[0m-421351514#18446744073709551615#0#-1#33"com.apple.dt.IDE.analyzer.warning23%DVTTextDocumentLocation3@124"file:///Users/Enrico/Documents/Sviluppo/battleSnake/%1B%5B1m/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Enemy.h0000000000000000^11#18446744073709551615#11#18446744073709551615#18446744073709551615#0#---1#33"com.apple.dt.IDE.analyzer.warning3@124"file:///Users/Enrico/Documents/Sviluppo/battleSnake/%1B%5B1m/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Enemy.h0000000000000000^18446744073709551615#18446744073709551615#18446744073709551615#18446744073709551615#18446744073709551615#0#---0#0#1#-19%DVTDocumentLocation4@73"file:///Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Enemy.cpp0000000000000000^3272"[1mAnalyzeShallow[0m [1mbattleSnake/Enemy.cpp[0m    cd /Users/Enrico/Documents/Sviluppo/battleSnake    export LANG=en_US.US-ASCII    /Library/checker-276/bin/clang -x c++ -arch x86_64 -fmessage-length=179 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -fcolor-diagnostics -std=gnu++11 -stdlib=libc++ -fmodules -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Werror=return-type -Werror=deprecated-objc-isa-usage -Werror=objc-root-class -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wconditional-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mmacosx-version-min=10.9 -g -fvisibility-inlines-hidden -Wno-sign-conversion -D__clang_analyzer__ -Xclang -analyzer-output=plist-html -Xclang -analyzer-config -Xclang path-diagnostics-alternate=true -Xclang -analyzer-config -Xclang report-in-main-source-file=true -Xclang -analyzer-config -Xclang mode=shallow -Xclang -analyzer-checker -Xclang security.insecureAPI.UncheckedReturn -Xclang -analyzer-checker -Xclang security.insecureAPI.getpw -Xclang -analyzer-checker -Xclang security.insecureAPI.gets -Xclang -analyzer-checker -Xclang security.insecureAPI.mkstemp -Xclang -analyzer-checker -Xclang security.insecureAPI.mktemp -Xclang -analyzer-disable-checker -Xclang security.insecureAPI.rand -Xclang -analyzer-disable-checker -Xclang security.insecureAPI.strcpy -Xclang -analyzer-checker -Xclang security.insecureAPI.vfork -iquote /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-generated-files.hmap -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-own-target-headers.hmap -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-all-target-headers.hmap -iquote /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-project-headers.hmap -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/Debug/include -I/opt/local/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/include -I/usr/local/include -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/DerivedSources/x86_64 -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/DerivedSources -F/Users/Enrico/Documents/Sviluppo/battleSnake/build/Debug -F/Library/Frameworks --analyze /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Enemy.cpp -o /var/folders/q1/jw59r72j72n9m9335z17vk7w0000gn/T/scan-build-2014-05-09-200509-49688-1/StaticAnalyzer/battleSnake/battleSnake/normal/x86_64/Enemy.plist36"888F67F9-5EC2-4731-8408-21F34D401926-
+bDD28E396-146A-43D0-AEE2-32F4B092932D
+
+CAnalyzeShallow /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Engine.cpp
+s421351515.046221
+e421351515.370510
+r1
+xAnalyzeShallow
+x/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Engine.cpp
+o[1m/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Engine.cpp:9:10: [0m[0;1;31mfatal error: [0m[1m'new' file not found[0m
+o#include <new>
+o[0;1;32m         ^
+o[0m1 error generated.
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection85"Analyze (shallow) /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Engine.cpp53"[1mAnalyzeShallow[0m [1mbattleSnake/Engine.cpp[0mc6f90b5b501db941^00e65e5b501db941^-195"[1m/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Engine.cpp:9:10: [0m[0;1;31mfatal error: [0m[1m'new' file not found[0m#include <new>[0;1;32m         ^[0m1 error generated.1(36%IDEActivityLogAnalyzerWarningMessage2@46"Analyzer skipped this file due to parse errors-421351515#18446744073709551615#0#1(2@32"[0m[1m'new' file not found[0m-421351515#18446744073709551615#0#-1#33"com.apple.dt.IDE.analyzer.warning23%DVTTextDocumentLocation3@127"file:///Users/Enrico/Documents/Sviluppo/battleSnake/%1B%5B1m/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Engine.cpp0000000000000000^8#18446744073709551615#8#18446744073709551615#18446744073709551615#0#---1#33"com.apple.dt.IDE.analyzer.warning3@127"file:///Users/Enrico/Documents/Sviluppo/battleSnake/%1B%5B1m/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Engine.cpp0000000000000000^18446744073709551615#18446744073709551615#18446744073709551615#18446744073709551615#18446744073709551615#0#---0#0#1#-19%DVTDocumentLocation4@74"file:///Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Engine.cpp0000000000000000^3275"[1mAnalyzeShallow[0m [1mbattleSnake/Engine.cpp[0m    cd /Users/Enrico/Documents/Sviluppo/battleSnake    export LANG=en_US.US-ASCII    /Library/checker-276/bin/clang -x c++ -arch x86_64 -fmessage-length=179 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -fcolor-diagnostics -std=gnu++11 -stdlib=libc++ -fmodules -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Werror=return-type -Werror=deprecated-objc-isa-usage -Werror=objc-root-class -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wconditional-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mmacosx-version-min=10.9 -g -fvisibility-inlines-hidden -Wno-sign-conversion -D__clang_analyzer__ -Xclang -analyzer-output=plist-html -Xclang -analyzer-config -Xclang path-diagnostics-alternate=true -Xclang -analyzer-config -Xclang report-in-main-source-file=true -Xclang -analyzer-config -Xclang mode=shallow -Xclang -analyzer-checker -Xclang security.insecureAPI.UncheckedReturn -Xclang -analyzer-checker -Xclang security.insecureAPI.getpw -Xclang -analyzer-checker -Xclang security.insecureAPI.gets -Xclang -analyzer-checker -Xclang security.insecureAPI.mkstemp -Xclang -analyzer-checker -Xclang security.insecureAPI.mktemp -Xclang -analyzer-disable-checker -Xclang security.insecureAPI.rand -Xclang -analyzer-disable-checker -Xclang security.insecureAPI.strcpy -Xclang -analyzer-checker -Xclang security.insecureAPI.vfork -iquote /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-generated-files.hmap -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-own-target-headers.hmap -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-all-target-headers.hmap -iquote /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-project-headers.hmap -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/Debug/include -I/opt/local/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/include -I/usr/local/include -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/DerivedSources/x86_64 -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/DerivedSources -F/Users/Enrico/Documents/Sviluppo/battleSnake/build/Debug -F/Library/Frameworks --analyze /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Engine.cpp -o /var/folders/q1/jw59r72j72n9m9335z17vk7w0000gn/T/scan-build-2014-05-09-200509-49688-1/StaticAnalyzer/battleSnake/battleSnake/normal/x86_64/Engine.plist36"7139981A-6092-44BF-83FA-C6E8749C25FA-
+bDD28E396-146A-43D0-AEE2-32F4B092932D
+
+CAnalyzeShallow /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/FleetMember.cpp
+s421351514.095379
+e421351514.420835
+r1
+xAnalyzeShallow
+x/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/FleetMember.cpp
+oIn file included from /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/FleetMember.cpp:9:
+o[1m/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/FleetMember.h:19:10: [0m[0;1;31mfatal error: [0m[1m'iostream' file not found[0m
+o#include <iostream>
+o[0;1;32m         ^
+o[0m1 error generated.
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection90"Analyze (shallow) /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/FleetMember.cpp58"[1mAnalyzeShallow[0m [1mbattleSnake/FleetMember.cpp[0m80d6185a501db941^fdbe6b5a501db941^-307"In file included from /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/FleetMember.cpp:9:[1m/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/FleetMember.h:19:10: [0m[0;1;31mfatal error: [0m[1m'iostream' file not found[0m#include <iostream>[0;1;32m         ^[0m1 error generated.1(36%IDEActivityLogAnalyzerWarningMessage2@46"Analyzer skipped this file due to parse errors-421351514#18446744073709551615#0#1(2@37"[0m[1m'iostream' file not found[0m-421351514#18446744073709551615#0#-1#33"com.apple.dt.IDE.analyzer.warning23%DVTTextDocumentLocation3@130"file:///Users/Enrico/Documents/Sviluppo/battleSnake/%1B%5B1m/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/FleetMember.h0000000000000000^18#18446744073709551615#18#18446744073709551615#18446744073709551615#0#---1#33"com.apple.dt.IDE.analyzer.warning3@130"file:///Users/Enrico/Documents/Sviluppo/battleSnake/%1B%5B1m/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/FleetMember.h0000000000000000^18446744073709551615#18446744073709551615#18446744073709551615#18446744073709551615#18446744073709551615#0#---0#0#1#-19%DVTDocumentLocation4@79"file:///Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/FleetMember.cpp0000000000000000^3290"[1mAnalyzeShallow[0m [1mbattleSnake/FleetMember.cpp[0m    cd /Users/Enrico/Documents/Sviluppo/battleSnake    export LANG=en_US.US-ASCII    /Library/checker-276/bin/clang -x c++ -arch x86_64 -fmessage-length=179 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -fcolor-diagnostics -std=gnu++11 -stdlib=libc++ -fmodules -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Werror=return-type -Werror=deprecated-objc-isa-usage -Werror=objc-root-class -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wconditional-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mmacosx-version-min=10.9 -g -fvisibility-inlines-hidden -Wno-sign-conversion -D__clang_analyzer__ -Xclang -analyzer-output=plist-html -Xclang -analyzer-config -Xclang path-diagnostics-alternate=true -Xclang -analyzer-config -Xclang report-in-main-source-file=true -Xclang -analyzer-config -Xclang mode=shallow -Xclang -analyzer-checker -Xclang security.insecureAPI.UncheckedReturn -Xclang -analyzer-checker -Xclang security.insecureAPI.getpw -Xclang -analyzer-checker -Xclang security.insecureAPI.gets -Xclang -analyzer-checker -Xclang security.insecureAPI.mkstemp -Xclang -analyzer-checker -Xclang security.insecureAPI.mktemp -Xclang -analyzer-disable-checker -Xclang security.insecureAPI.rand -Xclang -analyzer-disable-checker -Xclang security.insecureAPI.strcpy -Xclang -analyzer-checker -Xclang security.insecureAPI.vfork -iquote /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-generated-files.hmap -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-own-target-headers.hmap -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-all-target-headers.hmap -iquote /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-project-headers.hmap -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/Debug/include -I/opt/local/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/include -I/usr/local/include -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/DerivedSources/x86_64 -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/DerivedSources -F/Users/Enrico/Documents/Sviluppo/battleSnake/build/Debug -F/Library/Frameworks --analyze /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/FleetMember.cpp -o /var/folders/q1/jw59r72j72n9m9335z17vk7w0000gn/T/scan-build-2014-05-09-200509-49688-1/StaticAnalyzer/battleSnake/battleSnake/normal/x86_64/FleetMember.plist36"7EDC7A4B-7166-44F0-9490-AD82B470328B-
+bDD28E396-146A-43D0-AEE2-32F4B092932D
+
+CAnalyzeShallow /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Graphics.cpp
+s421351514.681392
+e421351515.046023
+r1
+xAnalyzeShallow
+x/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Graphics.cpp
+oIn file included from /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Graphics.cpp:9:
+o[1m/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Graphics.h:18:10: [0m[0;1;31mfatal error: [0m[1m'iostream' file not found[0m
+o#include <iostream>
+o[0;1;32m         ^
+o[0m1 error generated.
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection87"Analyze (shallow) /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Graphics.cpp55"[1mAnalyzeShallow[0m [1mbattleSnake/Graphics.cpp[0mbc94ae5a501db941^04c90b5b501db941^-301"In file included from /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Graphics.cpp:9:[1m/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Graphics.h:18:10: [0m[0;1;31mfatal error: [0m[1m'iostream' file not found[0m#include <iostream>[0;1;32m         ^[0m1 error generated.1(36%IDEActivityLogAnalyzerWarningMessage2@46"Analyzer skipped this file due to parse errors-421351514#18446744073709551615#0#1(2@37"[0m[1m'iostream' file not found[0m-421351514#18446744073709551615#0#-1#33"com.apple.dt.IDE.analyzer.warning23%DVTTextDocumentLocation3@127"file:///Users/Enrico/Documents/Sviluppo/battleSnake/%1B%5B1m/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Graphics.h0000000000000000^17#18446744073709551615#17#18446744073709551615#18446744073709551615#0#---1#33"com.apple.dt.IDE.analyzer.warning3@127"file:///Users/Enrico/Documents/Sviluppo/battleSnake/%1B%5B1m/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Graphics.h0000000000000000^18446744073709551615#18446744073709551615#18446744073709551615#18446744073709551615#18446744073709551615#0#---0#0#1#-19%DVTDocumentLocation4@76"file:///Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Graphics.cpp0000000000000000^3281"[1mAnalyzeShallow[0m [1mbattleSnake/Graphics.cpp[0m    cd /Users/Enrico/Documents/Sviluppo/battleSnake    export LANG=en_US.US-ASCII    /Library/checker-276/bin/clang -x c++ -arch x86_64 -fmessage-length=179 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -fcolor-diagnostics -std=gnu++11 -stdlib=libc++ -fmodules -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Werror=return-type -Werror=deprecated-objc-isa-usage -Werror=objc-root-class -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wconditional-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mmacosx-version-min=10.9 -g -fvisibility-inlines-hidden -Wno-sign-conversion -D__clang_analyzer__ -Xclang -analyzer-output=plist-html -Xclang -analyzer-config -Xclang path-diagnostics-alternate=true -Xclang -analyzer-config -Xclang report-in-main-source-file=true -Xclang -analyzer-config -Xclang mode=shallow -Xclang -analyzer-checker -Xclang security.insecureAPI.UncheckedReturn -Xclang -analyzer-checker -Xclang security.insecureAPI.getpw -Xclang -analyzer-checker -Xclang security.insecureAPI.gets -Xclang -analyzer-checker -Xclang security.insecureAPI.mkstemp -Xclang -analyzer-checker -Xclang security.insecureAPI.mktemp -Xclang -analyzer-disable-checker -Xclang security.insecureAPI.rand -Xclang -analyzer-disable-checker -Xclang security.insecureAPI.strcpy -Xclang -analyzer-checker -Xclang security.insecureAPI.vfork -iquote /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-generated-files.hmap -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-own-target-headers.hmap -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-all-target-headers.hmap -iquote /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-project-headers.hmap -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/Debug/include -I/opt/local/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/include -I/usr/local/include -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/DerivedSources/x86_64 -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/DerivedSources -F/Users/Enrico/Documents/Sviluppo/battleSnake/build/Debug -F/Library/Frameworks --analyze /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Graphics.cpp -o /var/folders/q1/jw59r72j72n9m9335z17vk7w0000gn/T/scan-build-2014-05-09-200509-49688-1/StaticAnalyzer/battleSnake/battleSnake/normal/x86_64/Graphics.plist36"E179CEFB-12A0-4D18-8C85-A3A03B76F487-
+bDD28E396-146A-43D0-AEE2-32F4B092932D
+
+CAnalyzeShallow /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Item.cpp
+s421351515.052383
+e421351515.087687
+r1
+xAnalyzeShallow
+x/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Item.cpp
+oIn file included from /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Item.cpp:9:
+o[1m/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Item.h:12:10: [0m[0;1;31mfatal error: [0m[1m'iostream' file not found[0m
+o#include <iostream>
+o[0;1;32m         ^
+o[0m1 error generated.
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection83"Analyze (shallow) /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Item.cpp51"[1mAnalyzeShallow[0m [1mbattleSnake/Item.cpp[0ma0e10d5b501db941^a872165b501db941^-293"In file included from /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Item.cpp:9:[1m/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Item.h:12:10: [0m[0;1;31mfatal error: [0m[1m'iostream' file not found[0m#include <iostream>[0;1;32m         ^[0m1 error generated.1(36%IDEActivityLogAnalyzerWarningMessage2@46"Analyzer skipped this file due to parse errors-421351515#18446744073709551615#0#1(2@37"[0m[1m'iostream' file not found[0m-421351515#18446744073709551615#0#-1#33"com.apple.dt.IDE.analyzer.warning23%DVTTextDocumentLocation3@123"file:///Users/Enrico/Documents/Sviluppo/battleSnake/%1B%5B1m/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Item.h0000000000000000^11#18446744073709551615#11#18446744073709551615#18446744073709551615#0#---1#33"com.apple.dt.IDE.analyzer.warning3@123"file:///Users/Enrico/Documents/Sviluppo/battleSnake/%1B%5B1m/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Item.h0000000000000000^18446744073709551615#18446744073709551615#18446744073709551615#18446744073709551615#18446744073709551615#0#---0#0#1#-19%DVTDocumentLocation4@72"file:///Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Item.cpp0000000000000000^3269"[1mAnalyzeShallow[0m [1mbattleSnake/Item.cpp[0m    cd /Users/Enrico/Documents/Sviluppo/battleSnake    export LANG=en_US.US-ASCII    /Library/checker-276/bin/clang -x c++ -arch x86_64 -fmessage-length=179 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -fcolor-diagnostics -std=gnu++11 -stdlib=libc++ -fmodules -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Werror=return-type -Werror=deprecated-objc-isa-usage -Werror=objc-root-class -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wconditional-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mmacosx-version-min=10.9 -g -fvisibility-inlines-hidden -Wno-sign-conversion -D__clang_analyzer__ -Xclang -analyzer-output=plist-html -Xclang -analyzer-config -Xclang path-diagnostics-alternate=true -Xclang -analyzer-config -Xclang report-in-main-source-file=true -Xclang -analyzer-config -Xclang mode=shallow -Xclang -analyzer-checker -Xclang security.insecureAPI.UncheckedReturn -Xclang -analyzer-checker -Xclang security.insecureAPI.getpw -Xclang -analyzer-checker -Xclang security.insecureAPI.gets -Xclang -analyzer-checker -Xclang security.insecureAPI.mkstemp -Xclang -analyzer-checker -Xclang security.insecureAPI.mktemp -Xclang -analyzer-disable-checker -Xclang security.insecureAPI.rand -Xclang -analyzer-disable-checker -Xclang security.insecureAPI.strcpy -Xclang -analyzer-checker -Xclang security.insecureAPI.vfork -iquote /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-generated-files.hmap -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-own-target-headers.hmap -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-all-target-headers.hmap -iquote /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-project-headers.hmap -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/Debug/include -I/opt/local/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/include -I/usr/local/include -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/DerivedSources/x86_64 -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/DerivedSources -F/Users/Enrico/Documents/Sviluppo/battleSnake/build/Debug -F/Library/Frameworks --analyze /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Item.cpp -o /var/folders/q1/jw59r72j72n9m9335z17vk7w0000gn/T/scan-build-2014-05-09-200509-49688-1/StaticAnalyzer/battleSnake/battleSnake/normal/x86_64/Item.plist36"AE205F5E-18A6-452A-939F-50DE1DEED7C9-
+bDD28E396-146A-43D0-AEE2-32F4B092932D
+
+CAnalyzeShallow /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Laser.cpp
+s421351513.692618
+e421351514.095133
+r1
+xAnalyzeShallow
+x/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Laser.cpp
+oIn file included from /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Laser.cpp:9:
+o[1m/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Laser.h:19:10: [0m[0;1;31mfatal error: [0m[1m'iostream' file not found[0m
+o#include <iostream>
+o[0;1;32m         ^
+o[0m1 error generated.
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection84"Analyze (shallow) /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Laser.cpp52"[1mAnalyzeShallow[0m [1mbattleSnake/Laser.cpp[0mb2beb159501db941^925a185a501db941^-295"In file included from /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Laser.cpp:9:[1m/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Laser.h:19:10: [0m[0;1;31mfatal error: [0m[1m'iostream' file not found[0m#include <iostream>[0;1;32m         ^[0m1 error generated.1(36%IDEActivityLogAnalyzerWarningMessage2@46"Analyzer skipped this file due to parse errors-421351513#18446744073709551615#0#1(2@37"[0m[1m'iostream' file not found[0m-421351513#18446744073709551615#0#-1#33"com.apple.dt.IDE.analyzer.warning23%DVTTextDocumentLocation3@124"file:///Users/Enrico/Documents/Sviluppo/battleSnake/%1B%5B1m/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Laser.h0000000000000000^18#18446744073709551615#18#18446744073709551615#18446744073709551615#0#---1#33"com.apple.dt.IDE.analyzer.warning3@124"file:///Users/Enrico/Documents/Sviluppo/battleSnake/%1B%5B1m/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Laser.h0000000000000000^18446744073709551615#18446744073709551615#18446744073709551615#18446744073709551615#18446744073709551615#0#---0#0#1#-19%DVTDocumentLocation4@73"file:///Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Laser.cpp0000000000000000^3272"[1mAnalyzeShallow[0m [1mbattleSnake/Laser.cpp[0m    cd /Users/Enrico/Documents/Sviluppo/battleSnake    export LANG=en_US.US-ASCII    /Library/checker-276/bin/clang -x c++ -arch x86_64 -fmessage-length=179 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -fcolor-diagnostics -std=gnu++11 -stdlib=libc++ -fmodules -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Werror=return-type -Werror=deprecated-objc-isa-usage -Werror=objc-root-class -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wconditional-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mmacosx-version-min=10.9 -g -fvisibility-inlines-hidden -Wno-sign-conversion -D__clang_analyzer__ -Xclang -analyzer-output=plist-html -Xclang -analyzer-config -Xclang path-diagnostics-alternate=true -Xclang -analyzer-config -Xclang report-in-main-source-file=true -Xclang -analyzer-config -Xclang mode=shallow -Xclang -analyzer-checker -Xclang security.insecureAPI.UncheckedReturn -Xclang -analyzer-checker -Xclang security.insecureAPI.getpw -Xclang -analyzer-checker -Xclang security.insecureAPI.gets -Xclang -analyzer-checker -Xclang security.insecureAPI.mkstemp -Xclang -analyzer-checker -Xclang security.insecureAPI.mktemp -Xclang -analyzer-disable-checker -Xclang security.insecureAPI.rand -Xclang -analyzer-disable-checker -Xclang security.insecureAPI.strcpy -Xclang -analyzer-checker -Xclang security.insecureAPI.vfork -iquote /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-generated-files.hmap -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-own-target-headers.hmap -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-all-target-headers.hmap -iquote /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-project-headers.hmap -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/Debug/include -I/opt/local/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/include -I/usr/local/include -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/DerivedSources/x86_64 -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/DerivedSources -F/Users/Enrico/Documents/Sviluppo/battleSnake/build/Debug -F/Library/Frameworks --analyze /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Laser.cpp -o /var/folders/q1/jw59r72j72n9m9335z17vk7w0000gn/T/scan-build-2014-05-09-200509-49688-1/StaticAnalyzer/battleSnake/battleSnake/normal/x86_64/Laser.plist36"BE6C3FD4-77F9-422F-9AB0-CBEE411CE9D9-
+bDD28E396-146A-43D0-AEE2-32F4B092932D
+
+CAnalyzeShallow /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Level.cpp
+s421351514.961555
+e421351515.264289
+r1
+xAnalyzeShallow
+x/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Level.cpp
+oIn file included from /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Level.cpp:9:
+o[1m/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Level.h:18:10: [0m[0;1;31mfatal error: [0m[1m'iostream' file not found[0m
+o#include <iostream>
+o[0;1;32m         ^
+o[0m1 error generated.
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection84"Analyze (shallow) /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Level.cpp52"[1mAnalyzeShallow[0m [1mbattleSnake/Level.cpp[0mbaf5f65a501db941^dcba435b501db941^-295"In file included from /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Level.cpp:9:[1m/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Level.h:18:10: [0m[0;1;31mfatal error: [0m[1m'iostream' file not found[0m#include <iostream>[0;1;32m         ^[0m1 error generated.1(36%IDEActivityLogAnalyzerWarningMessage2@46"Analyzer skipped this file due to parse errors-421351514#18446744073709551615#0#1(2@37"[0m[1m'iostream' file not found[0m-421351514#18446744073709551615#0#-1#33"com.apple.dt.IDE.analyzer.warning23%DVTTextDocumentLocation3@124"file:///Users/Enrico/Documents/Sviluppo/battleSnake/%1B%5B1m/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Level.h0000000000000000^17#18446744073709551615#17#18446744073709551615#18446744073709551615#0#---1#33"com.apple.dt.IDE.analyzer.warning3@124"file:///Users/Enrico/Documents/Sviluppo/battleSnake/%1B%5B1m/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Level.h0000000000000000^18446744073709551615#18446744073709551615#18446744073709551615#18446744073709551615#18446744073709551615#0#---0#0#1#-19%DVTDocumentLocation4@73"file:///Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Level.cpp0000000000000000^3272"[1mAnalyzeShallow[0m [1mbattleSnake/Level.cpp[0m    cd /Users/Enrico/Documents/Sviluppo/battleSnake    export LANG=en_US.US-ASCII    /Library/checker-276/bin/clang -x c++ -arch x86_64 -fmessage-length=179 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -fcolor-diagnostics -std=gnu++11 -stdlib=libc++ -fmodules -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Werror=return-type -Werror=deprecated-objc-isa-usage -Werror=objc-root-class -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wconditional-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mmacosx-version-min=10.9 -g -fvisibility-inlines-hidden -Wno-sign-conversion -D__clang_analyzer__ -Xclang -analyzer-output=plist-html -Xclang -analyzer-config -Xclang path-diagnostics-alternate=true -Xclang -analyzer-config -Xclang report-in-main-source-file=true -Xclang -analyzer-config -Xclang mode=shallow -Xclang -analyzer-checker -Xclang security.insecureAPI.UncheckedReturn -Xclang -analyzer-checker -Xclang security.insecureAPI.getpw -Xclang -analyzer-checker -Xclang security.insecureAPI.gets -Xclang -analyzer-checker -Xclang security.insecureAPI.mkstemp -Xclang -analyzer-checker -Xclang security.insecureAPI.mktemp -Xclang -analyzer-disable-checker -Xclang security.insecureAPI.rand -Xclang -analyzer-disable-checker -Xclang security.insecureAPI.strcpy -Xclang -analyzer-checker -Xclang security.insecureAPI.vfork -iquote /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-generated-files.hmap -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-own-target-headers.hmap -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-all-target-headers.hmap -iquote /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-project-headers.hmap -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/Debug/include -I/opt/local/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/include -I/usr/local/include -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/DerivedSources/x86_64 -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/DerivedSources -F/Users/Enrico/Documents/Sviluppo/battleSnake/build/Debug -F/Library/Frameworks --analyze /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Level.cpp -o /var/folders/q1/jw59r72j72n9m9335z17vk7w0000gn/T/scan-build-2014-05-09-200509-49688-1/StaticAnalyzer/battleSnake/battleSnake/normal/x86_64/Level.plist36"4E96E45A-FBB8-4665-BCF1-BFF1E1D70117-
+bDD28E396-146A-43D0-AEE2-32F4B092932D
+
+CAnalyzeShallow /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Spaceship.cpp
+s421351514.754319
+e421351515.125246
+r1
+xAnalyzeShallow
+x/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Spaceship.cpp
+oIn file included from /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Spaceship.cpp:8:
+oIn file included from /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Spaceship.h:19:
+o[1m/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Graphics.h:18:10: [0m[0;1;31mfatal error: [0m[1m'iostream' file not found[0m
+o#include <iostream>
+o[0;1;32m         ^
+o[0m1 error generated.
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection88"Analyze (shallow) /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Spaceship.cpp56"[1mAnalyzeShallow[0m [1mbattleSnake/Spaceship.cpp[0m8f52c15a501db941^0322205b501db941^-397"In file included from /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Spaceship.cpp:8:In file included from /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Spaceship.h:19:[1m/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Graphics.h:18:10: [0m[0;1;31mfatal error: [0m[1m'iostream' file not found[0m#include <iostream>[0;1;32m         ^[0m1 error generated.1(36%IDEActivityLogAnalyzerWarningMessage2@46"Analyzer skipped this file due to parse errors-421351514#18446744073709551615#0#1(2@37"[0m[1m'iostream' file not found[0m-421351514#18446744073709551615#0#-1#33"com.apple.dt.IDE.analyzer.warning23%DVTTextDocumentLocation3@127"file:///Users/Enrico/Documents/Sviluppo/battleSnake/%1B%5B1m/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Graphics.h0000000000000000^17#18446744073709551615#17#18446744073709551615#18446744073709551615#0#---1#33"com.apple.dt.IDE.analyzer.warning3@127"file:///Users/Enrico/Documents/Sviluppo/battleSnake/%1B%5B1m/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Graphics.h0000000000000000^18446744073709551615#18446744073709551615#18446744073709551615#18446744073709551615#18446744073709551615#0#---0#0#1#-19%DVTDocumentLocation4@77"file:///Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Spaceship.cpp0000000000000000^3284"[1mAnalyzeShallow[0m [1mbattleSnake/Spaceship.cpp[0m    cd /Users/Enrico/Documents/Sviluppo/battleSnake    export LANG=en_US.US-ASCII    /Library/checker-276/bin/clang -x c++ -arch x86_64 -fmessage-length=179 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -fcolor-diagnostics -std=gnu++11 -stdlib=libc++ -fmodules -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Werror=return-type -Werror=deprecated-objc-isa-usage -Werror=objc-root-class -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wconditional-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mmacosx-version-min=10.9 -g -fvisibility-inlines-hidden -Wno-sign-conversion -D__clang_analyzer__ -Xclang -analyzer-output=plist-html -Xclang -analyzer-config -Xclang path-diagnostics-alternate=true -Xclang -analyzer-config -Xclang report-in-main-source-file=true -Xclang -analyzer-config -Xclang mode=shallow -Xclang -analyzer-checker -Xclang security.insecureAPI.UncheckedReturn -Xclang -analyzer-checker -Xclang security.insecureAPI.getpw -Xclang -analyzer-checker -Xclang security.insecureAPI.gets -Xclang -analyzer-checker -Xclang security.insecureAPI.mkstemp -Xclang -analyzer-checker -Xclang security.insecureAPI.mktemp -Xclang -analyzer-disable-checker -Xclang security.insecureAPI.rand -Xclang -analyzer-disable-checker -Xclang security.insecureAPI.strcpy -Xclang -analyzer-checker -Xclang security.insecureAPI.vfork -iquote /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-generated-files.hmap -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-own-target-headers.hmap -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-all-target-headers.hmap -iquote /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-project-headers.hmap -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/Debug/include -I/opt/local/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/include -I/usr/local/include -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/DerivedSources/x86_64 -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/DerivedSources -F/Users/Enrico/Documents/Sviluppo/battleSnake/build/Debug -F/Library/Frameworks --analyze /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Spaceship.cpp -o /var/folders/q1/jw59r72j72n9m9335z17vk7w0000gn/T/scan-build-2014-05-09-200509-49688-1/StaticAnalyzer/battleSnake/battleSnake/normal/x86_64/Spaceship.plist36"AE09A9B9-26F9-4CE4-8B83-1BE7ADBBD8DE-
+bDD28E396-146A-43D0-AEE2-32F4B092932D
+
+CAnalyzeShallow /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Tile.cpp
+s421351515.088928
+e421351515.122664
+r1
+xAnalyzeShallow
+x/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Tile.cpp
+oIn file included from /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Tile.cpp:9:
+o[1m/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Tile.h:18:10: [0m[0;1;31mfatal error: [0m[1m'iostream' file not found[0m
+o#include <iostream>
+o[0;1;32m         ^
+o[0m1 error generated.
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection83"Analyze (shallow) /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Tile.cpp51"[1mAnalyzeShallow[0m [1mbattleSnake/Tile.cpp[0m3ae8165b501db941^3c671f5b501db941^-293"In file included from /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Tile.cpp:9:[1m/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Tile.h:18:10: [0m[0;1;31mfatal error: [0m[1m'iostream' file not found[0m#include <iostream>[0;1;32m         ^[0m1 error generated.1(36%IDEActivityLogAnalyzerWarningMessage2@46"Analyzer skipped this file due to parse errors-421351515#18446744073709551615#0#1(2@37"[0m[1m'iostream' file not found[0m-421351515#18446744073709551615#0#-1#33"com.apple.dt.IDE.analyzer.warning23%DVTTextDocumentLocation3@123"file:///Users/Enrico/Documents/Sviluppo/battleSnake/%1B%5B1m/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Tile.h0000000000000000^17#18446744073709551615#17#18446744073709551615#18446744073709551615#0#---1#33"com.apple.dt.IDE.analyzer.warning3@123"file:///Users/Enrico/Documents/Sviluppo/battleSnake/%1B%5B1m/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Tile.h0000000000000000^18446744073709551615#18446744073709551615#18446744073709551615#18446744073709551615#18446744073709551615#0#---0#0#1#-19%DVTDocumentLocation4@72"file:///Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Tile.cpp0000000000000000^3269"[1mAnalyzeShallow[0m [1mbattleSnake/Tile.cpp[0m    cd /Users/Enrico/Documents/Sviluppo/battleSnake    export LANG=en_US.US-ASCII    /Library/checker-276/bin/clang -x c++ -arch x86_64 -fmessage-length=179 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -fcolor-diagnostics -std=gnu++11 -stdlib=libc++ -fmodules -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Werror=return-type -Werror=deprecated-objc-isa-usage -Werror=objc-root-class -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wconditional-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mmacosx-version-min=10.9 -g -fvisibility-inlines-hidden -Wno-sign-conversion -D__clang_analyzer__ -Xclang -analyzer-output=plist-html -Xclang -analyzer-config -Xclang path-diagnostics-alternate=true -Xclang -analyzer-config -Xclang report-in-main-source-file=true -Xclang -analyzer-config -Xclang mode=shallow -Xclang -analyzer-checker -Xclang security.insecureAPI.UncheckedReturn -Xclang -analyzer-checker -Xclang security.insecureAPI.getpw -Xclang -analyzer-checker -Xclang security.insecureAPI.gets -Xclang -analyzer-checker -Xclang security.insecureAPI.mkstemp -Xclang -analyzer-checker -Xclang security.insecureAPI.mktemp -Xclang -analyzer-disable-checker -Xclang security.insecureAPI.rand -Xclang -analyzer-disable-checker -Xclang security.insecureAPI.strcpy -Xclang -analyzer-checker -Xclang security.insecureAPI.vfork -iquote /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-generated-files.hmap -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-own-target-headers.hmap -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-all-target-headers.hmap -iquote /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-project-headers.hmap -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/Debug/include -I/opt/local/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/include -I/usr/local/include -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/DerivedSources/x86_64 -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/DerivedSources -F/Users/Enrico/Documents/Sviluppo/battleSnake/build/Debug -F/Library/Frameworks --analyze /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Tile.cpp -o /var/folders/q1/jw59r72j72n9m9335z17vk7w0000gn/T/scan-build-2014-05-09-200509-49688-1/StaticAnalyzer/battleSnake/battleSnake/normal/x86_64/Tile.plist36"BEF256D5-5AD9-41C0-843D-BB02CF31E591-
+bDD28E396-146A-43D0-AEE2-32F4B092932D
+
+CAnalyzeShallow /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/main.cpp
+s421351514.702901
+e421351515.051186
+r1
+xAnalyzeShallow
+x/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/main.cpp
+o[1m/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/main.cpp:15:10: [0m[0;1;31mfatal error: [0m[1m'iostream' file not found[0m
+o#include <iostream>
+o[0;1;32m         ^
+o[0m1 error generated.
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection83"Analyze (shallow) /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/main.cpp51"[1mAnalyzeShallow[0m [1mbattleSnake/main.cpp[0md5b3b45a501db941^501b0d5b501db941^-204"[1m/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/main.cpp:15:10: [0m[0;1;31mfatal error: [0m[1m'iostream' file not found[0m#include <iostream>[0;1;32m         ^[0m1 error generated.1(36%IDEActivityLogAnalyzerWarningMessage2@46"Analyzer skipped this file due to parse errors-421351514#18446744073709551615#0#1(2@37"[0m[1m'iostream' file not found[0m-421351514#18446744073709551615#0#-1#33"com.apple.dt.IDE.analyzer.warning23%DVTTextDocumentLocation3@125"file:///Users/Enrico/Documents/Sviluppo/battleSnake/%1B%5B1m/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/main.cpp0000000000000000^14#18446744073709551615#14#18446744073709551615#18446744073709551615#0#---1#33"com.apple.dt.IDE.analyzer.warning3@125"file:///Users/Enrico/Documents/Sviluppo/battleSnake/%1B%5B1m/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/main.cpp0000000000000000^18446744073709551615#18446744073709551615#18446744073709551615#18446744073709551615#18446744073709551615#0#---0#0#1#-19%DVTDocumentLocation4@72"file:///Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/main.cpp0000000000000000^3269"[1mAnalyzeShallow[0m [1mbattleSnake/main.cpp[0m    cd /Users/Enrico/Documents/Sviluppo/battleSnake    export LANG=en_US.US-ASCII    /Library/checker-276/bin/clang -x c++ -arch x86_64 -fmessage-length=179 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -fcolor-diagnostics -std=gnu++11 -stdlib=libc++ -fmodules -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Werror=return-type -Werror=deprecated-objc-isa-usage -Werror=objc-root-class -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wconditional-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mmacosx-version-min=10.9 -g -fvisibility-inlines-hidden -Wno-sign-conversion -D__clang_analyzer__ -Xclang -analyzer-output=plist-html -Xclang -analyzer-config -Xclang path-diagnostics-alternate=true -Xclang -analyzer-config -Xclang report-in-main-source-file=true -Xclang -analyzer-config -Xclang mode=shallow -Xclang -analyzer-checker -Xclang security.insecureAPI.UncheckedReturn -Xclang -analyzer-checker -Xclang security.insecureAPI.getpw -Xclang -analyzer-checker -Xclang security.insecureAPI.gets -Xclang -analyzer-checker -Xclang security.insecureAPI.mkstemp -Xclang -analyzer-checker -Xclang security.insecureAPI.mktemp -Xclang -analyzer-disable-checker -Xclang security.insecureAPI.rand -Xclang -analyzer-disable-checker -Xclang security.insecureAPI.strcpy -Xclang -analyzer-checker -Xclang security.insecureAPI.vfork -iquote /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-generated-files.hmap -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-own-target-headers.hmap -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-all-target-headers.hmap -iquote /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-project-headers.hmap -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/Debug/include -I/opt/local/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/include -I/usr/local/include -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/DerivedSources/x86_64 -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/DerivedSources -F/Users/Enrico/Documents/Sviluppo/battleSnake/build/Debug -F/Library/Frameworks --analyze /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/main.cpp -o /var/folders/q1/jw59r72j72n9m9335z17vk7w0000gn/T/scan-build-2014-05-09-200509-49688-1/StaticAnalyzer/battleSnake/battleSnake/normal/x86_64/main.plist36"77A9D1A9-281D-48BA-8814-ABD23950AED2-
+bDD28E396-146A-43D0-AEE2-32F4B092932D
+
+CCheck dependencies
+r0
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies18"Check dependencies17d31c56501db941^11c43d56501db941^---0#1#1#--18"Check dependencies36"F969F3F7-82BE-49B9-8377-6278A0E0917E-
+
+CCompileC build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Enemy.o /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Enemy.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
+s421351510.246425
+e421351511.739667
+r1
+xCompileC
+xbuild/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Enemy.o
+x/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Enemy.cpp
+xnormal
+xx86_64
+xc++
+xcom.apple.compilers.llvm.clang.1_0.compiler
+d/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Enemy.cpp
+d/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Enemy.h
+d/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Spaceship.h
+d/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Graphics.h
+d/usr/local/include/SDL2/SDL.h
+d/usr/local/include/SDL2/SDL_main.h
+d/usr/local/include/SDL2/SDL_stdinc.h
+d/usr/local/include/SDL2/SDL_config.h
+d/usr/local/include/SDL2/SDL_platform.h
+d/usr/local/include/SDL2/begin_code.h
+d/usr/local/include/SDL2/close_code.h
+d/opt/local/include/iconv.h
+d/usr/local/include/SDL2/SDL_assert.h
+d/usr/local/include/SDL2/SDL_atomic.h
+d/usr/local/include/SDL2/SDL_audio.h
+d/usr/local/include/SDL2/SDL_error.h
+d/usr/local/include/SDL2/SDL_endian.h
+d/usr/local/include/SDL2/SDL_mutex.h
+d/usr/local/include/SDL2/SDL_thread.h
+d/usr/local/include/SDL2/SDL_rwops.h
+d/usr/local/include/SDL2/SDL_clipboard.h
+d/usr/local/include/SDL2/SDL_cpuinfo.h
+d/usr/local/include/SDL2/SDL_events.h
+d/usr/local/include/SDL2/SDL_video.h
+d/usr/local/include/SDL2/SDL_pixels.h
+d/usr/local/include/SDL2/SDL_rect.h
+d/usr/local/include/SDL2/SDL_surface.h
+d/usr/local/include/SDL2/SDL_blendmode.h
+d/usr/local/include/SDL2/SDL_keyboard.h
+d/usr/local/include/SDL2/SDL_keycode.h
+d/usr/local/include/SDL2/SDL_scancode.h
+d/usr/local/include/SDL2/SDL_mouse.h
+d/usr/local/include/SDL2/SDL_joystick.h
+d/usr/local/include/SDL2/SDL_gamecontroller.h
+d/usr/local/include/SDL2/SDL_quit.h
+d/usr/local/include/SDL2/SDL_gesture.h
+d/usr/local/include/SDL2/SDL_touch.h
+d/usr/local/include/SDL2/SDL_filesystem.h
+d/usr/local/include/SDL2/SDL_haptic.h
+d/usr/local/include/SDL2/SDL_hints.h
+d/usr/local/include/SDL2/SDL_loadso.h
+d/usr/local/include/SDL2/SDL_log.h
+d/usr/local/include/SDL2/SDL_messagebox.h
+d/usr/local/include/SDL2/SDL_power.h
+d/usr/local/include/SDL2/SDL_render.h
+d/usr/local/include/SDL2/SDL_system.h
+d/usr/local/include/SDL2/SDL_timer.h
+d/usr/local/include/SDL2/SDL_version.h
+d/Library/Frameworks/SDL2_image.framework/Headers/SDL_image.h
+d/Library/Frameworks/SDL2_ttf.framework/Headers/SDL_ttf.h
+d/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Laser.h
+d/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Level.h
+d/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Tile.h
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection74"Compile /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Enemy.cpp186"[1mCompileC[0m build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Enemy.o [1mbattleSnake/Enemy.cpp[0m normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compilerd93f3f56501db941^a359bd57501db941^---0#0#1#-19%DVTDocumentLocation2@73"file:///Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Enemy.cpp0000000000000000^2982"[1mCompileC[0m build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Enemy.o [1mbattleSnake/Enemy.cpp[0m normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/Enrico/Documents/Sviluppo/battleSnake    export LANG=en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch x86_64 -fmessage-length=179 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -fcolor-diagnostics -std=gnu++11 -stdlib=libc++ -fmodules -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Werror=return-type -Werror=deprecated-objc-isa-usage -Werror=objc-root-class -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wconditional-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mmacosx-version-min=10.9 -g -fvisibility-inlines-hidden -Wno-sign-conversion -iquote /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-generated-files.hmap -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-own-target-headers.hmap -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-all-target-headers.hmap -iquote /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-project-headers.hmap -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/Debug/include -I/opt/local/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/include -I/usr/local/include -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/DerivedSources/x86_64 -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/DerivedSources -F/Users/Enrico/Documents/Sviluppo/battleSnake/build/Debug -F/Library/Frameworks -MMD -MT dependencies -MF /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Enemy.d --serialize-diagnostics /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Enemy.dia -c /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Enemy.cpp -o /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Enemy.o36"EAC6792E-F00B-4877-BFA3-AF6C5D8E60D7-
+bDD28E396-146A-43D0-AEE2-32F4B092932D
+
+CCompileC build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Engine.o /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Engine.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
+s421351512.197229
+e421351514.960105
+r1
+xCompileC
+xbuild/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Engine.o
+x/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Engine.cpp
+xnormal
+xx86_64
+xc++
+xcom.apple.compilers.llvm.clang.1_0.compiler
+d/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Engine.cpp
+d/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Engine.h
+d/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/FleetMember.h
+d/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Spaceship.h
+d/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Graphics.h
+d/usr/local/include/SDL2/SDL.h
+d/usr/local/include/SDL2/SDL_main.h
+d/usr/local/include/SDL2/SDL_stdinc.h
+d/usr/local/include/SDL2/SDL_config.h
+d/usr/local/include/SDL2/SDL_platform.h
+d/usr/local/include/SDL2/begin_code.h
+d/usr/local/include/SDL2/close_code.h
+d/opt/local/include/iconv.h
+d/usr/local/include/SDL2/SDL_assert.h
+d/usr/local/include/SDL2/SDL_atomic.h
+d/usr/local/include/SDL2/SDL_audio.h
+d/usr/local/include/SDL2/SDL_error.h
+d/usr/local/include/SDL2/SDL_endian.h
+d/usr/local/include/SDL2/SDL_mutex.h
+d/usr/local/include/SDL2/SDL_thread.h
+d/usr/local/include/SDL2/SDL_rwops.h
+d/usr/local/include/SDL2/SDL_clipboard.h
+d/usr/local/include/SDL2/SDL_cpuinfo.h
+d/usr/local/include/SDL2/SDL_events.h
+d/usr/local/include/SDL2/SDL_video.h
+d/usr/local/include/SDL2/SDL_pixels.h
+d/usr/local/include/SDL2/SDL_rect.h
+d/usr/local/include/SDL2/SDL_surface.h
+d/usr/local/include/SDL2/SDL_blendmode.h
+d/usr/local/include/SDL2/SDL_keyboard.h
+d/usr/local/include/SDL2/SDL_keycode.h
+d/usr/local/include/SDL2/SDL_scancode.h
+d/usr/local/include/SDL2/SDL_mouse.h
+d/usr/local/include/SDL2/SDL_joystick.h
+d/usr/local/include/SDL2/SDL_gamecontroller.h
+d/usr/local/include/SDL2/SDL_quit.h
+d/usr/local/include/SDL2/SDL_gesture.h
+d/usr/local/include/SDL2/SDL_touch.h
+d/usr/local/include/SDL2/SDL_filesystem.h
+d/usr/local/include/SDL2/SDL_haptic.h
+d/usr/local/include/SDL2/SDL_hints.h
+d/usr/local/include/SDL2/SDL_loadso.h
+d/usr/local/include/SDL2/SDL_log.h
+d/usr/local/include/SDL2/SDL_messagebox.h
+d/usr/local/include/SDL2/SDL_power.h
+d/usr/local/include/SDL2/SDL_render.h
+d/usr/local/include/SDL2/SDL_system.h
+d/usr/local/include/SDL2/SDL_timer.h
+d/usr/local/include/SDL2/SDL_version.h
+d/Library/Frameworks/SDL2_image.framework/Headers/SDL_image.h
+d/Library/Frameworks/SDL2_ttf.framework/Headers/SDL_ttf.h
+d/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Laser.h
+d/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Level.h
+d/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Tile.h
+d/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Item.h
+d/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Enemy.h
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection75"Compile /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Engine.cpp188"[1mCompileC[0m build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Engine.o [1mbattleSnake/Engine.cpp[0m normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compilerefab3258501db941^d6c9f55a501db941^---0#0#1#-19%DVTDocumentLocation2@74"file:///Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Engine.cpp0000000000000000^2988"[1mCompileC[0m build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Engine.o [1mbattleSnake/Engine.cpp[0m normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/Enrico/Documents/Sviluppo/battleSnake    export LANG=en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch x86_64 -fmessage-length=179 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -fcolor-diagnostics -std=gnu++11 -stdlib=libc++ -fmodules -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Werror=return-type -Werror=deprecated-objc-isa-usage -Werror=objc-root-class -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wconditional-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mmacosx-version-min=10.9 -g -fvisibility-inlines-hidden -Wno-sign-conversion -iquote /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-generated-files.hmap -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-own-target-headers.hmap -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-all-target-headers.hmap -iquote /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-project-headers.hmap -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/Debug/include -I/opt/local/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/include -I/usr/local/include -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/DerivedSources/x86_64 -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/DerivedSources -F/Users/Enrico/Documents/Sviluppo/battleSnake/build/Debug -F/Library/Frameworks -MMD -MT dependencies -MF /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Engine.d --serialize-diagnostics /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Engine.dia -c /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Engine.cpp -o /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Engine.o36"82578760-BEBD-4FB3-B976-BE8ABE088B3B-
+bDD28E396-146A-43D0-AEE2-32F4B092932D
+
+CCompileC build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/FleetMember.o /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/FleetMember.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
+s421351510.245966
+e421351511.847287
+r1
+xCompileC
+xbuild/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/FleetMember.o
+x/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/FleetMember.cpp
+xnormal
+xx86_64
+xc++
+xcom.apple.compilers.llvm.clang.1_0.compiler
+d/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/FleetMember.cpp
+d/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/FleetMember.h
+d/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Spaceship.h
+d/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Graphics.h
+d/usr/local/include/SDL2/SDL.h
+d/usr/local/include/SDL2/SDL_main.h
+d/usr/local/include/SDL2/SDL_stdinc.h
+d/usr/local/include/SDL2/SDL_config.h
+d/usr/local/include/SDL2/SDL_platform.h
+d/usr/local/include/SDL2/begin_code.h
+d/usr/local/include/SDL2/close_code.h
+d/opt/local/include/iconv.h
+d/usr/local/include/SDL2/SDL_assert.h
+d/usr/local/include/SDL2/SDL_atomic.h
+d/usr/local/include/SDL2/SDL_audio.h
+d/usr/local/include/SDL2/SDL_error.h
+d/usr/local/include/SDL2/SDL_endian.h
+d/usr/local/include/SDL2/SDL_mutex.h
+d/usr/local/include/SDL2/SDL_thread.h
+d/usr/local/include/SDL2/SDL_rwops.h
+d/usr/local/include/SDL2/SDL_clipboard.h
+d/usr/local/include/SDL2/SDL_cpuinfo.h
+d/usr/local/include/SDL2/SDL_events.h
+d/usr/local/include/SDL2/SDL_video.h
+d/usr/local/include/SDL2/SDL_pixels.h
+d/usr/local/include/SDL2/SDL_rect.h
+d/usr/local/include/SDL2/SDL_surface.h
+d/usr/local/include/SDL2/SDL_blendmode.h
+d/usr/local/include/SDL2/SDL_keyboard.h
+d/usr/local/include/SDL2/SDL_keycode.h
+d/usr/local/include/SDL2/SDL_scancode.h
+d/usr/local/include/SDL2/SDL_mouse.h
+d/usr/local/include/SDL2/SDL_joystick.h
+d/usr/local/include/SDL2/SDL_gamecontroller.h
+d/usr/local/include/SDL2/SDL_quit.h
+d/usr/local/include/SDL2/SDL_gesture.h
+d/usr/local/include/SDL2/SDL_touch.h
+d/usr/local/include/SDL2/SDL_filesystem.h
+d/usr/local/include/SDL2/SDL_haptic.h
+d/usr/local/include/SDL2/SDL_hints.h
+d/usr/local/include/SDL2/SDL_loadso.h
+d/usr/local/include/SDL2/SDL_log.h
+d/usr/local/include/SDL2/SDL_messagebox.h
+d/usr/local/include/SDL2/SDL_power.h
+d/usr/local/include/SDL2/SDL_render.h
+d/usr/local/include/SDL2/SDL_system.h
+d/usr/local/include/SDL2/SDL_timer.h
+d/usr/local/include/SDL2/SDL_version.h
+d/Library/Frameworks/SDL2_image.framework/Headers/SDL_image.h
+d/Library/Frameworks/SDL2_ttf.framework/Headers/SDL_ttf.h
+d/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Laser.h
+d/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Level.h
+d/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Tile.h
+d/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Item.h
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection80"Compile /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/FleetMember.cpp198"[1mCompileC[0m build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/FleetMember.o [1mbattleSnake/FleetMember.cpp[0m normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler21203f56501db941^b7ecd857501db941^---0#0#1#-19%DVTDocumentLocation2@79"file:///Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/FleetMember.cpp0000000000000000^3018"[1mCompileC[0m build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/FleetMember.o [1mbattleSnake/FleetMember.cpp[0m normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/Enrico/Documents/Sviluppo/battleSnake    export LANG=en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch x86_64 -fmessage-length=179 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -fcolor-diagnostics -std=gnu++11 -stdlib=libc++ -fmodules -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Werror=return-type -Werror=deprecated-objc-isa-usage -Werror=objc-root-class -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wconditional-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mmacosx-version-min=10.9 -g -fvisibility-inlines-hidden -Wno-sign-conversion -iquote /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-generated-files.hmap -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-own-target-headers.hmap -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-all-target-headers.hmap -iquote /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-project-headers.hmap -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/Debug/include -I/opt/local/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/include -I/usr/local/include -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/DerivedSources/x86_64 -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/DerivedSources -F/Users/Enrico/Documents/Sviluppo/battleSnake/build/Debug -F/Library/Frameworks -MMD -MT dependencies -MF /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/FleetMember.d --serialize-diagnostics /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/FleetMember.dia -c /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/FleetMember.cpp -o /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/FleetMember.o36"638203C9-8E47-45AA-8A24-88E2236D3854-
+bDD28E396-146A-43D0-AEE2-32F4B092932D
+
+CCompileC build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Graphics.o /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Graphics.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
+s421351510.250477
+e421351512.196814
+r1
+xCompileC
+xbuild/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Graphics.o
+x/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Graphics.cpp
+xnormal
+xx86_64
+xc++
+xcom.apple.compilers.llvm.clang.1_0.compiler
+d/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Graphics.cpp
+d/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Graphics.h
+d/usr/local/include/SDL2/SDL.h
+d/usr/local/include/SDL2/SDL_main.h
+d/usr/local/include/SDL2/SDL_stdinc.h
+d/usr/local/include/SDL2/SDL_config.h
+d/usr/local/include/SDL2/SDL_platform.h
+d/usr/local/include/SDL2/begin_code.h
+d/usr/local/include/SDL2/close_code.h
+d/opt/local/include/iconv.h
+d/usr/local/include/SDL2/SDL_assert.h
+d/usr/local/include/SDL2/SDL_atomic.h
+d/usr/local/include/SDL2/SDL_audio.h
+d/usr/local/include/SDL2/SDL_error.h
+d/usr/local/include/SDL2/SDL_endian.h
+d/usr/local/include/SDL2/SDL_mutex.h
+d/usr/local/include/SDL2/SDL_thread.h
+d/usr/local/include/SDL2/SDL_rwops.h
+d/usr/local/include/SDL2/SDL_clipboard.h
+d/usr/local/include/SDL2/SDL_cpuinfo.h
+d/usr/local/include/SDL2/SDL_events.h
+d/usr/local/include/SDL2/SDL_video.h
+d/usr/local/include/SDL2/SDL_pixels.h
+d/usr/local/include/SDL2/SDL_rect.h
+d/usr/local/include/SDL2/SDL_surface.h
+d/usr/local/include/SDL2/SDL_blendmode.h
+d/usr/local/include/SDL2/SDL_keyboard.h
+d/usr/local/include/SDL2/SDL_keycode.h
+d/usr/local/include/SDL2/SDL_scancode.h
+d/usr/local/include/SDL2/SDL_mouse.h
+d/usr/local/include/SDL2/SDL_joystick.h
+d/usr/local/include/SDL2/SDL_gamecontroller.h
+d/usr/local/include/SDL2/SDL_quit.h
+d/usr/local/include/SDL2/SDL_gesture.h
+d/usr/local/include/SDL2/SDL_touch.h
+d/usr/local/include/SDL2/SDL_filesystem.h
+d/usr/local/include/SDL2/SDL_haptic.h
+d/usr/local/include/SDL2/SDL_hints.h
+d/usr/local/include/SDL2/SDL_loadso.h
+d/usr/local/include/SDL2/SDL_log.h
+d/usr/local/include/SDL2/SDL_messagebox.h
+d/usr/local/include/SDL2/SDL_power.h
+d/usr/local/include/SDL2/SDL_render.h
+d/usr/local/include/SDL2/SDL_system.h
+d/usr/local/include/SDL2/SDL_timer.h
+d/usr/local/include/SDL2/SDL_version.h
+d/Library/Frameworks/SDL2_image.framework/Headers/SDL_image.h
+d/Library/Frameworks/SDL2_ttf.framework/Headers/SDL_ttf.h
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection77"Compile /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Graphics.cpp192"[1mCompileC[0m build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Graphics.o [1mbattleSnake/Graphics.cpp[0m normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler96424056501db941^f6963258501db941^---0#0#1#-19%DVTDocumentLocation2@76"file:///Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Graphics.cpp0000000000000000^3000"[1mCompileC[0m build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Graphics.o [1mbattleSnake/Graphics.cpp[0m normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/Enrico/Documents/Sviluppo/battleSnake    export LANG=en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch x86_64 -fmessage-length=179 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -fcolor-diagnostics -std=gnu++11 -stdlib=libc++ -fmodules -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Werror=return-type -Werror=deprecated-objc-isa-usage -Werror=objc-root-class -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wconditional-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mmacosx-version-min=10.9 -g -fvisibility-inlines-hidden -Wno-sign-conversion -iquote /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-generated-files.hmap -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-own-target-headers.hmap -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-all-target-headers.hmap -iquote /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-project-headers.hmap -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/Debug/include -I/opt/local/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/include -I/usr/local/include -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/DerivedSources/x86_64 -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/DerivedSources -F/Users/Enrico/Documents/Sviluppo/battleSnake/build/Debug -F/Library/Frameworks -MMD -MT dependencies -MF /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Graphics.d --serialize-diagnostics /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Graphics.dia -c /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Graphics.cpp -o /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Graphics.o36"6C8D9CE4-2601-43EC-AF7C-0300F4B4DE0C-
+bDD28E396-146A-43D0-AEE2-32F4B092932D
+
+CCompileC build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Item.o /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Item.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
+s421351513.173455
+e421351514.680039
+r1
+xCompileC
+xbuild/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Item.o
+x/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Item.cpp
+xnormal
+xx86_64
+xc++
+xcom.apple.compilers.llvm.clang.1_0.compiler
+d/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Item.cpp
+d/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Item.h
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection73"Compile /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Item.cpp184"[1mCompileC[0m build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Item.o [1mbattleSnake/Item.cpp[0m normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compilerbe862c59501db941^0917ae5a501db941^---0#0#1#-19%DVTDocumentLocation2@72"file:///Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Item.cpp0000000000000000^2976"[1mCompileC[0m build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Item.o [1mbattleSnake/Item.cpp[0m normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/Enrico/Documents/Sviluppo/battleSnake    export LANG=en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch x86_64 -fmessage-length=179 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -fcolor-diagnostics -std=gnu++11 -stdlib=libc++ -fmodules -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Werror=return-type -Werror=deprecated-objc-isa-usage -Werror=objc-root-class -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wconditional-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mmacosx-version-min=10.9 -g -fvisibility-inlines-hidden -Wno-sign-conversion -iquote /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-generated-files.hmap -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-own-target-headers.hmap -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-all-target-headers.hmap -iquote /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-project-headers.hmap -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/Debug/include -I/opt/local/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/include -I/usr/local/include -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/DerivedSources/x86_64 -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/DerivedSources -F/Users/Enrico/Documents/Sviluppo/battleSnake/build/Debug -F/Library/Frameworks -MMD -MT dependencies -MF /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Item.d --serialize-diagnostics /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Item.dia -c /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Item.cpp -o /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Item.o36"75D81192-EE61-4588-B3FA-84CA228FED4B-
+bDD28E396-146A-43D0-AEE2-32F4B092932D
+
+CCompileC build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Laser.o /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Laser.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
+s421351510.245414
+e421351511.773698
+r1
+xCompileC
+xbuild/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Laser.o
+x/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Laser.cpp
+xnormal
+xx86_64
+xc++
+xcom.apple.compilers.llvm.clang.1_0.compiler
+d/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Laser.cpp
+d/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Laser.h
+d/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Graphics.h
+d/usr/local/include/SDL2/SDL.h
+d/usr/local/include/SDL2/SDL_main.h
+d/usr/local/include/SDL2/SDL_stdinc.h
+d/usr/local/include/SDL2/SDL_config.h
+d/usr/local/include/SDL2/SDL_platform.h
+d/usr/local/include/SDL2/begin_code.h
+d/usr/local/include/SDL2/close_code.h
+d/opt/local/include/iconv.h
+d/usr/local/include/SDL2/SDL_assert.h
+d/usr/local/include/SDL2/SDL_atomic.h
+d/usr/local/include/SDL2/SDL_audio.h
+d/usr/local/include/SDL2/SDL_error.h
+d/usr/local/include/SDL2/SDL_endian.h
+d/usr/local/include/SDL2/SDL_mutex.h
+d/usr/local/include/SDL2/SDL_thread.h
+d/usr/local/include/SDL2/SDL_rwops.h
+d/usr/local/include/SDL2/SDL_clipboard.h
+d/usr/local/include/SDL2/SDL_cpuinfo.h
+d/usr/local/include/SDL2/SDL_events.h
+d/usr/local/include/SDL2/SDL_video.h
+d/usr/local/include/SDL2/SDL_pixels.h
+d/usr/local/include/SDL2/SDL_rect.h
+d/usr/local/include/SDL2/SDL_surface.h
+d/usr/local/include/SDL2/SDL_blendmode.h
+d/usr/local/include/SDL2/SDL_keyboard.h
+d/usr/local/include/SDL2/SDL_keycode.h
+d/usr/local/include/SDL2/SDL_scancode.h
+d/usr/local/include/SDL2/SDL_mouse.h
+d/usr/local/include/SDL2/SDL_joystick.h
+d/usr/local/include/SDL2/SDL_gamecontroller.h
+d/usr/local/include/SDL2/SDL_quit.h
+d/usr/local/include/SDL2/SDL_gesture.h
+d/usr/local/include/SDL2/SDL_touch.h
+d/usr/local/include/SDL2/SDL_filesystem.h
+d/usr/local/include/SDL2/SDL_haptic.h
+d/usr/local/include/SDL2/SDL_hints.h
+d/usr/local/include/SDL2/SDL_loadso.h
+d/usr/local/include/SDL2/SDL_log.h
+d/usr/local/include/SDL2/SDL_messagebox.h
+d/usr/local/include/SDL2/SDL_power.h
+d/usr/local/include/SDL2/SDL_render.h
+d/usr/local/include/SDL2/SDL_system.h
+d/usr/local/include/SDL2/SDL_timer.h
+d/usr/local/include/SDL2/SDL_version.h
+d/Library/Frameworks/SDL2_image.framework/Headers/SDL_image.h
+d/Library/Frameworks/SDL2_ttf.framework/Headers/SDL_ttf.h
+d/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Level.h
+d/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Tile.h
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection74"Compile /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Laser.cpp186"[1mCompileC[0m build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Laser.o [1mbattleSnake/Laser.cpp[0m normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler87183f56501db941^f110c657501db941^---0#0#1#-19%DVTDocumentLocation2@73"file:///Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Laser.cpp0000000000000000^2982"[1mCompileC[0m build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Laser.o [1mbattleSnake/Laser.cpp[0m normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/Enrico/Documents/Sviluppo/battleSnake    export LANG=en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch x86_64 -fmessage-length=179 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -fcolor-diagnostics -std=gnu++11 -stdlib=libc++ -fmodules -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Werror=return-type -Werror=deprecated-objc-isa-usage -Werror=objc-root-class -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wconditional-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mmacosx-version-min=10.9 -g -fvisibility-inlines-hidden -Wno-sign-conversion -iquote /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-generated-files.hmap -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-own-target-headers.hmap -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-all-target-headers.hmap -iquote /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-project-headers.hmap -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/Debug/include -I/opt/local/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/include -I/usr/local/include -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/DerivedSources/x86_64 -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/DerivedSources -F/Users/Enrico/Documents/Sviluppo/battleSnake/build/Debug -F/Library/Frameworks -MMD -MT dependencies -MF /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Laser.d --serialize-diagnostics /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Laser.dia -c /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Laser.cpp -o /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Laser.o36"23C9E3A0-1471-48D9-8C9C-903A56146216-
+bDD28E396-146A-43D0-AEE2-32F4B092932D
+
+CCompileC build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Level.o /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Level.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
+s421351511.847716
+e421351513.245275
+r1
+xCompileC
+xbuild/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Level.o
+x/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Level.cpp
+xnormal
+xx86_64
+xc++
+xcom.apple.compilers.llvm.clang.1_0.compiler
+d/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Level.cpp
+d/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Level.h
+d/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Graphics.h
+d/usr/local/include/SDL2/SDL.h
+d/usr/local/include/SDL2/SDL_main.h
+d/usr/local/include/SDL2/SDL_stdinc.h
+d/usr/local/include/SDL2/SDL_config.h
+d/usr/local/include/SDL2/SDL_platform.h
+d/usr/local/include/SDL2/begin_code.h
+d/usr/local/include/SDL2/close_code.h
+d/opt/local/include/iconv.h
+d/usr/local/include/SDL2/SDL_assert.h
+d/usr/local/include/SDL2/SDL_atomic.h
+d/usr/local/include/SDL2/SDL_audio.h
+d/usr/local/include/SDL2/SDL_error.h
+d/usr/local/include/SDL2/SDL_endian.h
+d/usr/local/include/SDL2/SDL_mutex.h
+d/usr/local/include/SDL2/SDL_thread.h
+d/usr/local/include/SDL2/SDL_rwops.h
+d/usr/local/include/SDL2/SDL_clipboard.h
+d/usr/local/include/SDL2/SDL_cpuinfo.h
+d/usr/local/include/SDL2/SDL_events.h
+d/usr/local/include/SDL2/SDL_video.h
+d/usr/local/include/SDL2/SDL_pixels.h
+d/usr/local/include/SDL2/SDL_rect.h
+d/usr/local/include/SDL2/SDL_surface.h
+d/usr/local/include/SDL2/SDL_blendmode.h
+d/usr/local/include/SDL2/SDL_keyboard.h
+d/usr/local/include/SDL2/SDL_keycode.h
+d/usr/local/include/SDL2/SDL_scancode.h
+d/usr/local/include/SDL2/SDL_mouse.h
+d/usr/local/include/SDL2/SDL_joystick.h
+d/usr/local/include/SDL2/SDL_gamecontroller.h
+d/usr/local/include/SDL2/SDL_quit.h
+d/usr/local/include/SDL2/SDL_gesture.h
+d/usr/local/include/SDL2/SDL_touch.h
+d/usr/local/include/SDL2/SDL_filesystem.h
+d/usr/local/include/SDL2/SDL_haptic.h
+d/usr/local/include/SDL2/SDL_hints.h
+d/usr/local/include/SDL2/SDL_loadso.h
+d/usr/local/include/SDL2/SDL_log.h
+d/usr/local/include/SDL2/SDL_messagebox.h
+d/usr/local/include/SDL2/SDL_power.h
+d/usr/local/include/SDL2/SDL_render.h
+d/usr/local/include/SDL2/SDL_system.h
+d/usr/local/include/SDL2/SDL_timer.h
+d/usr/local/include/SDL2/SDL_version.h
+d/Library/Frameworks/SDL2_image.framework/Headers/SDL_image.h
+d/Library/Frameworks/SDL2_ttf.framework/Headers/SDL_ttf.h
+d/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Tile.h
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection74"Compile /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Level.cpp186"[1mCompileC[0m build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Level.o [1mbattleSnake/Level.cpp[0m normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler1824d957501db941^64cb3e59501db941^---0#0#1#-19%DVTDocumentLocation2@73"file:///Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Level.cpp0000000000000000^2982"[1mCompileC[0m build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Level.o [1mbattleSnake/Level.cpp[0m normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/Enrico/Documents/Sviluppo/battleSnake    export LANG=en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch x86_64 -fmessage-length=179 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -fcolor-diagnostics -std=gnu++11 -stdlib=libc++ -fmodules -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Werror=return-type -Werror=deprecated-objc-isa-usage -Werror=objc-root-class -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wconditional-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mmacosx-version-min=10.9 -g -fvisibility-inlines-hidden -Wno-sign-conversion -iquote /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-generated-files.hmap -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-own-target-headers.hmap -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-all-target-headers.hmap -iquote /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-project-headers.hmap -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/Debug/include -I/opt/local/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/include -I/usr/local/include -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/DerivedSources/x86_64 -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/DerivedSources -F/Users/Enrico/Documents/Sviluppo/battleSnake/build/Debug -F/Library/Frameworks -MMD -MT dependencies -MF /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Level.d --serialize-diagnostics /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Level.dia -c /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Level.cpp -o /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Level.o36"0830ED83-AE57-443B-891D-AEC7D43CA560-
+bDD28E396-146A-43D0-AEE2-32F4B092932D
+
+CCompileC build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Spaceship.o /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Spaceship.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
+s421351511.775079
+e421351513.173074
+r1
+xCompileC
+xbuild/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Spaceship.o
+x/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Spaceship.cpp
+xnormal
+xx86_64
+xc++
+xcom.apple.compilers.llvm.clang.1_0.compiler
+d/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Spaceship.cpp
+d/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Spaceship.h
+d/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Graphics.h
+d/usr/local/include/SDL2/SDL.h
+d/usr/local/include/SDL2/SDL_main.h
+d/usr/local/include/SDL2/SDL_stdinc.h
+d/usr/local/include/SDL2/SDL_config.h
+d/usr/local/include/SDL2/SDL_platform.h
+d/usr/local/include/SDL2/begin_code.h
+d/usr/local/include/SDL2/close_code.h
+d/opt/local/include/iconv.h
+d/usr/local/include/SDL2/SDL_assert.h
+d/usr/local/include/SDL2/SDL_atomic.h
+d/usr/local/include/SDL2/SDL_audio.h
+d/usr/local/include/SDL2/SDL_error.h
+d/usr/local/include/SDL2/SDL_endian.h
+d/usr/local/include/SDL2/SDL_mutex.h
+d/usr/local/include/SDL2/SDL_thread.h
+d/usr/local/include/SDL2/SDL_rwops.h
+d/usr/local/include/SDL2/SDL_clipboard.h
+d/usr/local/include/SDL2/SDL_cpuinfo.h
+d/usr/local/include/SDL2/SDL_events.h
+d/usr/local/include/SDL2/SDL_video.h
+d/usr/local/include/SDL2/SDL_pixels.h
+d/usr/local/include/SDL2/SDL_rect.h
+d/usr/local/include/SDL2/SDL_surface.h
+d/usr/local/include/SDL2/SDL_blendmode.h
+d/usr/local/include/SDL2/SDL_keyboard.h
+d/usr/local/include/SDL2/SDL_keycode.h
+d/usr/local/include/SDL2/SDL_scancode.h
+d/usr/local/include/SDL2/SDL_mouse.h
+d/usr/local/include/SDL2/SDL_joystick.h
+d/usr/local/include/SDL2/SDL_gamecontroller.h
+d/usr/local/include/SDL2/SDL_quit.h
+d/usr/local/include/SDL2/SDL_gesture.h
+d/usr/local/include/SDL2/SDL_touch.h
+d/usr/local/include/SDL2/SDL_filesystem.h
+d/usr/local/include/SDL2/SDL_haptic.h
+d/usr/local/include/SDL2/SDL_hints.h
+d/usr/local/include/SDL2/SDL_loadso.h
+d/usr/local/include/SDL2/SDL_log.h
+d/usr/local/include/SDL2/SDL_messagebox.h
+d/usr/local/include/SDL2/SDL_power.h
+d/usr/local/include/SDL2/SDL_render.h
+d/usr/local/include/SDL2/SDL_system.h
+d/usr/local/include/SDL2/SDL_timer.h
+d/usr/local/include/SDL2/SDL_version.h
+d/Library/Frameworks/SDL2_image.framework/Headers/SDL_image.h
+d/Library/Frameworks/SDL2_ttf.framework/Headers/SDL_ttf.h
+d/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Laser.h
+d/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Level.h
+d/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Tile.h
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection78"Compile /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Spaceship.cpp194"[1mCompileC[0m build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Spaceship.o [1mbattleSnake/Spaceship.cpp[0m normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compilerddd2c657501db941^6a502c59501db941^---0#0#1#-19%DVTDocumentLocation2@77"file:///Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Spaceship.cpp0000000000000000^3006"[1mCompileC[0m build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Spaceship.o [1mbattleSnake/Spaceship.cpp[0m normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/Enrico/Documents/Sviluppo/battleSnake    export LANG=en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch x86_64 -fmessage-length=179 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -fcolor-diagnostics -std=gnu++11 -stdlib=libc++ -fmodules -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Werror=return-type -Werror=deprecated-objc-isa-usage -Werror=objc-root-class -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wconditional-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mmacosx-version-min=10.9 -g -fvisibility-inlines-hidden -Wno-sign-conversion -iquote /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-generated-files.hmap -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-own-target-headers.hmap -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-all-target-headers.hmap -iquote /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-project-headers.hmap -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/Debug/include -I/opt/local/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/include -I/usr/local/include -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/DerivedSources/x86_64 -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/DerivedSources -F/Users/Enrico/Documents/Sviluppo/battleSnake/build/Debug -F/Library/Frameworks -MMD -MT dependencies -MF /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Spaceship.d --serialize-diagnostics /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Spaceship.dia -c /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Spaceship.cpp -o /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Spaceship.o36"E15B1F9E-33E5-4716-900C-4A809FD8AE9C-
+bDD28E396-146A-43D0-AEE2-32F4B092932D
+
+CCompileC build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Tile.o /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Tile.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
+s421351513.245827
+e421351514.702427
+r1
+xCompileC
+xbuild/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Tile.o
+x/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Tile.cpp
+xnormal
+xx86_64
+xc++
+xcom.apple.compilers.llvm.clang.1_0.compiler
+d/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Tile.cpp
+d/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Tile.h
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection73"Compile /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Tile.cpp184"[1mCompileC[0m build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Tile.o [1mbattleSnake/Tile.cpp[0m normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler3e5b3f59501db941^e5d3b35a501db941^---0#0#1#-19%DVTDocumentLocation2@72"file:///Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Tile.cpp0000000000000000^2976"[1mCompileC[0m build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Tile.o [1mbattleSnake/Tile.cpp[0m normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/Enrico/Documents/Sviluppo/battleSnake    export LANG=en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch x86_64 -fmessage-length=179 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -fcolor-diagnostics -std=gnu++11 -stdlib=libc++ -fmodules -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Werror=return-type -Werror=deprecated-objc-isa-usage -Werror=objc-root-class -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wconditional-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mmacosx-version-min=10.9 -g -fvisibility-inlines-hidden -Wno-sign-conversion -iquote /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-generated-files.hmap -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-own-target-headers.hmap -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-all-target-headers.hmap -iquote /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-project-headers.hmap -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/Debug/include -I/opt/local/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/include -I/usr/local/include -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/DerivedSources/x86_64 -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/DerivedSources -F/Users/Enrico/Documents/Sviluppo/battleSnake/build/Debug -F/Library/Frameworks -MMD -MT dependencies -MF /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Tile.d --serialize-diagnostics /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Tile.dia -c /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Tile.cpp -o /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Tile.o36"571EE626-8F69-472F-8263-A70FF4F7B774-
+bDD28E396-146A-43D0-AEE2-32F4B092932D
+
+CCompileC build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/main.o /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/main.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
+s421351511.741385
+e421351513.691687
+r1
+xCompileC
+xbuild/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/main.o
+x/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/main.cpp
+xnormal
+xx86_64
+xc++
+xcom.apple.compilers.llvm.clang.1_0.compiler
+d/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/main.cpp
+d/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Engine.h
+d/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/FleetMember.h
+d/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Spaceship.h
+d/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Graphics.h
+d/usr/local/include/SDL2/SDL.h
+d/usr/local/include/SDL2/SDL_main.h
+d/usr/local/include/SDL2/SDL_stdinc.h
+d/usr/local/include/SDL2/SDL_config.h
+d/usr/local/include/SDL2/SDL_platform.h
+d/usr/local/include/SDL2/begin_code.h
+d/usr/local/include/SDL2/close_code.h
+d/opt/local/include/iconv.h
+d/usr/local/include/SDL2/SDL_assert.h
+d/usr/local/include/SDL2/SDL_atomic.h
+d/usr/local/include/SDL2/SDL_audio.h
+d/usr/local/include/SDL2/SDL_error.h
+d/usr/local/include/SDL2/SDL_endian.h
+d/usr/local/include/SDL2/SDL_mutex.h
+d/usr/local/include/SDL2/SDL_thread.h
+d/usr/local/include/SDL2/SDL_rwops.h
+d/usr/local/include/SDL2/SDL_clipboard.h
+d/usr/local/include/SDL2/SDL_cpuinfo.h
+d/usr/local/include/SDL2/SDL_events.h
+d/usr/local/include/SDL2/SDL_video.h
+d/usr/local/include/SDL2/SDL_pixels.h
+d/usr/local/include/SDL2/SDL_rect.h
+d/usr/local/include/SDL2/SDL_surface.h
+d/usr/local/include/SDL2/SDL_blendmode.h
+d/usr/local/include/SDL2/SDL_keyboard.h
+d/usr/local/include/SDL2/SDL_keycode.h
+d/usr/local/include/SDL2/SDL_scancode.h
+d/usr/local/include/SDL2/SDL_mouse.h
+d/usr/local/include/SDL2/SDL_joystick.h
+d/usr/local/include/SDL2/SDL_gamecontroller.h
+d/usr/local/include/SDL2/SDL_quit.h
+d/usr/local/include/SDL2/SDL_gesture.h
+d/usr/local/include/SDL2/SDL_touch.h
+d/usr/local/include/SDL2/SDL_filesystem.h
+d/usr/local/include/SDL2/SDL_haptic.h
+d/usr/local/include/SDL2/SDL_hints.h
+d/usr/local/include/SDL2/SDL_loadso.h
+d/usr/local/include/SDL2/SDL_log.h
+d/usr/local/include/SDL2/SDL_messagebox.h
+d/usr/local/include/SDL2/SDL_power.h
+d/usr/local/include/SDL2/SDL_render.h
+d/usr/local/include/SDL2/SDL_system.h
+d/usr/local/include/SDL2/SDL_timer.h
+d/usr/local/include/SDL2/SDL_version.h
+d/Library/Frameworks/SDL2_image.framework/Headers/SDL_image.h
+d/Library/Frameworks/SDL2_ttf.framework/Headers/SDL_ttf.h
+d/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Laser.h
+d/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Level.h
+d/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Tile.h
+d/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Item.h
+d/Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/Enemy.h
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection73"Compile /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/main.cpp184"[1mCompileC[0m build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/main.o [1mbattleSnake/main.cpp[0m normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compilerb7efbd57501db941^ba12b159501db941^---0#0#1#-19%DVTDocumentLocation2@72"file:///Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/main.cpp0000000000000000^2976"[1mCompileC[0m build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/main.o [1mbattleSnake/main.cpp[0m normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/Enrico/Documents/Sviluppo/battleSnake    export LANG=en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch x86_64 -fmessage-length=179 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -fcolor-diagnostics -std=gnu++11 -stdlib=libc++ -fmodules -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Werror=return-type -Werror=deprecated-objc-isa-usage -Werror=objc-root-class -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wconditional-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mmacosx-version-min=10.9 -g -fvisibility-inlines-hidden -Wno-sign-conversion -iquote /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-generated-files.hmap -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-own-target-headers.hmap -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-all-target-headers.hmap -iquote /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/battleSnake-project-headers.hmap -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/Debug/include -I/opt/local/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/include -I/usr/local/include -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/DerivedSources/x86_64 -I/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/DerivedSources -F/Users/Enrico/Documents/Sviluppo/battleSnake/build/Debug -F/Library/Frameworks -MMD -MT dependencies -MF /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/main.d --serialize-diagnostics /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/main.dia -c /Users/Enrico/Documents/Sviluppo/battleSnake/battleSnake/main.cpp -o /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/main.o36"E1B8089B-DBE6-4998-AE48-D686B46E1079-
+bDD28E396-146A-43D0-AEE2-32F4B092932D
+
+CLd /Users/Enrico/Documents/Sviluppo/battleSnake/build/Debug/battleSnake normal x86_64
+s421351515.372913
+e421351515.475565
+r1
+xLd
+x/Users/Enrico/Documents/Sviluppo/battleSnake/build/Debug/battleSnake
+xnormal
+xx86_64
+d/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/battleSnake.LinkFileList
+d/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Laser.o
+d/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/FleetMember.o
+d/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Enemy.o
+d/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Graphics.o
+d/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/main.o
+d/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Spaceship.o
+d/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Level.o
+d/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Engine.o
+d/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Item.o
+d/Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/Tile.o
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/cocoa.framework/cocoa
+d/Library/Frameworks/SDL2.framework/SDL2
+d/Library/Frameworks/SDL2_image.framework/SDL2_image
+d/Library/Frameworks/SDL2_ttf.framework/SDL2_ttf
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/libc++.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/libSystem.dylib
+d/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/5.1/lib/darwin/libclang_rt.osx.a
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/AppKit.framework/AppKit
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreData.framework/CoreData
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libcache.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libcommonCrypto.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libcompiler_rt.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libcopyfile.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libcorecrypto.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libdispatch.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libdyld.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libkeymgr.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/liblaunch.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libmacho.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libquarantine.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libremovefile.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libsystem_asl.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libsystem_blocks.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libsystem_c.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libsystem_configuration.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libsystem_dnssd.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libsystem_info.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libsystem_kernel.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libsystem_m.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libsystem_malloc.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libsystem_network.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libsystem_notify.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libsystem_platform.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libsystem_pthread.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libsystem_sandbox.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libsystem_stats.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libunc.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libunwind.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libxpc.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/ApplicationServices.framework/ApplicationServices
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/Foundation.framework/Foundation
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreText.framework/CoreText
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/ImageIO.framework/ImageIO
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/ATS.framework/Versions/A/ATS
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/ColorSync.framework/Versions/A/ColorSync
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreServices.framework/CoreServices
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/HIServices.framework/Versions/A/HIServices
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/LangAnalysis.framework/Versions/A/LangAnalysis
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/PrintCore.framework/Versions/A/PrintCore
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/QD.framework/Versions/A/QD
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/SpeechSynthesis.framework/Versions/A/SpeechSynthesis
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/libobjc.A.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CFNetwork.framework/CFNetwork
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/CarbonCore.framework/Versions/A/CarbonCore
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Metadata
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/OSServices.framework/Versions/A/OSServices
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/SearchKit.framework/Versions/A/SearchKit
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/AE.framework/Versions/A/AE
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/LaunchServices
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/DictionaryServices.framework/Versions/A/DictionaryServices
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection73"Link /Users/Enrico/Documents/Sviluppo/battleSnake/build/Debug/battleSnake48"[1mLd[0m build/Debug/battleSnake normal x86_64e5995f5b501db941^adbf795b501db941^---0#0#1#--1149"[1mLd[0m build/Debug/battleSnake normal x86_64    cd /Users/Enrico/Documents/Sviluppo/battleSnake    export MACOSX_DEPLOYMENT_TARGET=10.9    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -arch x86_64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -L/Users/Enrico/Documents/Sviluppo/battleSnake/build/Debug -L/opt/local/lib -L/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib -F/Users/Enrico/Documents/Sviluppo/battleSnake/build/Debug -F/Library/Frameworks -filelist /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/battleSnake.LinkFileList -mmacosx-version-min=10.9 -framework cocoa -framework SDL2 -framework SDL2_image -framework SDL2_ttf -stdlib=libc++ -Xlinker -dependency_info -Xlinker /Users/Enrico/Documents/Sviluppo/battleSnake/build/battleSnake.build/Debug/battleSnake.build/Objects-normal/x86_64/battleSnake_dependency_info.dat -o /Users/Enrico/Documents/Sviluppo/battleSnake/build/Debug/battleSnake36"2DB0A5DD-E151-48A0-9DDE-697F19976235-
+bDD28E396-146A-43D0-AEE2-32F4B092932D
+

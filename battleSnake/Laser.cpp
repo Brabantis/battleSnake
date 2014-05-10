@@ -21,7 +21,7 @@ bool Laser::isHittingEnemy(Level currLevel) {
     // This way it works. Must be black magic.
     int tmpX = gX/SPRITE_WIDTH;
     int tmpY = gY/SPRITE_HEIGHT;
-    if (currLevel.getTileCode((tmpX+1), (tmpY+1)) == ENEMY_HERE) {
+    if (currLevel.getTile((tmpX+1), (tmpY+1)).occupiedByEnemy == true) {
         result = true;
     }
     return result;
@@ -32,22 +32,22 @@ bool Laser::isHittingWall(Level currLevel) {
     // Check if this works or places it in a weird place
     int tmpX = gX/SPRITE_WIDTH;
     int tmpY = gY/SPRITE_HEIGHT;
-    if (currLevel.getTileCode(tmpX+1, tmpY+1) == COLLISION) {
+    if (currLevel.getTile((tmpX+1), (tmpY+1)).partOfWall == true) {
         result = true;
     }
     return result;
 }
 
-void Laser::drawOnScreen(Graphics graph) {
-    SDL_Rect dst = {gX, gY, LASERHEIGHT, LASERWIDTH};
+void Laser::drawOnScreen(Graphics graph) {  // Float values allow me to move at the speed I need
+    SDL_Rect dst = {static_cast<int>(gX), static_cast<int>(gY), LASERHEIGHT, LASERWIDTH};
     // Check formulas for finding the rendering area
     SDL_RenderCopyEx(graph.getRenderer(), graph.getOtherSprite(sprite), 0, &dst, -(angle/pi*180), 0, SDL_FLIP_NONE);
     // Angle reversed because i'm using reverse coords
 }
 
 void Laser::travel() {
-    gX += 20 * cos(angle);
-    gY -= 20 * sin(angle);
+    gX += (2 * cos(angle));
+    gY -= (2 * sin(angle));
 }
 
 double Laser::getAngle() {

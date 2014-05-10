@@ -30,7 +30,7 @@ private:
     Tile battlefield[dimension];
 public:
     Level();    // to instantiate level from map
-    int getTileCode(int x, int y);
+    Tile getTile(int x, int y);
     Event getEventFromCode(int code);
     void printMap();
     void giveCodeToTile(int x, int y, Code tileCode);

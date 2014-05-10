@@ -30,9 +30,10 @@ class Laser {
 private:
     OtherSprites sprite;
     int power;
-    int gX, gY;     // Graphics coordinates of the collision center (on top)
+    float gX, gY;     // Graphics coordinates of the collision center (on top)
     double angle;      // I will build the direction moving according to the sin and cos of the angle
 public:
+    int TEMPlifeCounter = 0;
     Laser(int power, int gX, int gY, double angle, OtherSprites part = LASER_BASIC);
     bool isHittingEnemy(Level currLevel);
     bool isHittingWall(Level currLevel);

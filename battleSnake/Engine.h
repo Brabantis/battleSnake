@@ -31,7 +31,7 @@
 
 using namespace std;
 
-const int DELAYFOURTH = 50;
+const int DELAYFOURTH = 0;
 
 enum RateOfFire {
     UNUSED_1,

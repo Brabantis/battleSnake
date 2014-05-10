@@ -43,7 +43,7 @@ Laser Spaceship::shootLaser(int xdest, int ydest){
             angle = -pi/2;
         }
     }
-    Laser tmp(atk, (position.x-1) * SPRITE_WIDTH + 20, (position.y-1) * SPRITE_HEIGHT + 20, -angle, LASER_BASIC);
+    Laser tmp(atk, (position.x-1) * TILE_WIDTH + 20, (position.y-1) * TILE_HEIGHT + 20, -angle, LASER_BASIC);
     return tmp;
 }
 
@@ -92,7 +92,8 @@ void Spaceship::drawOnScene(Graphics graph) {
         default:
             break;
     }
-    SDL_Rect renderZone = {(position.x-1) * SPRITE_WIDTH, (position.y-1) * SPRITE_HEIGHT, SPRITE_WIDTH, SPRITE_HEIGHT};
+    // To make them only move by one tile at the time. TODO: check if I should rather move them by 2, 5 or so 
+    SDL_Rect renderZone = {(position.x-1) * TILE_WIDTH, (position.y-1) * TILE_HEIGHT, SPRITE_WIDTH, SPRITE_HEIGHT};
     SDL_RenderCopyEx(graph.getRenderer(), graph.getSprite(sprite), 0, &renderZone, rotation, 0, SDL_FLIP_NONE);
 }
 // x-1 and y-1 because we are working on an array

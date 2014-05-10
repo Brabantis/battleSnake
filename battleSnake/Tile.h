@@ -17,9 +17,12 @@
 
 #include <iostream>
 
+class Spaceship;
+
 const int TILE_WIDTH = 4;
 const int TILE_HEIGHT = 4;
 
+// Should this be here? IDK
 enum Event {
     ERR_LEVEL,
     GAME_LOST,
@@ -28,23 +31,24 @@ enum Event {
 };
 
 enum Code {
-    UNACCESSIBLE,
-    NOT_WALK,
-    WALK,
-    COLLISION,
-    ENEMY_HERE,
-    SPEC_EVENT_2,
-    SPEC_EVENT_3,
+    EMPTY,
+    WALKABLE,
+    WALL,
+    ENEMY,
+    ALLY,
 };
 
 class Tile {
-private:
-    Code tileCode;
-    int x;
-    int y;
 public:
-    Code getTileCode();
+    // This was a good idea. I just had to change a bit SetTileCode, and now it's smoother and more readable.
+    bool occupiedByEnemy;
+    bool occupiedByAlly;
+    bool partOfWall;
     void setTileCode(Code target);
+    
+    // Could be useful for collision detecting. Like destroying both the ships.
+    Spaceship* occupyingEnemy;
+    Spaceship* occupyingAlly;
 };
 
 #endif /* defined(__battleSnake__Tile__) */
