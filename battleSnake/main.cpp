@@ -16,8 +16,6 @@
 
 #include "Engine.h"
 
-// I'm including many more headers than I need, I will eliminate the superfluous ones later
-
 int main()
 {
     Engine engi;
