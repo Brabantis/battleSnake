@@ -19,8 +19,8 @@ Laser::Laser(int dmg, int x, int y, double ang, OtherSprites part) {
 bool Laser::isHittingEnemy(Level currLevel) {
     bool result = false;
     // This way it works. Must be black magic.
-    int tmpX = gX/SPRITE_WIDTH;
-    int tmpY = gY/SPRITE_HEIGHT;
+    int tmpX = gX/TILE_WIDTH;
+    int tmpY = gY/TILE_HEIGHT;
     if (currLevel.getTile((tmpX+1), (tmpY+1)).occupiedByEnemy == true) {
         result = true;
     }
@@ -30,8 +30,8 @@ bool Laser::isHittingEnemy(Level currLevel) {
 bool Laser::isHittingWall(Level currLevel) {
     bool result = false;
     // Check if this works or places it in a weird place
-    int tmpX = gX/SPRITE_WIDTH;
-    int tmpY = gY/SPRITE_HEIGHT;
+    int tmpX = gX/TILE_WIDTH;
+    int tmpY = gY/TILE_HEIGHT;
     if (currLevel.getTile((tmpX+1), (tmpY+1)).partOfWall == true) {
         result = true;
     }

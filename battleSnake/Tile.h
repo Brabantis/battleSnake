@@ -46,7 +46,14 @@ public:
     bool partOfWall;
     void setTileCode(Code target);
     
+    //void setEnemy(bool how);
+    //void setAlly(bool how);
+    Spaceship* getEnemy();
+    Spaceship* getAlly();
+    bool checkForCollision();
+    
     // Could be useful for collision detecting. Like destroying both the ships.
+private:
     Spaceship* occupyingEnemy;
     Spaceship* occupyingAlly;
 };

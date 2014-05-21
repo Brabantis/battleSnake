@@ -31,3 +31,25 @@ void Tile::setTileCode(Code target){
             break;
     };
 }
+
+/*void Tile::setEnemy(bool how){
+    occupiedByEnemy = how;
+}
+
+void Tile::setAlly(bool how){
+    occupiedByAlly = how;
+}*/
+
+Spaceship* Tile::getEnemy(){
+    return occupyingEnemy;
+}
+
+Spaceship* Tile::getAlly(){
+    return occupyingAlly;
+}
+
+bool Tile::checkForCollision(){
+    if (occupiedByEnemy && occupiedByAlly)
+        return true;
+    return false;
+}

@@ -57,35 +57,35 @@ void Engine::addFleetMember(Characters choice) {
     fleet.push_back(*player);
     if (fleetsize == 0) {
         fleet[fleetsize].setX(100);
-        fleet[fleetsize].setY(140);
+        fleet[fleetsize].setY(130);
     }
     else {
         fleet[fleetsize].setX(fleet[fleetsize-1].getX());
         fleet[fleetsize].setY(fleet[fleetsize-1].getY());
         switch (fleet[fleetsize-1].getDirection()) {
             case NORTH:
-                fleet[fleetsize].move(SOUTH);
+                fleet[fleetsize].move(SOUTH, currentLevel);
                 fleet[fleetsize].setDirection(NORTH);
                 break;
             case EAST:
-                fleet[fleetsize].move(WEST);
+                fleet[fleetsize].move(WEST, currentLevel);
                 fleet[fleetsize].setDirection(EAST);
                 break;
             case SOUTH:
-                fleet[fleetsize].move(NORTH);
+                fleet[fleetsize].move(NORTH, currentLevel);
                 fleet[fleetsize].setDirection(SOUTH);
                 break;
             case WEST:
-                fleet[fleetsize].move(EAST);
+                fleet[fleetsize].move(EAST, currentLevel);
                 fleet[fleetsize].setDirection(WEST);
                 break;
             default:
                 break;
         }
     }
+    getAllyOnMap(fleet[fleetsize].getX(), fleet[fleetsize].getY());
     fleetsize++;
     delete player;
-    //moveBuffer.push_back(moveBuffer[fleetsize-1]);
 }
 
 void Engine::addEnemyFleetMember(int x, int y, Characters choice) {
@@ -122,6 +122,7 @@ void Engine::addEnemyFleetMember(int x, int y, Characters choice) {
             break;
     }
     enemyFleet.push_back(*opponent);
+    getEnemyOnMap(x, y);
     enemysize++;
 }
 
@@ -191,6 +192,31 @@ void Engine::addLaserToMap() {
     }
 }
 
+void Engine::getAllyOnMap(int x, int y) {
+    for (int i = 0; i<10; i++) {
+        for (int j = 0; j<10; j++) {
+            currentLevel.giveCodeToTile(x+i, y+j, ALLY);
+        }
+    }
+}
+
+void Engine::getEnemyOnMap(int x, int y) {
+    for (int i = 0; i<10; i++) {
+        for (int j = 0; j<10; j++) {
+            currentLevel.giveCodeToTile(x+i, y+j, ENEMY);
+        }
+    }
+}
+
+// This function becomes very beautiful for removing ships
+void Engine::clearPortionOfMap(int x, int y) {
+    for (int i = 0; i<10; i++) {
+        for (int j = 0; j<10; j++) {
+            currentLevel.giveCodeToTile(x+i, y+j, EMPTY);
+        }
+    }
+}
+
 void Engine::drawFleet(Graphics graph) {
     for (int i = 0; i<fleetsize; i++) {
         fleet[i].drawOnScene(graph);
@@ -230,18 +256,21 @@ void Engine::moveFleetOnMap(Direction dest) {
             break;
     }
     // TODOTODO: This NEEDS a COMPLETE and TOTAL OVERHAUL, to check for all the 100 tiles. right now it's like it was, only redesigned
+    
+    getAllyOnMap(tmpX, tmpY);
+    // UNDER THIS LINE IS HORRIBLE, HORRIBLE MAKE-UP CODE. DO NOT READ UNLESS NECESSARY
     Tile y = currentLevel.getTile(tmpX, tmpY);
     if (y.partOfWall == false)   // Not moving through walls!
     {
-        if (y.occupiedByAlly == false) // WALKABLE // Do I really really need to check for this? If one hits with itself what should happen?
+        if (/*y.occupiedByAlly == false*/ true) // WALKABLE // Do I really really need to check for this? If one hits with itself what should happen?
         {
             if (isOccupied(tmpX, tmpY, currentLevel)) {
                 setLastEvent(GAME_LOST);
             }
-            fleet[0].move(dest);
-            // Works like a charm, adding at the end and changing the buffer. But HOW COME the buffer works if it's always formed by only one element? For now, I'll accept it as a mystery
+            // Except this part. This part is freaking cool.
+            fleet[0].move(dest, currentLevel);
             for (int i = 1; i<fleetsize; i++) {
-                fleet[i].move(moveBuffer[i-1]);
+                fleet[i].move(moveBuffer[i-1], currentLevel);
             }
             for (int i = fleetsize-1; i>0; i--) {
                 moveBuffer[i] = moveBuffer[i-1];
@@ -253,7 +282,7 @@ void Engine::moveFleetOnMap(Direction dest) {
             setLastEvent(currentLevel.getEventFromCode(ENEMY));
         }
     }
-    if (y.occupiedByAlly == true || y.partOfWall == true) {
+    if (y.partOfWall == true) {
         setLastEvent(GAME_LOST);
     }
 }
@@ -312,8 +341,16 @@ Event Engine::getLastEvent() {
 }
 
 // LIST OF STUFF
-// What there is to do: Directions work, collision does NOT; the system sees a 30000 dimension map, but positions are still limited. Need to overhaul movement, directions and position. Need something like a "herearespaceships" that marks for collision 10x10 tiles starting from the upper left corner
-// Things that are fucked up: Apparently the walls are the borders of the screen. Try to make a border around everything.
+/* What there is to do: Directions work, collision does NOT; the system sees a 30000 dimension map, but positions are still limited.
+ * Need to overhaul movement, directions and position. Need something like a "herearespaceships" that marks for collision 10x10 tiles
+ * starting from the upper left corner
+ *
+ * FUNCTIONS that need modifying before movement goes right: adding fleet members and enemies, movement, removal of used ships, laser impact.
+ *
+ * TROUBLE: eating an enemy makes a respawn trip
+ *
+ * Laser collision with walls STILL does not work right.
+ */
 
 // the main function, transferred in engine. Setting all the graphics stuff as children of Graphics and so on allowed me to make the functions slimmer
 int Engine::start()
@@ -389,7 +426,7 @@ int Engine::start()
 					else if( e.type == SDL_KEYDOWN )
 					{
 						switch( e.key.keysym.sym )
-						{   // Potrebbe essere conveniente ruotare la texture e renderizzare appena un tasto viene premuto. Dovrebbe dare l'illusione di una maggior responsività
+						{
 							case SDLK_UP:
                                 if (fleet[0].getDirection() != SOUTH) {
                                     choice = NORTH;
@@ -441,6 +478,7 @@ int Engine::start()
                                 }
                                 break;
                             case SDLK_SPACE:    // For a triggerable breakpoint
+                                currentLevel.printMap();
                                 cout << "Game Paused" << endl;
                                 break;
                             default:
@@ -473,7 +511,7 @@ int Engine::start()
                     }
                     moveFleetOnMap(choice); // I woulda coulda shoulda change this + drawfleet + drawEnemyFleet into something tweening
                     
-                    // This TECHNICALLY works. But VERY technically. Like "it's horrible and totally not understandable and it fucks up collision"
+                    // This TECHNICALLY works. But VERY technically. Like "it's horrible and totally not understandable and it fucks up collision". Look later when I can collide safely
                     /*
                     for (int i = 0; i<enemyFleet.size(); i++) {
                         int dir = getRandInSpan(0, 3);
@@ -496,14 +534,13 @@ int Engine::start()
                     case EAT_ENEMY:
                         // THESE are the functions for destroying an enemy and will be eventually moved
                         // Now, I think that I should NOT write a destructor in order to remove effectively every trace of the enemy being, freeing the tiles that were occupied by it. RATHER, seeing how it should interact with the object currentLevel, rather than something depending on Spaceships, I should put that in killEnemy.
+                        // Currently, an enemy eaten causes a hell of a lot of respawns and so on. This is because I am not freeing the tiles. Remedy ASAP.
                         enemyOnScreen = false;
                         killEnemy();
                         currentLevel.giveCodeToTile(tmpx, tmpy, EMPTY);  // If I can, I should include those in killEnemy();
                         lastTriggered = EVE_DEFAULT;
                         tmpx++;
                         tmpy++;
-                        break;
-                        
                         break;
                     default:
                         break;

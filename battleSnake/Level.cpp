@@ -47,10 +47,24 @@ void Level::giveCodeToTile(int x, int y, Code tileCode) {
 }
 
 void Level::printMap() {    // LA SCRIVE RUOTATA, VORSICHT. Scambiare i, j, width e height invece sputtana qualcosa.
-    for (int i = 0; i<MAP_WIDTH; i++) {
-        for (int j = 0; j<MAP_HEIGHT; j++) {
-            cout << (battlefield[i + MAP_WIDTH * j].partOfWall? 1 : 0);
+    int enx = 0, eny = 0;
+    for (int j = 0; j<MAP_HEIGHT; j++) {
+        for (int i = 0; i<MAP_WIDTH; i++) {
+            int sym = 0;
+            if (battlefield[i + MAP_WIDTH * j].partOfWall) {
+                sym = 1;
+            }
+            else if (battlefield[i + MAP_WIDTH * j].occupiedByAlly) {
+                sym = 2;
+            }
+            else if (battlefield[i + MAP_WIDTH * j].occupiedByEnemy) {
+                sym = 3;
+                enx = i;
+                eny = j;
+            }
+            cout << sym;
         }
     }
+    //cout << "\n" << enx << ", " << eny << endl;
 }
 
