@@ -16,7 +16,7 @@ Laser::Laser(int dmg, int x, int y, double ang, OtherSprites part) {
     sprite = part;
 }
 
-bool Laser::isHittingEnemy(Level currLevel) {
+bool Laser::isHittingEnemy(Level currLevel, Spaceship* &target) {
     bool result = false;
     // This way it works. Must be black magic.
     int tmpX = gX/TILE_WIDTH;
@@ -24,6 +24,7 @@ bool Laser::isHittingEnemy(Level currLevel) {
     if (currLevel.getTile((tmpX+1), (tmpY+1)).occupiedByEnemy == true) {
         result = true;
     }
+    target = currLevel.getTile((tmpX+1), (tmpY+1)).occupyingEnemy;
     return result;
 }
 
@@ -52,4 +53,12 @@ void Laser::travel() {
 
 double Laser::getAngle() {
     return angle;
+}
+
+int Laser::getX() {
+    return gX/TILE_WIDTH;
+}
+
+int Laser::getY() {
+    return gY/TILE_HEIGHT;
 }

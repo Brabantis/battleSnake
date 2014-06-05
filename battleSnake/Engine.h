@@ -67,9 +67,10 @@ private:
     void fleetBuilder(Screens &lastDisplayed, Graphics graph);
     void addLaserToMap();
     
-    void getAllyOnMap(int x, int y);
-    void getEnemyOnMap(int x, int y);
-    void clearPortionOfMap(int x, int y);
+    void getAllyOnMap(int x, int y, Spaceship* ship);
+    void getEnemyOnMap(int x, int y, Spaceship* ship);
+    void removeAllyFromMap(int x, int y);
+    void removeEnemyFromMap(int x, int y);
     
     void printFleetStats();
     void moveFleetOnMap(Direction dest);

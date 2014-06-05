@@ -9,9 +9,8 @@
 #include "Level.h"
 
 Level::Level() {
-    // TODO al momento non aggiunge x e y alle tiles
     for (int i = 0; i<MAP_WIDTH*MAP_HEIGHT; i++) {
-        battlefield[i].setTileCode(WALKABLE);
+        battlefield[i].setTileCode(NOT_WALL);
     }
     
     // A fence on the outside
@@ -42,12 +41,13 @@ Tile Level::getTile(int x, int y) {
     return battlefield[x + MAP_WIDTH * y];
 }
 
-void Level::giveCodeToTile(int x, int y, Code tileCode) {
-    battlefield[x + MAP_WIDTH * y].setTileCode(tileCode);
+void Level::giveCodeToTile(int x, int y, Code tileCode, Spaceship* ship) {
+    battlefield[x + MAP_WIDTH * y].setTileCode(tileCode, ship);
 }
 
-void Level::printMap() {    // LA SCRIVE RUOTATA, VORSICHT. Scambiare i, j, width e height invece sputtana qualcosa.
-    int enx = 0, eny = 0;
+void Level::printMap(Graphics graph) {    // LA SCRIVE RUOTATA, VORSICHT. Scambiare i, j, width e height invece sputtana qualcosa.
+    // Graphic of the map
+    
     for (int j = 0; j<MAP_HEIGHT; j++) {
         for (int i = 0; i<MAP_WIDTH; i++) {
             int sym = 0;
@@ -59,12 +59,28 @@ void Level::printMap() {    // LA SCRIVE RUOTATA, VORSICHT. Scambiare i, j, widt
             }
             else if (battlefield[i + MAP_WIDTH * j].occupiedByEnemy) {
                 sym = 3;
-                enx = i;
-                eny = j;
             }
-            cout << sym;
+            SDL_Rect fillRect = {i*4, j*4, 4, 4};
+            switch (sym) {
+                case 0:
+                    SDL_SetRenderDrawColor(graph.getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF);
+                    break;
+                case 1:
+                    SDL_SetRenderDrawColor(graph.getRenderer(), 0x00, 0x00, 0x00, 0xFF);
+                    break;
+                case 2:
+                    SDL_SetRenderDrawColor(graph.getRenderer(), 0x00, 0xFF, 0x00, 0xFF);
+                    break;
+                case 3:
+                    SDL_SetRenderDrawColor(graph.getRenderer(), 0xFF, 0x00, 0x00, 0xFF);
+                    break;
+                default:
+                    break;
+            }
+            SDL_RenderFillRect(graph.getRenderer(), &fillRect);
+            //cout << sym;
         }
     }
-    //cout << "\n" << enx << ", " << eny << endl;
+    SDL_RenderPresent(graph.getRenderer());
 }
 

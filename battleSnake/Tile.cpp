@@ -8,14 +8,14 @@
 
 #include "Tile.h"
 
-void Tile::setTileCode(Code target){
+void Tile::setTileCode(Code target, Spaceship* ship){
     switch (target) {
         case EMPTY:
             occupiedByAlly = false;
             occupiedByEnemy = false;
             partOfWall = false;
             break;
-        case WALKABLE:  // Don't think that I'll use this much, but it's here for completion's sake
+        case NOT_WALL:  // Don't think that I'll use this much, but it's here for completion's sake
             partOfWall = false;
             break;
         case WALL:
@@ -23,9 +23,19 @@ void Tile::setTileCode(Code target){
             break;
         case ENEMY:
             occupiedByEnemy = true;
+            occupyingEnemy = ship;
             break;
         case ALLY:
             occupiedByAlly = true;
+            occupyingAlly = ship;
+            break;
+        case NOT_ALLY:
+            occupiedByAlly = false;
+            occupyingAlly = 0;
+            break;
+        case NOT_ENEMY:
+            occupiedByEnemy = false;
+            occupyingEnemy = 0;
             break;
         default:
             break;
@@ -48,6 +58,7 @@ Spaceship* Tile::getAlly(){
     return occupyingAlly;
 }
 
+// Remember that this checks only for enemies.
 bool Tile::checkForCollision(){
     if (occupiedByEnemy && occupiedByAlly)
         return true;

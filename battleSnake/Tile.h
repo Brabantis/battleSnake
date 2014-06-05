@@ -32,10 +32,12 @@ enum Event {
 
 enum Code {
     EMPTY,
-    WALKABLE,
+    NOT_WALL,
     WALL,
     ENEMY,
     ALLY,
+    NOT_ENEMY,
+    NOT_ALLY
 };
 
 class Tile {
@@ -44,7 +46,7 @@ public:
     bool occupiedByEnemy;
     bool occupiedByAlly;
     bool partOfWall;
-    void setTileCode(Code target);
+    void setTileCode(Code target, Spaceship* ship = 0); // ship is defaulted to 0 by Level
     
     //void setEnemy(bool how);
     //void setAlly(bool how);
@@ -53,7 +55,7 @@ public:
     bool checkForCollision();
     
     // Could be useful for collision detecting. Like destroying both the ships.
-private:
+//private:
     Spaceship* occupyingEnemy;
     Spaceship* occupyingAlly;
 };

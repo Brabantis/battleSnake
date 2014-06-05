@@ -35,7 +35,6 @@ protected:
     location position;
     Characters sprite;
     
-    void takeDamage(int damage);
     void calculateStats();
     void explode();
     
@@ -50,6 +49,7 @@ public:             //Solo le funzioni base per tutti
     void drawOnScene(Graphics graph);
     
     Laser shootLaser(int xdest, int ydest);
+    void takeDamage(int damage);
     
     // the getters
     int getAtk();

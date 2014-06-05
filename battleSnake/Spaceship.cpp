@@ -51,27 +51,15 @@ void Spaceship::move(Direction dest, Level &lvl) {
     switch (dest) {
         case NORTH:
             position.y--;
-            for (int i = 0; i<10; i++) {
-                lvl.giveCodeToTile(position.x+i, position.y+11, EMPTY);
-            }
             break;
         case EAST:
             position.x++;
-            for (int i = 0; i<10; i++) {
-                lvl.giveCodeToTile(position.x-1, position.y+i, EMPTY);
-            }
             break;
         case SOUTH:
             position.y++;
-            for (int i = 0; i<10; i++) {
-                lvl.giveCodeToTile(position.x+i, position.y-1, EMPTY);
-            }
             break;
         case WEST:
             position.x--;
-            for (int i = 0; i<10; i++) {
-                lvl.giveCodeToTile(position.x+11, position.y+i, EMPTY);
-            }
             break;
         default:
             break;

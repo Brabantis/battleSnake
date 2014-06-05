@@ -6,8 +6,6 @@
 //  Copyright (c) 2014 Enrico Migliorini. All rights reserved.
 //
 
-#include <new>
-
 #include "Engine.h"
 
 Engine::Engine() {
@@ -83,9 +81,10 @@ void Engine::addFleetMember(Characters choice) {
                 break;
         }
     }
-    getAllyOnMap(fleet[fleetsize].getX(), fleet[fleetsize].getY());
+    getAllyOnMap(fleet[fleetsize].getX(), fleet[fleetsize].getY(), &(fleet[fleetsize]));
     fleetsize++;
     delete player;
+    player = 0;
 }
 
 void Engine::addEnemyFleetMember(int x, int y, Characters choice) {
@@ -122,8 +121,10 @@ void Engine::addEnemyFleetMember(int x, int y, Characters choice) {
             break;
     }
     enemyFleet.push_back(*opponent);
-    getEnemyOnMap(x, y);
+    getEnemyOnMap(x, y, &(enemyFleet[enemysize]));
     enemysize++;
+    delete opponent;
+    opponent = 0;
 }
 
 // Apparently something bad happens when you use an enum from another file
@@ -192,27 +193,35 @@ void Engine::addLaserToMap() {
     }
 }
 
-void Engine::getAllyOnMap(int x, int y) {
+void Engine::getAllyOnMap(int x, int y, Spaceship* ship) {
     for (int i = 0; i<10; i++) {
         for (int j = 0; j<10; j++) {
-            currentLevel.giveCodeToTile(x+i, y+j, ALLY);
+            currentLevel.giveCodeToTile(x+i, y+j, ALLY, ship);
         }
     }
 }
 
-void Engine::getEnemyOnMap(int x, int y) {
+void Engine::getEnemyOnMap(int x, int y, Spaceship* ship) {
     for (int i = 0; i<10; i++) {
         for (int j = 0; j<10; j++) {
-            currentLevel.giveCodeToTile(x+i, y+j, ENEMY);
+            currentLevel.giveCodeToTile(x+i, y+j, ENEMY, ship);
         }
     }
 }
 
 // This function becomes very beautiful for removing ships
-void Engine::clearPortionOfMap(int x, int y) {
+void Engine::removeAllyFromMap(int x, int y) {
     for (int i = 0; i<10; i++) {
         for (int j = 0; j<10; j++) {
-            currentLevel.giveCodeToTile(x+i, y+j, EMPTY);
+            currentLevel.giveCodeToTile(x+i, y+j, NOT_ALLY);
+        }
+    }
+}
+
+void Engine::removeEnemyFromMap(int x, int y) {
+    for (int i = 0; i<10; i++) {
+        for (int j = 0; j<10; j++) {
+            currentLevel.giveCodeToTile(x+i, y+j, NOT_ENEMY);
         }
     }
 }
@@ -236,8 +245,12 @@ void Engine::printFleetStats() {
 }
 
 void Engine::moveFleetOnMap(Direction dest) {
+    //for moving
     int tmpX = fleet[0].getX();
     int tmpY = fleet[0].getY();
+    // for cleaning
+    int backupX = tmpX;
+    int backupY = tmpY;
     switch (dest) {
         case NORTH:
             tmpY--;
@@ -255,31 +268,36 @@ void Engine::moveFleetOnMap(Direction dest) {
             cerr << "Invalid destination for team! How is this possible?" << endl;
             break;
     }
-    // TODOTODO: This NEEDS a COMPLETE and TOTAL OVERHAUL, to check for all the 100 tiles. right now it's like it was, only redesigned
     
-    getAllyOnMap(tmpX, tmpY);
-    // UNDER THIS LINE IS HORRIBLE, HORRIBLE MAKE-UP CODE. DO NOT READ UNLESS NECESSARY
     Tile y = currentLevel.getTile(tmpX, tmpY);
     if (y.partOfWall == false)   // Not moving through walls!
     {
-        if (/*y.occupiedByAlly == false*/ true) // WALKABLE // Do I really really need to check for this? If one hits with itself what should happen?
+        if (/*!(y.occupiedByAlly)*/ true) // WALKABLE
+            // The little problem here is that it checks for the tile of destination, which may be part of himself. Which means that it could never ever ever go left or down.
         {
+            // Checking not to bump into an ally. Requires more work.
             if (isOccupied(tmpX, tmpY, currentLevel)) {
                 setLastEvent(GAME_LOST);
             }
-            // Except this part. This part is freaking cool.
+            
             fleet[0].move(dest, currentLevel);
+            
+            if(fleet[0].isEnemyColliding(currentLevel)) {
+                setLastEvent(currentLevel.getEventFromCode(ENEMY));
+            }
+            removeAllyFromMap(backupX, backupY);
+            getAllyOnMap(fleet[0].getX(), fleet[0].getY(), &(fleet[0]));
+            
+            // Basically, i'm cleaning and putting a new fleet where i need it. BUT i truly truly need to do it after checking for the collision, else it will cut and slice through anything and everything. AND it will give me EXC_BAD_ACCESS on lower walls.
             for (int i = 1; i<fleetsize; i++) {
+                removeAllyFromMap(fleet[i].getX(), fleet[i].getY());
                 fleet[i].move(moveBuffer[i-1], currentLevel);
+                getAllyOnMap(fleet[i].getX(), fleet[i].getY(), &(fleet[i]));
             }
             for (int i = fleetsize-1; i>0; i--) {
                 moveBuffer[i] = moveBuffer[i-1];
             }
             moveBuffer[0] = dest;
-        }
-        if (y.occupiedByEnemy == true)
-        {
-            setLastEvent(currentLevel.getEventFromCode(ENEMY));
         }
     }
     if (y.partOfWall == true) {
@@ -294,7 +312,8 @@ void Engine::startLevel() {
 
 void Engine::spawnEnemy(int x, int y, Level current) {
     // Some permission stuff forbids me from changing here the tile code.
-    addEnemyFleetMember(x, y, intToCharacterConvert(getRandInSpan(0, 4)));
+    // addEnemyFleetMember(x, y, intToCharacterConvert(getRandInSpan(0, 4)));
+    addEnemyFleetMember(x, y, FIGHTER);
 }
 
 void Engine::killEnemy() {
@@ -317,7 +336,7 @@ void Engine::setLastEvent(Event lastEvent) {
 bool Engine::isOccupied(int x, int y, Level curr) {
     bool result = false;
     for (int i = 0; i<fleetsize; i++) {
-        if (fleet[i].getX() == x && fleet[i].getY() == y) {
+        if ((x - fleet[i].getX())<10 && (x - fleet[i].getX())>0 && (y - fleet[i].getY())<10 && (y - fleet[i].getY())>0) {
             result = true;
         }
     }
@@ -341,15 +360,14 @@ Event Engine::getLastEvent() {
 }
 
 // LIST OF STUFF
-/* What there is to do: Directions work, collision does NOT; the system sees a 30000 dimension map, but positions are still limited.
- * Need to overhaul movement, directions and position. Need something like a "herearespaceships" that marks for collision 10x10 tiles
- * starting from the upper left corner
+/* What there is to do: Directions work, collision DOES TOO; the system sees a 30000 dimension map, but positions are still limited.
  *
- * FUNCTIONS that need modifying before movement goes right: adding fleet members and enemies, movement, removal of used ships, laser impact.
+ * FUNCTIONS that need modifying before movement goes right: adding fleet members and enemies, removal of used ships, laser impact.
  *
- * TROUBLE: eating an enemy makes a respawn trip
+ * TODO: improve collision with walls
  *
- * Laser collision with walls STILL does not work right.
+ * NEXT THING TO DO: make lasers damaging.
+ *
  */
 
 // the main function, transferred in engine. Setting all the graphics stuff as children of Graphics and so on allowed me to make the functions slimmer
@@ -405,6 +423,9 @@ int Engine::start()
             
             // First ship
             addFleetMember(FIGHTER);
+            
+            // The address of the enemy ship hit by lasers each turn
+            Spaceship* hitEnemy = 0;
             
             //First drawing
             SDL_RenderClear(graphEngine.getRenderer());
@@ -478,9 +499,24 @@ int Engine::start()
                                 }
                                 break;
                             case SDLK_SPACE:    // For a triggerable breakpoint
-                                currentLevel.printMap();
+                            {
+                                currentLevel.printMap(graphEngine);
                                 cout << "Game Paused" << endl;
+                                SDL_Delay(3000);
+                                /*
+                                for (int i = 0; i<MAP_WIDTH; i++) {
+                                    for (int j = 0; j<MAP_HEIGHT; j++) {
+                                        if (currentLevel.getTile(i, j).occupiedByEnemy) {
+                                            cout << (i + MAP_WIDTH * j) << endl;
+                                            cout << currentLevel.getTile(i, j).occupyingEnemy << endl;
+                                        }
+                                    }
+                                }
+                                cout << &(enemyFleet[0]) << endl;
+                                */
+                                // Tribble trouble: not only the first tile of the enemy is always NULL.
                                 break;
+                            }
                             default:
                                 break;
 						}
@@ -536,8 +572,8 @@ int Engine::start()
                         // Now, I think that I should NOT write a destructor in order to remove effectively every trace of the enemy being, freeing the tiles that were occupied by it. RATHER, seeing how it should interact with the object currentLevel, rather than something depending on Spaceships, I should put that in killEnemy.
                         // Currently, an enemy eaten causes a hell of a lot of respawns and so on. This is because I am not freeing the tiles. Remedy ASAP.
                         enemyOnScreen = false;
+                        removeEnemyFromMap(enemyFleet[enemysize-1].getX(), enemyFleet[enemysize-1].getY());
                         killEnemy();
-                        currentLevel.giveCodeToTile(tmpx, tmpy, EMPTY);  // If I can, I should include those in killEnemy();
                         lastTriggered = EVE_DEFAULT;
                         tmpx++;
                         tmpy++;
@@ -553,9 +589,13 @@ int Engine::start()
                     }
                     // Find a way to pop elements in the middle, since you must destroy the laser once it hits a target. Also, consider switching back to vector once you've found your way
                 }
+                // Now properly giving damage.
                 for (int i = static_cast<int>(lasersOnMap.size()) - 1; i>=0; i--) {
-                    if (lasersOnMap[i].isHittingEnemy(currentLevel)) {
+                    if (lasersOnMap[i].isHittingEnemy(currentLevel, hitEnemy)) {
+                        if (hitEnemy != 0)
+                            hitEnemy->takeDamage(50);
                         lasersOnMap.erase(lasersOnMap.begin()+i);
+                        
                         // Create a function that changes for 1 frame the sprite to explosion, then removes the laser. A possibility is to set a bool markedForDeletion, that is set with an impact func that also sets the sprite to explode, damages the target and stops the travel. Then a sweeper function removes all the markedForDeletion. Also the hit ship must not move between the impact and the destruction. Check with the frame intervals
                     }
                     else if (lasersOnMap[i].isHittingWall(currentLevel)) {
@@ -563,6 +603,11 @@ int Engine::start()
                         
                     }
                 }
+                // TODO: check all the enemies
+                if (enemyFleet[0].getHP() <= 0) {
+                    setLastEvent(EAT_ENEMY);
+                }
+                
                 for (int i = 0; i<lasersOnMap.size(); i++) {
                     lasersOnMap[i].travel();
                     lasersOnMap[i].drawOnScreen(graphEngine);
