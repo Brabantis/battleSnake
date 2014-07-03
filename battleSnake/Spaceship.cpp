@@ -74,7 +74,7 @@ void Spaceship::explode() {
 // WARNING WARNING CODE BLUE
 // Drawing functions destroy rendered characters unless they are refreshed.
 // This one looks like it's working, and it could even apply to battle scenes.
-void Spaceship::drawOnScene(Graphics graph) {
+void Spaceship::drawOnScene(Graphics &graph) {
     int rotation = 0;
     switch (position.orient) {
         case NORTH:

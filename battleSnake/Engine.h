@@ -88,7 +88,7 @@ private:
     void killEnemy();   // TO ADJUST
     void collectParts(int amount);
     
-    bool isOccupied(int x, int y, Level curr);
+    bool isOccupied(int x, int y);
     
     void setLastEvent(Event last);
     Event getLastEvent();

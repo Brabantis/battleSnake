@@ -10,13 +10,13 @@
 
 Level::Level() {
     for (int i = 0; i<MAP_WIDTH*MAP_HEIGHT; i++) {
-        battlefield[i].setTileCode(NOT_WALL);
+        battlefield[i].setTileCode(EMPTY);
     }
     
     // A fence on the outside
     for (int i = 0; i<MAP_WIDTH; i++) {
         for (int j = 0; j<MAP_HEIGHT; j++) {
-            if (j == 0 || j == MAP_HEIGHT-1 || i == 0 || i == MAP_WIDTH-1) {
+            if (j == 0 || j == 1 || j == MAP_HEIGHT-1 || j == MAP_HEIGHT-2 || i == 0 || i == 1 || i == MAP_WIDTH-1 || i == MAP_WIDTH-2) {
                 battlefield[i + MAP_WIDTH * j].setTileCode(WALL);
             }
         }
@@ -45,7 +45,7 @@ void Level::giveCodeToTile(int x, int y, Code tileCode, Spaceship* ship) {
     battlefield[x + MAP_WIDTH * y].setTileCode(tileCode, ship);
 }
 
-void Level::printMap(Graphics graph) {    // LA SCRIVE RUOTATA, VORSICHT. Scambiare i, j, width e height invece sputtana qualcosa.
+void Level::printMap(Graphics graph) {    // LA SCRIVE RUOTATA, VORSICHT.
     // Graphic of the map
     
     for (int j = 0; j<MAP_HEIGHT; j++) {

@@ -64,3 +64,9 @@ bool Tile::checkForCollision(){
         return true;
     return false;
 }
+
+bool Tile::checkForWallCollision(){
+    if (occupiedByAlly && partOfWall)
+        return true;
+    return false;
+}

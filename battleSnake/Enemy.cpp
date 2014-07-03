@@ -12,3 +12,5 @@ Enemy::Enemy() {}
 
 Enemy::Enemy(int ba, int bd, int bh, Characters spritesrc, location pos) : Spaceship(ba, bd, bh, spritesrc, pos) {
 }
+
+// Redefine move()

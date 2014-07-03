@@ -78,7 +78,6 @@ private:
     SDL_Window* gWindow;
     SDL_Renderer* gRenderer;
     
-    // NOOOOOOOOOOO I need a bidimensional array somehow. Therefore I will be able to call a sprite from gTexture[sprite][Direction] or something like that
     SDL_Texture* gTexture[TEXTURES_TOTAL];
     SDL_Texture* gSprites[SHIP_TYPES];
     SDL_Texture* gOther[OTHER_TOTAL];

@@ -53,6 +53,7 @@ public:
     Spaceship* getEnemy();
     Spaceship* getAlly();
     bool checkForCollision();
+    bool checkForWallCollision();
     
     // Could be useful for collision detecting. Like destroying both the ships.
 //private:

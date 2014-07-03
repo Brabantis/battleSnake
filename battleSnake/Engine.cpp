@@ -62,19 +62,19 @@ void Engine::addFleetMember(Characters choice) {
         fleet[fleetsize].setY(fleet[fleetsize-1].getY());
         switch (fleet[fleetsize-1].getDirection()) {
             case NORTH:
-                fleet[fleetsize].move(SOUTH, currentLevel);
+                fleet[fleetsize].setY(fleet[fleetsize].getY() + 10);
                 fleet[fleetsize].setDirection(NORTH);
                 break;
             case EAST:
-                fleet[fleetsize].move(WEST, currentLevel);
+                fleet[fleetsize].setX(fleet[fleetsize].getX() - 10);
                 fleet[fleetsize].setDirection(EAST);
                 break;
             case SOUTH:
-                fleet[fleetsize].move(NORTH, currentLevel);
+                fleet[fleetsize].setY(fleet[fleetsize].getY() - 10);
                 fleet[fleetsize].setDirection(SOUTH);
                 break;
             case WEST:
-                fleet[fleetsize].move(EAST, currentLevel);
+                fleet[fleetsize].setX(fleet[fleetsize].getX() + 10);
                 fleet[fleetsize].setDirection(WEST);
                 break;
             default:
@@ -275,18 +275,21 @@ void Engine::moveFleetOnMap(Direction dest) {
         if (/*!(y.occupiedByAlly)*/ true) // WALKABLE
             // The little problem here is that it checks for the tile of destination, which may be part of himself. Which means that it could never ever ever go left or down.
         {
-            // Checking not to bump into an ally. Requires more work.
-            if (isOccupied(tmpX, tmpY, currentLevel)) {
+            // Checking not to bump into something. Requires more work.
+            fleet[0].move(dest, currentLevel);
+            
+            if(fleet[0].isColliding(currentLevel)) {
+                setLastEvent(GAME_LOST);
+            }
+            // NOTE: This is a horrible thing that hurts my pride but I need to solve the problem that the collider has when touching the lower bound
+            if (fleet[0].getY() > 138) {
                 setLastEvent(GAME_LOST);
             }
             
-            fleet[0].move(dest, currentLevel);
-            
-            if(fleet[0].isEnemyColliding(currentLevel)) {
-                setLastEvent(currentLevel.getEventFromCode(ENEMY));
-            }
             removeAllyFromMap(backupX, backupY);
             getAllyOnMap(fleet[0].getX(), fleet[0].getY(), &(fleet[0]));
+            
+            //Problem is that when you turn, ships turn at the next turn (love the double meaning). They should move 10 paces first, then turn.
             
             // Basically, i'm cleaning and putting a new fleet where i need it. BUT i truly truly need to do it after checking for the collision, else it will cut and slice through anything and everything. AND it will give me EXC_BAD_ACCESS on lower walls.
             for (int i = 1; i<fleetsize; i++) {
@@ -306,8 +309,10 @@ void Engine::moveFleetOnMap(Direction dest) {
 }
 
 void Engine::startLevel() {
+    /*
     // TODO: Un costruttore di livelli a partire dal codice
-    currentLevel = *(new Level());
+    currentLevel = Level();
+ */
 }
 
 void Engine::spawnEnemy(int x, int y, Level current) {
@@ -333,19 +338,19 @@ void Engine::setLastEvent(Event lastEvent) {
     lastTriggered = lastEvent;
 }
 
-bool Engine::isOccupied(int x, int y, Level curr) {
+bool Engine::isOccupied(int x, int y) {
     bool result = false;
     for (int i = 0; i<fleetsize; i++) {
         if ((x - fleet[i].getX())<10 && (x - fleet[i].getX())>0 && (y - fleet[i].getY())<10 && (y - fleet[i].getY())>0) {
             result = true;
         }
     }
-    if (curr.getTile(x, y).partOfWall == true) {
+    if (currentLevel.getTile(x, y).partOfWall == true) {
         result = true;
     }
     return result;
 }
-
+ 
 int Engine::getRandInSpan(int lower, int upper) {
     if (lower>=upper) {
         return 0;
@@ -364,9 +369,12 @@ Event Engine::getLastEvent() {
  *
  * FUNCTIONS that need modifying before movement goes right: adding fleet members and enemies, removal of used ships, laser impact.
  *
- * TODO: improve collision with walls
- *
- * NEXT THING TO DO: make lasers damaging.
+ * TODO:
+ * -- Rewrite everything packaging more nicely some code bundles and using the GameLoop design. Priority ORANGE.
+ * -- Have the ships move correctly. Priority INDIGO.
+ * -- Remove the leak. Priority ULTRAVIOLET.
+ * -- Make it run faster. Priority GREEN. Possible interaction with TODO[1]
+ * -- Graphical improvements. Priority INFRARED.
  *
  */
 
@@ -502,19 +510,7 @@ int Engine::start()
                             {
                                 currentLevel.printMap(graphEngine);
                                 cout << "Game Paused" << endl;
-                                SDL_Delay(3000);
-                                /*
-                                for (int i = 0; i<MAP_WIDTH; i++) {
-                                    for (int j = 0; j<MAP_HEIGHT; j++) {
-                                        if (currentLevel.getTile(i, j).occupiedByEnemy) {
-                                            cout << (i + MAP_WIDTH * j) << endl;
-                                            cout << currentLevel.getTile(i, j).occupyingEnemy << endl;
-                                        }
-                                    }
-                                }
-                                cout << &(enemyFleet[0]) << endl;
-                                */
-                                // Tribble trouble: not only the first tile of the enemy is always NULL.
+                                SDL_Delay(1000);
                                 break;
                             }
                             default:
@@ -530,7 +526,7 @@ int Engine::start()
                         tmpx = getRandInSpan(11, 190);
                         tmpy = getRandInSpan(11, 140);
                     }
-                    while (isOccupied(tmpx, tmpy, currentLevel));
+                    while (isOccupied(tmpx, tmpy));
                     spawnEnemy(tmpx, tmpy, currentLevel);
                     currentLevel.giveCodeToTile(tmpx, tmpy, ENEMY);
                     enemyOnScreen = true;
@@ -593,7 +589,7 @@ int Engine::start()
                 for (int i = static_cast<int>(lasersOnMap.size()) - 1; i>=0; i--) {
                     if (lasersOnMap[i].isHittingEnemy(currentLevel, hitEnemy)) {
                         if (hitEnemy != 0)
-                            hitEnemy->takeDamage(50);
+                            hitEnemy->takeDamage(lasersOnMap[i].getPower());
                         lasersOnMap.erase(lasersOnMap.begin()+i);
                         
                         // Create a function that changes for 1 frame the sprite to explosion, then removes the laser. A possibility is to set a bool markedForDeletion, that is set with an impact func that also sets the sprite to explode, damages the target and stops the travel. Then a sweeper function removes all the markedForDeletion. Also the hit ship must not move between the impact and the destruction. Check with the frame intervals
@@ -604,7 +600,7 @@ int Engine::start()
                     }
                 }
                 // TODO: check all the enemies
-                if (enemyFleet[0].getHP() <= 0) {
+                if (enemyOnScreen == true && enemyFleet[0].getHP() <= 0) {
                     setLastEvent(EAT_ENEMY);
                 }
                 
@@ -617,7 +613,7 @@ int Engine::start()
                 intervalCounter++;
                 // Right now it renders at about 20 FPS
                 SDL_RenderPresent(graphEngine.getRenderer());
-                SDL_Delay(DELAYFOURTH);
+                //SDL_Delay(DELAYFOURTH);
 			}
             graphEngine.setView(GAME_OVER, gLastDisplayed);
             SDL_RenderPresent(graphEngine.getRenderer());

@@ -39,7 +39,7 @@ bool Laser::isHittingWall(Level currLevel) {
     return result;
 }
 
-void Laser::drawOnScreen(Graphics graph) {  // Float values allow me to move at the speed I need
+void Laser::drawOnScreen(Graphics &graph) {  // Float values allow me to move at the speed I need
     SDL_Rect dst = {static_cast<int>(gX), static_cast<int>(gY), LASERHEIGHT, LASERWIDTH};
     // Check formulas for finding the rendering area
     SDL_RenderCopyEx(graph.getRenderer(), graph.getOtherSprite(sprite), 0, &dst, -(angle/pi*180), 0, SDL_FLIP_NONE);
@@ -61,4 +61,8 @@ int Laser::getX() {
 
 int Laser::getY() {
     return gY/TILE_HEIGHT;
+}
+
+int Laser::getPower() {
+    return power;
 }

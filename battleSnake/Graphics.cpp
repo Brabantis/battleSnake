@@ -37,7 +37,7 @@ bool Graphics::init()
 		}
         
 		//Create window
-		gWindow = SDL_CreateWindow( "SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
+		gWindow = SDL_CreateWindow( "battleSnake", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
 		if( gWindow == 0 )
 		{
 			cout << "Window could not be created! SDL Error: " << SDL_GetError() << endl;
@@ -285,7 +285,7 @@ void Graphics::setView (Screens choice, Screens &lastDisplayed) {
 void Graphics::printTextOnScreen (string txtInput, SDL_Rect* destination) {
     SDL_Texture* tempTexture = loadFromRenderedText(txtInput, {0, 0, 0}); // NOTE: everything is black dabadee dabadack
     SDL_RenderCopy(gRenderer, tempTexture, 0, destination);
-    free(tempTexture);
+    SDL_DestroyTexture(tempTexture);
     tempTexture = 0;
 }
 
@@ -298,6 +298,7 @@ string Graphics::intToString(int input) {
 }
 
 void Graphics::printScore(int score) {
+    SDL_DestroyTexture(gScore);
     gScore = loadFromRenderedText(intToString(score), {0, 0, 0});
     int width = 0;
     if (score == 0)
@@ -313,6 +314,7 @@ void Graphics::printScore(int score) {
 }
 
 void Graphics::printParts(int parts) {
+    SDL_DestroyTexture(gParts);
     gParts = loadFromRenderedText(intToString(parts), {0, 0, 0});
     int width = 0;
     if (parts < 10)

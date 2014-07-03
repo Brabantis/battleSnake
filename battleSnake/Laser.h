@@ -38,10 +38,11 @@ public:
     bool isHittingEnemy(Level currLevel, Spaceship* &target);
     bool isHittingWall(Level currLevel);
     void travel();
-    void drawOnScreen(Graphics graph);
+    void drawOnScreen(Graphics &graph);
     
     int getX();
     int getY();
+    int getPower();
     double getAngle();
 };
 
