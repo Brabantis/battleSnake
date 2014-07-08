@@ -16,7 +16,7 @@ Laser::Laser(int dmg, int x, int y, double ang, OtherSprites part) {
     sprite = part;
 }
 
-bool Laser::isHittingEnemy(Level currLevel, Spaceship* &target) {
+bool Laser::isHittingEnemy(Level &currLevel, Spaceship* &target) {
     bool result = false;
     // This way it works. Must be black magic.
     int tmpX = gX/TILE_WIDTH;
@@ -28,7 +28,7 @@ bool Laser::isHittingEnemy(Level currLevel, Spaceship* &target) {
     return result;
 }
 
-bool Laser::isHittingWall(Level currLevel) {
+bool Laser::isHittingWall(Level &currLevel) {
     bool result = false;
     // Check if this works or places it in a weird place
     int tmpX = gX/TILE_WIDTH;
@@ -39,10 +39,10 @@ bool Laser::isHittingWall(Level currLevel) {
     return result;
 }
 
-void Laser::drawOnScreen(Graphics &graph) {  // Float values allow me to move at the speed I need
+void Laser::drawOnScreen(Graphics* graph) {  // Float values allow me to move at the speed I need
     SDL_Rect dst = {static_cast<int>(gX), static_cast<int>(gY), LASERHEIGHT, LASERWIDTH};
     // Check formulas for finding the rendering area
-    SDL_RenderCopyEx(graph.getRenderer(), graph.getOtherSprite(sprite), 0, &dst, -(angle/pi*180), 0, SDL_FLIP_NONE);
+    SDL_RenderCopyEx(graph->getRenderer(), graph->getOtherSprite(sprite), 0, &dst, -(angle/pi*180), 0, SDL_FLIP_NONE);
     // Angle reversed because i'm using reverse coords
 }
 

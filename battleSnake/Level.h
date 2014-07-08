@@ -32,7 +32,7 @@ public:
     Level();    // to instantiate level from map
     Tile getTile(int x, int y);
     Event getEventFromCode(int code);
-    void printMap(Graphics graph);
+    void printMap(Graphics* graph);
     void giveCodeToTile(int x, int y, Code tileCode, Spaceship* ship = 0);
 };
 

@@ -46,7 +46,7 @@ bool Graphics::init()
 		else
 		{
 			//Create renderer for window
-			gRenderer = SDL_CreateRenderer( gWindow, -1, SDL_RENDERER_ACCELERATED );
+			gRenderer = SDL_CreateRenderer( gWindow, -1, SDL_RENDERER_ACCELERATED);
 			if( gRenderer == 0 )
 			{
 				cout << "Renderer could not be created! SDL Error: " << SDL_GetError() << endl;
@@ -93,18 +93,6 @@ bool Graphics::loadMedia()
 	//Load PNG texture
 	gTexture[MAIN_CAMERA] = loadTexture( "BGimages/main_camera.png");
 	if( gTexture[MAIN_CAMERA] == 0 )
-	{
-		cout << "Failed to load texture image!" << endl;
-		success = false;
-	}
-    gTexture[MAIN_MENU] = loadTexture( "BGimages/main_menu.png");
-	if( gTexture[MAIN_MENU] == 0 )
-	{
-		cout << "Failed to load texture image!" << endl;
-		success = false;
-	}
-    gTexture[BATTLE] = loadTexture( "BGimages/battle.png");
-	if( gTexture[BATTLE] == 0 )
 	{
 		cout << "Failed to load texture image!" << endl;
 		success = false;
@@ -220,7 +208,7 @@ SDL_Texture* Graphics::loadTexture(string path)
 	SDL_Texture* newTexture = 0;
     
 	//Load image at specified path
-	SDL_Surface* loadedSurface = IMG_Load( path.c_str() );
+	SDL_Surface* loadedSurface = IMG_Load( path.c_str());
 	if( loadedSurface == 0 )
 	{
 		cout << "Unable to load image " << path.c_str() << "! SDL_image Error: " << IMG_GetError();
@@ -237,7 +225,6 @@ SDL_Texture* Graphics::loadTexture(string path)
 		//Get rid of old loaded surface
 		SDL_FreeSurface( loadedSurface );
 	}
-    
 	return newTexture;
 }
 
@@ -264,7 +251,6 @@ SDL_Texture* Graphics::loadFromRenderedText(string textureText, SDL_Color textCo
 		//Get rid of old surface
 		SDL_FreeSurface(textSurface);
 	}
-    
 	return newTexture;
 }
 
@@ -298,7 +284,6 @@ string Graphics::intToString(int input) {
 }
 
 void Graphics::printScore(int score) {
-    SDL_DestroyTexture(gScore);
     gScore = loadFromRenderedText(intToString(score), {0, 0, 0});
     int width = 0;
     if (score == 0)
@@ -311,10 +296,11 @@ void Graphics::printScore(int score) {
         width = 150;
     SDL_Rect dst = {40, 10, width, 30};
     SDL_RenderCopy(gRenderer, gScore, 0, &dst);
+    SDL_DestroyTexture(gScore);
+    gParts = 0;
 }
 
 void Graphics::printParts(int parts) {
-    SDL_DestroyTexture(gParts);
     gParts = loadFromRenderedText(intToString(parts), {0, 0, 0});
     int width = 0;
     if (parts < 10)
@@ -327,6 +313,8 @@ void Graphics::printParts(int parts) {
         width = 120;
     SDL_Rect dst = {760-width, 10, width, 30};
     SDL_RenderCopy(gRenderer, gParts, 0, &dst);
+    SDL_DestroyTexture(gParts);
+    gParts = 0;
 }
 
 SDL_Window* Graphics::getWindow() {

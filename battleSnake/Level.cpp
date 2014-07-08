@@ -45,7 +45,7 @@ void Level::giveCodeToTile(int x, int y, Code tileCode, Spaceship* ship) {
     battlefield[x + MAP_WIDTH * y].setTileCode(tileCode, ship);
 }
 
-void Level::printMap(Graphics graph) {    // LA SCRIVE RUOTATA, VORSICHT.
+void Level::printMap(Graphics* graph) {    // LA SCRIVE RUOTATA, VORSICHT.
     // Graphic of the map
     
     for (int j = 0; j<MAP_HEIGHT; j++) {
@@ -63,24 +63,24 @@ void Level::printMap(Graphics graph) {    // LA SCRIVE RUOTATA, VORSICHT.
             SDL_Rect fillRect = {i*4, j*4, 4, 4};
             switch (sym) {
                 case 0:
-                    SDL_SetRenderDrawColor(graph.getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF);
+                    SDL_SetRenderDrawColor(graph->getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF);
                     break;
                 case 1:
-                    SDL_SetRenderDrawColor(graph.getRenderer(), 0x00, 0x00, 0x00, 0xFF);
+                    SDL_SetRenderDrawColor(graph->getRenderer(), 0x00, 0x00, 0x00, 0xFF);
                     break;
                 case 2:
-                    SDL_SetRenderDrawColor(graph.getRenderer(), 0x00, 0xFF, 0x00, 0xFF);
+                    SDL_SetRenderDrawColor(graph->getRenderer(), 0x00, 0xFF, 0x00, 0xFF);
                     break;
                 case 3:
-                    SDL_SetRenderDrawColor(graph.getRenderer(), 0xFF, 0x00, 0x00, 0xFF);
+                    SDL_SetRenderDrawColor(graph->getRenderer(), 0xFF, 0x00, 0x00, 0xFF);
                     break;
                 default:
                     break;
             }
-            SDL_RenderFillRect(graph.getRenderer(), &fillRect);
+            SDL_RenderFillRect(graph->getRenderer(), &fillRect);
             //cout << sym;
         }
     }
-    SDL_RenderPresent(graph.getRenderer());
+    SDL_RenderPresent(graph->getRenderer());
 }
 

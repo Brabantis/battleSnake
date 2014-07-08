@@ -38,8 +38,6 @@ enum Direction
 enum Screens
 {
     MAIN_CAMERA,
-    MAIN_MENU,
-    BATTLE,
     GAME_OVER,
     TEXTURES_TOTAL
 };

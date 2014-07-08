@@ -24,8 +24,9 @@ void Spaceship::takeDamage(int damage) {
     hp -= damage;
 }
 
-Laser Spaceship::shootLaser(int xdest, int ydest){
+Laser* Spaceship::shootLaser(int xdest, int ydest){
     // Shoots a MOTHERFRIGGIN' LAZERBEAM to a tile. If it collides with an enemy, it damages it. Else, it goes till it hits a wall.
+    // This allocates on the stack, which is really bad. Try to get it on the heap (Free Store or whatever) without creating a leak. Maybe with "new", when I am more lucid.
     double angle = 0;
     if (xdest != position.x) {
         double cosfact = (ydest - position.y);
@@ -43,7 +44,7 @@ Laser Spaceship::shootLaser(int xdest, int ydest){
             angle = -pi/2;
         }
     }
-    Laser tmp(atk, (position.x-1) * TILE_WIDTH + 20, (position.y-1) * TILE_HEIGHT + 20, -angle, LASER_BASIC);
+    Laser* tmp = new Laser(atk, (position.x-1) * TILE_WIDTH + 20, (position.y-1) * TILE_HEIGHT + 20, -angle, LASER_BASIC);
     return tmp;
 }
 
@@ -74,7 +75,7 @@ void Spaceship::explode() {
 // WARNING WARNING CODE BLUE
 // Drawing functions destroy rendered characters unless they are refreshed.
 // This one looks like it's working, and it could even apply to battle scenes.
-void Spaceship::drawOnScene(Graphics &graph) {
+void Spaceship::drawOnScene(Graphics* graph) {
     int rotation = 0;
     switch (position.orient) {
         case NORTH:
@@ -94,7 +95,7 @@ void Spaceship::drawOnScene(Graphics &graph) {
     }
     // To make them only move by one tile at the time. TODO: check if I should rather move them by 2, 5 or so 
     SDL_Rect renderZone = {(position.x-1) * TILE_WIDTH, (position.y-1) * TILE_HEIGHT, SPRITE_WIDTH, SPRITE_HEIGHT};
-    SDL_RenderCopyEx(graph.getRenderer(), graph.getSprite(sprite), 0, &renderZone, rotation, 0, SDL_FLIP_NONE);
+    SDL_RenderCopyEx(graph->getRenderer(), graph->getSprite(sprite), 0, &renderZone, rotation, 0, SDL_FLIP_NONE);
 }
 // x-1 and y-1 because we are working on an array
 

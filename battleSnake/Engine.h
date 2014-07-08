@@ -6,9 +6,10 @@
 //  Copyright (c) 2014 Enrico Migliorini. All rights reserved.
 //
 
+
 //==================================================//
 //                                                  //
-//  Engine works with the fleet and the narration    //
+//  Engine works with the fleet and the narration   //
 //                                                  //
 //==================================================//
 
@@ -18,6 +19,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <deque>
 #include <map>
 #include <cmath>
 
@@ -30,8 +32,6 @@
 #include "Enemy.h"
 
 using namespace std;
-
-const int DELAYFOURTH = 0;
 
 enum RateOfFire {
     UNUSED_1,
@@ -56,15 +56,15 @@ private:
     Event lastTriggered;
     
     map<string, Item> inventory;        // As of now, not implemented
-    vector<Direction> moveBuffer;
+    deque<Direction> moveBuffer;
     vector<FleetMember> fleet;
     vector<Enemy> enemyFleet;   // Using the Enemy class allows me to create any kind of enemy, either alien or human or whatever, I just need to create a new object. I guess i COULD just make a better constructor.
-    vector<Laser> lasersOnMap;   // I need something made so that I can BOTH access elements in order AND delete one in every position (pop). If there isn't one, I'll just have to create it myself.
+    vector<Laser*> lasersOnMap;   // I need something made so that I can BOTH access elements in order AND delete one in every position (pop). If there isn't one, I'll just have to create it myself.
     
     void coordsOfNearestEnemy(int &x, int &y, int index);
     void addFleetMember(Characters choice);
     void addEnemyFleetMember(int x, int y, Characters choice);
-    void fleetBuilder(Screens &lastDisplayed, Graphics graph);
+    void fleetBuilder(Screens &lastDisplayed, Graphics* graph);
     void addLaserToMap();
     
     void getAllyOnMap(int x, int y, Spaceship* ship);
@@ -83,7 +83,7 @@ private:
     Characters intToCharacterConvert(int input);
     Direction intToDirectionConvert(int input);
     int getRandInSpan(int lower, int upper);
-    void spawnEnemy(int x, int y, Level current);
+    void spawnEnemy(int x, int y, Level &current);
     
     void killEnemy();   // TO ADJUST
     void collectParts(int amount);
@@ -99,8 +99,8 @@ private:
     // Here I write some graphic functions that have a huge benefit from being here, namely access to the inventory, the members and remove the need to include engine in Graphics. Graphics will just need to include the most basic functions.
     // Or, now that I switched the organization, I could give them a graph and let them do their magic. Will think later.
     // Draws the whole fleet
-    void drawFleet(Graphics graph);
-    void drawEnemyFleet(Graphics graph);
+    void drawFleet(Graphics* graph);
+    void drawEnemyFleet(Graphics* graph);
     //Writes the selection of items. I will need many resources such as this. setView must be called on menu before this one.
     void printEquipMenu(SDL_Renderer* renderer, TTF_Font* font);
     //Writes the status menu.

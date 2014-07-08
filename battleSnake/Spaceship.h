@@ -46,9 +46,9 @@ public:             //Solo le funzioni base per tutti
     void move(Direction dest, Level &lvl);
     
     // to draw on scene, duh
-    void drawOnScene(Graphics &graph);
+    void drawOnScene(Graphics* graph);
     
-    Laser shootLaser(int xdest, int ydest);
+    Laser* shootLaser(int xdest, int ydest);
     void takeDamage(int damage);
     
     // the getters
