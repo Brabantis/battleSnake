@@ -13,39 +13,64 @@ Engine::Engine() {
     fleetsize = 0;
     enemysize = 0;
     score = 0;
-    parts = 0;
-    for (int i = 0; i<10; i++) {
-        moveBuffer.push_back(NORTH);
-    }
+    parts = 1000;
+    moveBuffer.push_front(NORTH);
     lastTriggered = EVE_DEFAULT;
 }
 
 void Engine::addFleetMember(Characters choice) {
+    // Check if space is free
+    int modX = 0, modY = 0;
+    if (fleetsize != 0) {   // Must not check for first ship
+        switch (fleet[fleetsize-1].getDirection()) {
+            case NORTH:
+                modY = 10;
+                break;
+            case EAST:
+                modX = -10;
+                break;
+            case SOUTH:
+                modY = -10;
+                break;
+            case WEST:
+                modX = 10;
+                break;
+            default:
+                break;
+        }
+        if (fleet[fleetsize-1].getX() + modX > 189 || fleet[fleetsize-1].getX() + modX < 1 || fleet[fleetsize-1].getY() + modY > 139 || fleet[fleetsize-1].getY() + modY < 1) // If they are in a valid zone1
+            return;
+    }
+    // Adds ships
     FleetMember* player;
     switch (choice) {
         case FIGHTER:
         {
+            parts -= 10;
             player = new FleetMember(100, 30, 100, FIGHTER);
             break;
         }
         case CORVETTE:
         {
-            
+            parts -= 20;
             player = new FleetMember(150, 50, 100, CORVETTE);
             break;
         }
         case FRIGATE:
         {
+            parts -= 30;
             player = new FleetMember(300, 100, 500, FRIGATE);
             break;
         }
         case DESTROYER:
         {
+            parts -= 40;
             player = new FleetMember(500, 100, 500, DESTROYER);
             break;
         }
         case CRUISER:
         {
+            parts -= 50;
             player = new FleetMember(1000, 150, 1000, CRUISER);
             break;
         }
@@ -57,7 +82,7 @@ void Engine::addFleetMember(Characters choice) {
     fleet.push_back(*player);
     if (fleetsize == 0) {
         fleet[fleetsize].setX(100);
-        fleet[fleetsize].setY(130);
+        fleet[fleetsize].setY(80);
     }
     else {
         fleet[fleetsize].setX(fleet[fleetsize-1].getX());
@@ -85,6 +110,11 @@ void Engine::addFleetMember(Characters choice) {
     }
     getAllyOnMap(fleet[fleetsize].getX(), fleet[fleetsize].getY(), &(fleet[fleetsize]));
     fleetsize++;
+    if (fleetsize != 1) {
+        for (int i = 0; i<10; i++) {
+            moveBuffer.push_back(fleet[fleetsize-1].getDirection());
+        }
+    }
     delete player;
     player = 0;
 }
@@ -251,9 +281,6 @@ void Engine::moveFleetOnMap(Direction dest) {
     //for moving
     int tmpX = fleet[0].getX();
     int tmpY = fleet[0].getY();
-    // for cleaning
-    int backupX = tmpX;
-    int backupY = tmpY;
     switch (dest) {
         case NORTH:
             tmpY--;
@@ -278,36 +305,24 @@ void Engine::moveFleetOnMap(Direction dest) {
         if (/*!(y.occupiedByAlly)*/ true) // WALKABLE
             // The little problem here is that it checks for the tile of destination, which may be part of himself. Which means that it could never ever ever go left or down.
         {
-            // Checking not to bump into something. Requires more work.
-            fleet[0].move(dest, currentLevel);
-            
             // Collision works not with the left border. Why Elmo Why Wait But This Stop This Stop Sign.
-            if(fleet[0].isColliding(currentLevel)) {
+            if (currentLevel.thereIsCollision(tmpX, tmpY)) {
                 setLastEvent(GAME_LOST);
             }
+            
             // NOTE: This is a horrible thing that hurts my pride but I need to solve the problem that the collider has when touching the lower bound
-            if (fleet[0].getY() > 139) {
+            if (tmpY > 139) {
                 setLastEvent(GAME_LOST);
             }
+            // Works like a charm
+            moveBuffer.pop_back();
+            moveBuffer.push_front(dest);
             
-            removeAllyFromMap(backupX, backupY);
-            getAllyOnMap(fleet[0].getX(), fleet[0].getY(), &(fleet[0]));
-            
-            //Problem is that when you turn, ships turn at the next turn (love the double meaning). They should move 10 paces first, then turn.
-            // Basically, i'm cleaning and putting a new fleet where i need it. BUT i truly truly need to do it after checking for the collision, else it will cut and slice through anything and everything. AND it will give me EXC_BAD_ACCESS on lower walls.
-            // This part ought to be thought more thorougly, since everything it does is not what i want. POSSIBLE SOLUTION: use a deque instead of a vector, push back and pop front (or vice versa) each turn, then have ships move. When I create a new one, I enlarge the buffer. Maybe i say that the first ships follows buffer[0], the second buffer[10] and so on, doing simply buffer[i*10]. Smells good.
-            //For now what happens is that every ship has in the direction of movebuffer[shipnumber], then just ignores it and next turn it moves in the direction of the previous one. TOTAL REWRITE.
-            
-            for (int i = 1; i<fleetsize; i++) {
+            for (int i = 0; i<fleetsize; i++) {
                 removeAllyFromMap(fleet[i].getX(), fleet[i].getY());
-                fleet[i].move(moveBuffer[i-1], currentLevel);
+                fleet[i].move(moveBuffer[i*10], currentLevel);
                 getAllyOnMap(fleet[i].getX(), fleet[i].getY(), &(fleet[i]));
             }
-            
-            for (int i = fleetsize-1; i>0; i--) {
-                moveBuffer[i] = moveBuffer[i-1];
-            }
-            moveBuffer[0] = dest;
         }
     }
     if (y.partOfWall == true) {
@@ -371,17 +386,19 @@ Event Engine::getLastEvent() {
     return lastTriggered;
 }
 
-// LIST OF STUFF
+// LIST OF STUFF TO DO
 /*
  * MAYBEDONEALREADY
  * -- Remove the leak. Priority ULTRAVIOLET. Apparently there is no leak anymore, since the memory usage is now stable on the period.
  * -- Use references as much as possible to improve speed. Check EVERY function. Priority BLUE.
+ * -- Have the ships move correctly. Priority INDIGO.
+ * -- Solve multiship problems like trying to spawn a ship in a non permitted zone or ships crashing when going opposite directions. Priority BLUE
  *
  * TODO:
- * -- Have the ships move correctly. Priority INDIGO.
  *
- * -- Make it run faster. Priority GREEN. Possible interaction with TODO[1] SPECIAL: Still in the dark as to HOW. It is the graphic that slows, i tried removing the delay, then unfocusing the windows, and speed went up the axis.
- *
+ * -- Activate the collider for allied ships in a coherent way. Priority VIOLET
+ * -- Make enemy ships move. Priority BLUE
+ * -- Make it run faster. Priority GREEN. SPECIAL: Still in the dark as to HOW. It is the graphic that slows, I tried removing the delay, then unfocusing the windows, and speed went up the axis. Priority temporarily set to INFRAFRED, need to ask for further instructions.
  * -- Create menus, implement items. Priority YELLOW.
  * -- Rewrite everything packaging more nicely some code bundles and using the GameLoop design. Priority ORANGE.
  * -- Graphical improvements, such as an animated background. Priority INFRARED.
@@ -489,39 +506,34 @@ int Engine::start()
                                 break;
                             case SDLK_1:
                                 if (parts >= 10) {
-                                    parts -= 10;
                                     addFleetMember(FIGHTER);
                                 }
                                 break;
                             case SDLK_2:
                                 if (parts >= 20) {
-                                    parts -= 20;
                                     addFleetMember(CORVETTE);
                                 }
                                 break;
                             case SDLK_3:
                                 if (parts >= 30) {
-                                    parts -= 30;
                                     addFleetMember(FRIGATE);
                                 }
                                 break;
                             case SDLK_4:
                                 if (parts >= 40) {
-                                    parts -= 40;
                                     addFleetMember(DESTROYER);
                                 }
                                 break;
                             case SDLK_5:
                                 if (parts >= 50) {
-                                    parts -= 50;
                                     addFleetMember(CRUISER);
                                 }
                                 break;
                             case SDLK_SPACE:    // For a triggerable breakpoint
                             {
                                 currentLevel.printMap(graphEngine);
+                                SDL_Delay(3000);
                                 cout << "Game Paused" << endl;
-                                SDL_Delay(5000);
                                 break;
                             }
                             default:
@@ -533,11 +545,16 @@ int Engine::start()
                 // Here I invoke the functions I need each time
                 
                 if (!enemyOnScreen) {   // Spawning a new enemy
+                    bool validLocation = false;
                     do {
+                        validLocation = false;
                         tmpx = getRandInSpan(11, 190);
                         tmpy = getRandInSpan(11, 140);
+                        if (currentLevel.thereIsCollision(tmpx, tmpy) == false) {
+                            validLocation = true;
+                        }
                     }
-                    while (isOccupied(tmpx, tmpy));
+                    while (isOccupied(tmpx, tmpy) && !validLocation);
                     spawnEnemy(tmpx, tmpy, currentLevel);
                     currentLevel.giveCodeToTile(tmpx, tmpy, ENEMY);
                     enemyOnScreen = true;
@@ -576,7 +593,7 @@ int Engine::start()
                         SDL_Delay(50); // TO DECUPLICATE
                         quit = true;
                         break;
-                    case EAT_ENEMY:
+                    case KILL_ENEMY:
                         // THESE are the functions for destroying an enemy and will be eventually moved
                         // Now, I think that I should NOT write a destructor in order to remove effectively every trace of the enemy being, freeing the tiles that were occupied by it. RATHER, seeing how it should interact with the object currentLevel, rather than something depending on Spaceships, I should put that in killEnemy.
                         // Currently, an enemy eaten causes a hell of a lot of respawns and so on. This is because I am not freeing the tiles. Remedy ASAP.
@@ -616,7 +633,7 @@ int Engine::start()
                 }
                 // TODO: check all the enemies
                 if (enemyOnScreen == true && enemyFleet[0].getHP() <= 0) {
-                    setLastEvent(EAT_ENEMY);
+                    setLastEvent(KILL_ENEMY);
                 }
                 
                 for (int i = 0; i<lasersOnMap.size(); i++) {

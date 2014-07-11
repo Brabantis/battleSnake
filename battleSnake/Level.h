@@ -34,6 +34,7 @@ public:
     Event getEventFromCode(int code);
     void printMap(Graphics* graph);
     void giveCodeToTile(int x, int y, Code tileCode, Spaceship* ship = 0);
+    bool thereIsCollision(int x, int y);
 };
 
 

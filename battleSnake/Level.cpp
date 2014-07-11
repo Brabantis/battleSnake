@@ -29,7 +29,7 @@ Event Level::getEventFromCode(int code) {
             return GAME_LOST;
             break;
         case ENEMY:
-            return EAT_ENEMY;
+            return KILL_ENEMY;
             break;
         default:
             return ERR_LEVEL;
@@ -84,3 +84,13 @@ void Level::printMap(Graphics* graph) {    // LA SCRIVE RUOTATA, VORSICHT.
     SDL_RenderPresent(graph->getRenderer());
 }
 
+bool Level::thereIsCollision(int x, int y) {
+    for (int i = 0; i<10; i++) {
+        for (int j = 0; j<10; j++) {
+            if (getTile(x + i, y + j).checkForCollision()) {
+                return true;
+            }
+        }
+    }
+    return false;
+}

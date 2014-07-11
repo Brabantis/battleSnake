@@ -26,7 +26,7 @@ const int TILE_HEIGHT = 4;
 enum Event {
     ERR_LEVEL,
     GAME_LOST,
-    EAT_ENEMY,
+    KILL_ENEMY,
     EVE_DEFAULT
 };
 
