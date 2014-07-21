@@ -16,6 +16,7 @@
 #define __GiocoLabInf__Level__
 
 #include <iostream>
+#include <vector>
 
 #include "Graphics.h"
 #include "Tile.h"
@@ -27,11 +28,12 @@ const int dimension = MAP_HEIGHT*MAP_WIDTH;
 class Level {
 private:
     // Mapping the map: 0 for empty, 1 for wall, 2 for walkable, 3 for trigger
-    Tile battlefield[dimension];
+    vector<Tile*> battlefield;
 public:
     Level();    // to instantiate level from map
-    Tile getTile(int x, int y);
-    Event getEventFromCode(int code);
+    Tile* getTile(int x, int y);
+    
+    bool isMapSafe();
     void printMap(Graphics* graph);
     void giveCodeToTile(int x, int y, Code tileCode, Spaceship* ship = 0);
     bool thereIsCollision(int x, int y);

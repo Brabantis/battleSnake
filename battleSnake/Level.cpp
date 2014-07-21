@@ -10,39 +10,40 @@
 
 Level::Level() {
     for (int i = 0; i<MAP_WIDTH*MAP_HEIGHT; i++) {
-        battlefield[i].setTileCode(EMPTY);
+        Tile* temptile = new Tile();
+        temptile->setTileCode(EMPTY);
+        temptile->occupyingAlly = nullptr;
+        temptile->occupyingEnemy = nullptr;
+        battlefield.push_back(temptile);
     }
-    
     // A fence on the outside
     for (int i = 0; i<MAP_WIDTH; i++) {
         for (int j = 0; j<MAP_HEIGHT; j++) {
-            if (j == 0 || j == 1 || j == MAP_HEIGHT-1 || j == MAP_HEIGHT-2 || i == 0 || i == 1 || i == MAP_WIDTH-1 || i == MAP_WIDTH-2) {
-                battlefield[i + MAP_WIDTH * j].setTileCode(WALL);
+            if (j == 0 || j == MAP_HEIGHT-1 || i == 0 || i == MAP_WIDTH-1) {
+                battlefield[i + MAP_WIDTH * j]->setTileCode(WALL);
             }
         }
     }
 }
 
-Event Level::getEventFromCode(int code) {
-    switch (code) {
-        case WALL:     // Once again, totally temporary
-            return GAME_LOST;
-            break;
-        case ENEMY:
-            return KILL_ENEMY;
-            break;
-        default:
-            return ERR_LEVEL;
-            break;
-    };
+bool Level::isMapSafe() {
+    for (int x = 0; x<MAP_WIDTH; x++) {
+        for (int y = 0; y<MAP_HEIGHT; y++) {
+            if (battlefield[x + MAP_WIDTH*y] == nullptr) {
+                cout << "ERROR AT " << x << ", " << y << endl;
+                return false;
+            }
+        }
+    }
+    return true;
 }
 
-Tile Level::getTile(int x, int y) {
-    return battlefield[x + MAP_WIDTH * y];
+Tile* Level::getTile(int x, int y) {
+    return (battlefield[x + MAP_WIDTH * y]);
 }
 
 void Level::giveCodeToTile(int x, int y, Code tileCode, Spaceship* ship) {
-    battlefield[x + MAP_WIDTH * y].setTileCode(tileCode, ship);
+    battlefield[x + MAP_WIDTH * y]->setTileCode(tileCode, ship);
 }
 
 void Level::printMap(Graphics* graph) {    // LA SCRIVE RUOTATA, VORSICHT.
@@ -51,16 +52,16 @@ void Level::printMap(Graphics* graph) {    // LA SCRIVE RUOTATA, VORSICHT.
     for (int j = 0; j<MAP_HEIGHT; j++) {
         for (int i = 0; i<MAP_WIDTH; i++) {
             int sym = 0;
-            if (battlefield[i + MAP_WIDTH * j].partOfWall) {
+            if (battlefield[i + MAP_WIDTH * j]->partOfWall) {
                 sym = 1;
             }
-            else if (battlefield[i + MAP_WIDTH * j].occupiedByAlly) {
+            if (battlefield[i + MAP_WIDTH * j]->occupiedByAlly) {
                 sym = 2;
             }
-            else if (battlefield[i + MAP_WIDTH * j].occupiedByEnemy) {
+            if (battlefield[i + MAP_WIDTH * j]->occupiedByEnemy) {
                 sym = 3;
             }
-            SDL_Rect fillRect = {i*4, j*4, 4, 4};
+            SDL_Rect fillRect = {i*TILE_WIDTH, j*TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT};
             switch (sym) {
                 case 0:
                     SDL_SetRenderDrawColor(graph->getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF);
@@ -85,12 +86,18 @@ void Level::printMap(Graphics* graph) {    // LA SCRIVE RUOTATA, VORSICHT.
 }
 
 bool Level::thereIsCollision(int x, int y) {
+    bool result = false;
     for (int i = 0; i<10; i++) {
         for (int j = 0; j<10; j++) {
-            if (getTile(x + i, y + j).checkForCollision()) {
-                return true;
+            if (getTile(x + i, y + j) == nullptr) {
+                // This happens when you're too close to the S or E border. It just means that it shouldn't be here.
+                cout << "Trouble in tIC at " << x+i << ", " << y+j << endl;
+                result = true;
+            }
+            if (getTile(x + i, y + j)->checkForCollision()) {
+                result = true;
             }
         }
     }
-    return false;
+    return result;
 }

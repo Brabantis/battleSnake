@@ -16,24 +16,27 @@ Laser::Laser(int dmg, int x, int y, double ang, OtherSprites part) {
     sprite = part;
 }
 
-bool Laser::isHittingEnemy(Level &currLevel, Spaceship* &target) {
-    bool result = false;
-    // This way it works. Must be black magic.
+bool Laser::isHittingEnemy(Level* currLevel, Spaceship* &target) {
+    // This is the EVIL
     int tmpX = gX/TILE_WIDTH;
     int tmpY = gY/TILE_HEIGHT;
-    if (currLevel.getTile((tmpX+1), (tmpY+1)).occupiedByEnemy == true) {
-        result = true;
+    Tile* ref = currLevel->getTile((tmpX), (tmpY));
+    if (ref == nullptr) {
+        cout << "Trouble in iHE at " << tmpX << ", " << tmpY << endl;
+        return false;
     }
-    target = currLevel.getTile((tmpX+1), (tmpY+1)).occupyingEnemy;
-    return result;
+    if (ref->occupiedByEnemy == true) {
+        target = ref->occupyingEnemy;
+        return true;
+    }
+    target = nullptr;
+    return false;
 }
 
-bool Laser::isHittingWall(Level &currLevel) {
+bool Laser::isHittingWall(Level* currLevel) {
     bool result = false;
-    // Check if this works or places it in a weird place
-    int tmpX = gX/TILE_WIDTH;
-    int tmpY = gY/TILE_HEIGHT;
-    if (currLevel.getTile((tmpX+1), (tmpY+1)).partOfWall == true) {
+    //They look like magic numbers, they are magic numbers! I will switch them when I have worked the rest out.
+    if (gX <= 10 || gY <= 10 || gX >= 790 || gY >= 590) {
         result = true;
     }
     return result;
@@ -47,8 +50,8 @@ void Laser::drawOnScreen(Graphics* graph) {  // Float values allow me to move at
 }
 
 void Laser::travel() {
-    gX += (2 * cos(angle));
-    gY -= (2 * sin(angle));
+    gX += (9 * cos(angle));
+    gY -= (9 * sin(angle));
 }
 
 double Laser::getAngle() {

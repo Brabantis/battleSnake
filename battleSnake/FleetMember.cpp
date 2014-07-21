@@ -45,7 +45,7 @@ string FleetMember::getClass() {
 bool FleetMember::isColliding(Level lvl){
     for (int i = 0; i<10; i++) {
         for (int j = 0; j<10; j++) {
-            if (lvl.getTile(position.x + i, position.y + j).checkForCollision()) {
+            if (lvl.getTile(position.x + i, position.y + j)->checkForCollision()) {
                 return true;
             }
         }

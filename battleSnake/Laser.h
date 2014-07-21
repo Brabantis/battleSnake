@@ -35,8 +35,8 @@ private:
 public:
     int TEMPlifeCounter = 0;
     Laser(int power, int gX, int gY, double angle, OtherSprites part = LASER_BASIC);
-    bool isHittingEnemy(Level &currLevel, Spaceship* &target);
-    bool isHittingWall(Level &currLevel);
+    bool isHittingEnemy(Level* currLevel, Spaceship* &target);
+    bool isHittingWall(Level* currLevel);
     void travel();
     void drawOnScreen(Graphics* graph);
     

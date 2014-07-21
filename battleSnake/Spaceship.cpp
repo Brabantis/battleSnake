@@ -48,7 +48,7 @@ Laser* Spaceship::shootLaser(int xdest, int ydest){
     return tmp;
 }
 
-void Spaceship::move(Direction dest, Level &lvl) {
+void Spaceship::move(Direction dest, Level* lvl) {
     switch (dest) {
         case NORTH:
             position.y--;

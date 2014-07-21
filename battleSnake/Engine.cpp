@@ -10,6 +10,7 @@
 
 Engine::Engine() {
     // Initializing things that give trouble if I don't initialize them
+    FPS = 40;
     fleetsize = 0;
     enemysize = 0;
     score = 0;
@@ -228,7 +229,7 @@ void Engine::addLaserToMap() {
 void Engine::getAllyOnMap(int x, int y, Spaceship* ship) {
     for (int i = 0; i<10; i++) {
         for (int j = 0; j<10; j++) {
-            currentLevel.giveCodeToTile(x+i, y+j, ALLY, ship);
+            currentLevel->giveCodeToTile(x+i, y+j, ALLY, ship);
         }
     }
 }
@@ -236,7 +237,7 @@ void Engine::getAllyOnMap(int x, int y, Spaceship* ship) {
 void Engine::getEnemyOnMap(int x, int y, Spaceship* ship) {
     for (int i = 0; i<10; i++) {
         for (int j = 0; j<10; j++) {
-            currentLevel.giveCodeToTile(x+i, y+j, ENEMY, ship);
+            currentLevel->giveCodeToTile(x+i, y+j, ENEMY, ship);
         }
     }
 }
@@ -245,7 +246,7 @@ void Engine::getEnemyOnMap(int x, int y, Spaceship* ship) {
 void Engine::removeAllyFromMap(int x, int y) {
     for (int i = 0; i<10; i++) {
         for (int j = 0; j<10; j++) {
-            currentLevel.giveCodeToTile(x+i, y+j, NOT_ALLY);
+            currentLevel->giveCodeToTile(x+i, y+j, NOT_ALLY);
         }
     }
 }
@@ -253,9 +254,13 @@ void Engine::removeAllyFromMap(int x, int y) {
 void Engine::removeEnemyFromMap(int x, int y) {
     for (int i = 0; i<10; i++) {
         for (int j = 0; j<10; j++) {
-            currentLevel.giveCodeToTile(x+i, y+j, NOT_ENEMY);
+            currentLevel->giveCodeToTile(x+i, y+j, NOT_ENEMY);
         }
     }
+}
+
+void Engine::killShipsStartingWith(int index) {
+    
 }
 
 void Engine::drawFleet(Graphics* graph) {
@@ -286,10 +291,10 @@ void Engine::moveFleetOnMap(Direction dest) {
             tmpY--;
             break;
         case EAST:
-            tmpX++;
+            tmpX+= 11;
             break;
         case SOUTH:
-            tmpY++;
+            tmpY+= 11;
             break;
         case WEST:
             tmpX--;
@@ -298,21 +303,17 @@ void Engine::moveFleetOnMap(Direction dest) {
             cerr << "Invalid destination for team! How is this possible?" << endl;
             break;
     }
-    
-    Tile y = currentLevel.getTile(tmpX, tmpY);
-    if (y.partOfWall == false)   // Not moving through walls!
+    Tile* y = currentLevel->getTile(tmpX, tmpY);
+    if (y->partOfWall == false)   // Not moving through walls!
     {
-        if (/*!(y.occupiedByAlly)*/ true) // WALKABLE
-            // The little problem here is that it checks for the tile of destination, which may be part of himself. Which means that it could never ever ever go left or down.
+        if (/*!(y.occupiedByAlly)*/ true)
         {
-            // Collision works not with the left border. Why Elmo Why Wait But This Stop This Stop Sign.
-            if (currentLevel.thereIsCollision(tmpX, tmpY)) {
+            if (y->checkForWallCollision()) {
                 setLastEvent(GAME_LOST);
             }
-            
-            // NOTE: This is a horrible thing that hurts my pride but I need to solve the problem that the collider has when touching the lower bound
-            if (tmpY > 139) {
-                setLastEvent(GAME_LOST);
+            if (y->checkForCollision()) {    // Non funge, uff.
+                fleet[0].takeDamage(y->occupyingEnemy->getAtk());
+                y->occupyingEnemy->takeDamage(1000000);
             }
             // Works like a charm
             moveBuffer.pop_back();
@@ -325,28 +326,31 @@ void Engine::moveFleetOnMap(Direction dest) {
             }
         }
     }
-    if (y.partOfWall == true) {
+    if (y->partOfWall == true) {
         setLastEvent(GAME_LOST);
     }
 }
 
 void Engine::startLevel() {
-    /*
-    // TODO: Un costruttore di livelli a partire dal codice
-    currentLevel = Level();
- */
+    currentLevel = new Level();
 }
 
-void Engine::spawnEnemy(int x, int y, Level &current) {
+void Engine::spawnEnemy(int x, int y) {
     // Some permission stuff forbids me from changing here the tile code.
     // addEnemyFleetMember(x, y, intToCharacterConvert(getRandInSpan(0, 4)));
     addEnemyFleetMember(x, y, FIGHTER);
 }
 
-void Engine::killEnemy() {
-    enemyFleet.pop_back();
+void Engine::killEnemy(Enemy* dead) {
+    for (int i = 0; i<(enemysize); i++) {
+        if (dead == &enemyFleet[i]) {
+            enemyFleet.erase(enemyFleet.begin()+i);
+        }
+    }
+    dead = nullptr;
+    
     enemysize--;
-    // TEMPORARY
+    
     parts += 1; // Instead of parts, I can use a credit system
     //
     score += 100;   // This is why I don't need a addPoints func
@@ -367,12 +371,12 @@ bool Engine::isOccupied(int x, int y) {
             result = true;
         }
     }
-    if (currentLevel.getTile(x, y).partOfWall == true) {
+    if (currentLevel->getTile(x, y)->partOfWall == true) {
         result = true;
     }
     return result;
 }
- 
+
 int Engine::getRandInSpan(int lower, int upper) {
     if (lower>=upper) {
         return 0;
@@ -393,12 +397,13 @@ Event Engine::getLastEvent() {
  * -- Use references as much as possible to improve speed. Check EVERY function. Priority BLUE.
  * -- Have the ships move correctly. Priority INDIGO.
  * -- Solve multiship problems like trying to spawn a ship in a non permitted zone or ships crashing when going opposite directions. Priority BLUE
+ * -- Make it run faster. Priority GREEN. It was really really trivial. I feel stupid now.
  *
  * TODO:
  *
  * -- Activate the collider for allied ships in a coherent way. Priority VIOLET
+ * -- Add and remove multiple ships. Have them collide? Priority VIOLET
  * -- Make enemy ships move. Priority BLUE
- * -- Make it run faster. Priority GREEN. SPECIAL: Still in the dark as to HOW. It is the graphic that slows, I tried removing the delay, then unfocusing the windows, and speed went up the axis. Priority temporarily set to INFRAFRED, need to ask for further instructions.
  * -- Create menus, implement items. Priority YELLOW.
  * -- Rewrite everything packaging more nicely some code bundles and using the GameLoop design. Priority ORANGE.
  * -- Graphical improvements, such as an animated background. Priority INFRARED.
@@ -447,7 +452,7 @@ int Engine::start()
             
             //Reminder of the last displayed
             Screens gLastDisplayed = MAIN_CAMERA;
-
+            
             // Moving direction
             Direction choice = NORTH;
             
@@ -455,10 +460,11 @@ int Engine::start()
             bool enemyOnScreen = false;
             
             // First ship
+            parts += 10;
             addFleetMember(FIGHTER);
             
             // The address of the enemy ship hit by lasers each turn
-            Spaceship* hitEnemy = 0;
+            Spaceship* hitEnemy = nullptr;
             
             //First drawing
             SDL_RenderClear(graphEngine->getRenderer());
@@ -531,7 +537,7 @@ int Engine::start()
                                 break;
                             case SDLK_SPACE:    // For a triggerable breakpoint
                             {
-                                currentLevel.printMap(graphEngine);
+                                currentLevel->printMap(graphEngine);
                                 SDL_Delay(3000);
                                 cout << "Game Paused" << endl;
                                 break;
@@ -540,27 +546,33 @@ int Engine::start()
                                 break;
 						}
 					}
-                // Things over this brace are only invoked at the press of a button
+                    // Things over this brace are only invoked at the press of a button
 				}
                 // Here I invoke the functions I need each time
                 
-                if (!enemyOnScreen) {   // Spawning a new enemy
+                // Spawning a new enemy
+                if (!enemyOnScreen) {
                     bool validLocation = false;
                     do {
-                        validLocation = false;
-                        tmpx = getRandInSpan(11, 190);
-                        tmpy = getRandInSpan(11, 140);
-                        if (currentLevel.thereIsCollision(tmpx, tmpy) == false) {
-                            validLocation = true;
+                        validLocation = true;
+                        tmpx = getRandInSpan(21, 180);
+                        tmpy = getRandInSpan(21, 130);
+                        // This should make it spawn far enough from the player and his ships. SHOULD.
+                        for (int i = -9; i<9; i++) {
+                            for (int j = -9; j<9; j++) {
+                                if (currentLevel->thereIsCollision(tmpx+i, tmpy+j)) {
+                                    validLocation = false;
+                                }
+                            }
                         }
                     }
                     while (isOccupied(tmpx, tmpy) && !validLocation);
-                    spawnEnemy(tmpx, tmpy, currentLevel);
-                    currentLevel.giveCodeToTile(tmpx, tmpy, ENEMY);
+                    spawnEnemy(tmpx, tmpy);
+                    currentLevel->giveCodeToTile(tmpx, tmpy, ENEMY);
                     enemyOnScreen = true;
                 }
                 // TODO: Regulate this treshold to achieve believable rate of fire
-                if (!quit && intervalCounter==20) {
+                if (!quit && intervalCounter==10) {
                     intervalCounter = 1;
                     if (lasercounter == rof) {
                         lasercounter -= rof;
@@ -569,43 +581,19 @@ int Engine::start()
                     else {
                         lasercounter++;
                     }
-                    moveFleetOnMap(choice); // I woulda coulda shoulda change this + drawfleet + drawEnemyFleet into something tweening
-                    
-                    // This TECHNICALLY works. But VERY technically. Like "it's horrible and totally not understandable and it fucks up collision". Look later when I can collide safely
-                    /*
-                    for (int i = 0; i<enemyFleet.size(); i++) {
-                        int dir = getRandInSpan(0, 3);
-                        enemyFleet[i].move(intToDirectionConvert(dir));
-                        if (enemyFleet[i].getX() > 19 || enemyFleet[i].getX() < 2 ||
-                            enemyFleet[i].getY() > 14 || enemyFleet[i].getY() < 2) {
-                            enemyFleet[i].move(intToDirectionConvert((dir+2)%4));
-                        }
-                    }*/
+                    // I woulda coulda shoulda change this + drawfleet + drawEnemyFleet into something tweening
                 }
+                // I can set the speed by having it move every x turns.
+                moveFleetOnMap(choice);
                 graphEngine->setView(gLastDisplayed, gLastDisplayed);
                 
                 // These two are no longer troublesome
                 graphEngine->printScore(score);
                 graphEngine->printParts(parts);
                 
-                switch (lastTriggered) {
-                    case GAME_LOST:
-                        SDL_Delay(50); // TO DECUPLICATE
-                        quit = true;
-                        break;
-                    case KILL_ENEMY:
-                        // THESE are the functions for destroying an enemy and will be eventually moved
-                        // Now, I think that I should NOT write a destructor in order to remove effectively every trace of the enemy being, freeing the tiles that were occupied by it. RATHER, seeing how it should interact with the object currentLevel, rather than something depending on Spaceships, I should put that in killEnemy.
-                        // Currently, an enemy eaten causes a hell of a lot of respawns and so on. This is because I am not freeing the tiles. Remedy ASAP.
-                        enemyOnScreen = false;
-                        removeEnemyFromMap(enemyFleet[enemysize-1].getX(), enemyFleet[enemysize-1].getY());
-                        killEnemy();
-                        lastTriggered = EVE_DEFAULT;
-                        tmpx++;
-                        tmpy++;
-                        break;
-                    default:
-                        break;
+                if (lastTriggered == GAME_LOST) {
+                    SDL_Delay(50); // TO DECUPLICATE
+                    quit = true;
                 }
                 for (int i = 0; i<fleetsize; i++) {
                     if (readyToFire) {
@@ -616,47 +604,58 @@ int Engine::start()
                     }
                     // Find a way to pop elements in the middle, since you must destroy the laser once it hits a target. Also, consider switching back to vector once you've found your way
                 }
-                // Now properly giving damage.
-                for (int i = static_cast<int>(lasersOnMap.size()) - 1; i>=0; i--) {
-                    if (lasersOnMap[i]->isHittingEnemy(currentLevel, hitEnemy)) {
-                        if (hitEnemy != 0)
+                
+                // Damaging enemies
+                for (int i = 0; i<static_cast<int>(lasersOnMap.size()); i++) {
+                    hitEnemy = nullptr;
+                    if (lasersOnMap[i]->isHittingWall(currentLevel)) {
+                        delete(lasersOnMap[i]);
+                        lasersOnMap.erase(lasersOnMap.begin()+i);
+                    }
+                    
+                    else if (lasersOnMap[i]->isHittingEnemy(currentLevel, hitEnemy)) {
+                        // Apparently isHittingEnemy nullifies tiles. This is apparent since I start with all tiles clear. Maybe the problem is in removeAllyFromMap, though I don't see why and HOW.
+                        // The problem seems to be somewhere in the Laser class.
+                        if (hitEnemy != nullptr)
                             hitEnemy->takeDamage(lasersOnMap[i]->getPower());
+                        hitEnemy = nullptr;
+                        
+                        // The center of the laser impact must be the center of the explosion
                         delete(lasersOnMap[i]);
                         lasersOnMap.erase(lasersOnMap.begin()+i);
                         
                         // Create a function that changes for 1 frame the sprite to explosion, then removes the laser. A possibility is to set a bool markedForDeletion, that is set with an impact func that also sets the sprite to explode, damages the target and stops the travel. Then a sweeper function removes all the markedForDeletion. Also the hit ship must not move between the impact and the destruction. Check with the frame intervals
                     }
-                    else if (lasersOnMap[i]->isHittingWall(currentLevel)) {
-                        delete(lasersOnMap[i]);
-                        lasersOnMap.erase(lasersOnMap.begin()+i);
-                    }
                 }
-                // TODO: check all the enemies
-                if (enemyOnScreen == true && enemyFleet[0].getHP() <= 0) {
-                    setLastEvent(KILL_ENEMY);
-                }
-                
+                // Cleaning the lasers
                 for (int i = 0; i<lasersOnMap.size(); i++) {
                     lasersOnMap[i]->travel();
                     lasersOnMap[i]->drawOnScreen(graphEngine);
+                }
+                // Killing the enemy // TO MODIFICATE
+                if (enemyOnScreen == true && enemyFleet[0].getHP() <= 0) {
+                    removeEnemyFromMap(enemyFleet[0].getX(), enemyFleet[0].getY());
+                    killEnemy(&(enemyFleet[0]));
+                    hitEnemy = nullptr;
+                    enemyOnScreen = false;
                 }
                 drawFleet(graphEngine);
                 drawEnemyFleet(graphEngine);
                 intervalCounter++;
                 SDL_RenderPresent(graphEngine->getRenderer());
                 // 20 is 1000/FPS
-                if(20>(SDL_GetTicks()-time))
+                if((1000/FPS)>(SDL_GetTicks()-time))
                 {
-                    SDL_Delay(20-(SDL_GetTicks()-time)); //SDL_Delay pauses the execution.
+                    SDL_Delay((1000/FPS)-(SDL_GetTicks()-time)); //SDL_Delay pauses the execution.
                 }
-			}
+            }
             graphEngine->setView(GAME_OVER, gLastDisplayed);
             SDL_RenderPresent(graphEngine->getRenderer());
             SDL_Delay(200); // TO DECUPLICATE
             // Here ends the main loop
-		}
-	}
-	//Free resources and close SDL
+        }
+    }
+    //Free resources and close SDL
     graphEngine->close();
-	return 0;
+    return 0;
 }

@@ -43,7 +43,7 @@ public:             //Solo le funzioni base per tutti
     Spaceship() {}                                          // Default
     Spaceship(int ba, int bd, int bh, Characters spritesrc, location pos = {0, 0, SOUTH});
     
-    void move(Direction dest, Level &lvl);
+    void move(Direction dest, Level* lvl);
     
     // to draw on scene, duh
     void drawOnScene(Graphics* graph);

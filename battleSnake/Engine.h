@@ -47,19 +47,21 @@ public:
     int start();
 
 private:
+    int FPS;
+    
     int fleetsize;
     int enemysize;
     int score;
     int parts;
-    Level currentLevel;
+    Level* currentLevel;
     
     Event lastTriggered;
     
     map<string, Item> inventory;        // As of now, not implemented
     deque<Direction> moveBuffer;
-    vector<FleetMember> fleet;
-    vector<Enemy> enemyFleet;   // Using the Enemy class allows me to create any kind of enemy, either alien or human or whatever, I just need to create a new object. I guess i COULD just make a better constructor.
-    vector<Laser*> lasersOnMap;   // I need something made so that I can BOTH access elements in order AND delete one in every position (pop). If there isn't one, I'll just have to create it myself.
+    vector<FleetMember> fleet;  // I may have these become arrays of pointers
+    vector<Enemy> enemyFleet;   // Using the Enemy class allows me to create any kind of enemy, either alien or human or whatever, I just need to create a new object.
+    vector<Laser*> lasersOnMap;   // I need something made so that I can BOTH access elements in order AND delete one in every position (pop).
     
     void coordsOfNearestEnemy(int &x, int &y, int index);
     void addFleetMember(Characters choice);
@@ -72,6 +74,8 @@ private:
     void removeAllyFromMap(int x, int y);
     void removeEnemyFromMap(int x, int y);
     
+    void killShipsStartingWith(int index);
+    
     void printFleetStats();
     void moveFleetOnMap(Direction dest);
     
@@ -83,9 +87,9 @@ private:
     Characters intToCharacterConvert(int input);
     Direction intToDirectionConvert(int input);
     int getRandInSpan(int lower, int upper);
-    void spawnEnemy(int x, int y, Level &current);
+    void spawnEnemy(int x, int y);
     
-    void killEnemy();   // TO ADJUST
+    void killEnemy(Enemy* dead);   // TO ADJUST
     void collectParts(int amount);
     
     bool isOccupied(int x, int y);

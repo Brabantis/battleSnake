@@ -26,7 +26,6 @@ const int TILE_HEIGHT = 4;
 enum Event {
     ERR_LEVEL,
     GAME_LOST,
-    KILL_ENEMY,
     EVE_DEFAULT
 };
 
@@ -52,6 +51,8 @@ public:
     //void setAlly(bool how);
     Spaceship* getEnemy();
     Spaceship* getAlly();
+    void setAlly(bool how);
+    void setEnemy(bool how);
     bool checkForCollision();
     bool checkForWallCollision();
     

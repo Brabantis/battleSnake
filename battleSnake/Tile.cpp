@@ -31,24 +31,24 @@ void Tile::setTileCode(Code target, Spaceship* ship){
             break;
         case NOT_ALLY:
             occupiedByAlly = false;
-            occupyingAlly = 0;
+            occupyingAlly = nullptr;
             break;
         case NOT_ENEMY:
             occupiedByEnemy = false;
-            occupyingEnemy = 0;
+            occupyingEnemy = nullptr;
             break;
         default:
             break;
     };
 }
 
-/*void Tile::setEnemy(bool how){
+void Tile::setEnemy(bool how){
     occupiedByEnemy = how;
 }
 
 void Tile::setAlly(bool how){
     occupiedByAlly = how;
-}*/
+}
 
 Spaceship* Tile::getEnemy(){
     return occupyingEnemy;
@@ -61,6 +61,7 @@ Spaceship* Tile::getAlly(){
 // Remember that this checks only for enemies.
 bool Tile::checkForCollision(){
     if (occupiedByEnemy && occupiedByAlly)
+        // This gives another bug
         return true;
     return false;
 }
