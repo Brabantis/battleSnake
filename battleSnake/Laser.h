@@ -16,8 +16,6 @@
 #ifndef __battleSnake__Laser__
 #define __battleSnake__Laser__
 
-#include <iostream>
-
 #include <cmath>
 
 #include "Graphics.h"
@@ -28,15 +26,20 @@ const int LASERHEIGHT = 20;
 
 class Laser {
 private:
+    bool shotByAlly;
     OtherSprites sprite;
     int power;
-    float gX, gY;     // Graphics coordinates of the collision center (on top)
-    double angle;      // I will build the direction moving according to the sin and cos of the angle
+    float gX, gY;       // Graphics coordinates of the collision center (on top)
+    double angle;       // I will build the direction moving according to the sin and cos of the angle
+    int turnsInLife;    // To make them turn after a while
+    int speed;
 public:
     int TEMPlifeCounter = 0;
-    Laser(int power, int gX, int gY, double angle, OtherSprites part = LASER_BASIC);
-    bool isHittingEnemy(Level* currLevel, Spaceship* &target);
+    Laser(int power, int gX, int gY, double angle, bool sBA, OtherSprites part = LASER_ALLIED);
+    bool isHittingTarget(Level* currLevel, Spaceship* &target);
     bool isHittingWall(Level* currLevel);
+    bool isHittingPlayerHitbox(Level* currLevel);
+    
     void travel();
     void drawOnScreen(Graphics* graph);
     
@@ -44,6 +47,11 @@ public:
     int getY();
     int getPower();
     double getAngle();
+    int getSpeed();
+    int getTurnsInLife();
+    bool isSBA();
+    void setAngle(double targetAngle);
+    void setSpeed(int targetSpeed);
 };
 
 #endif /* defined(__battleSnake__Laser__) */

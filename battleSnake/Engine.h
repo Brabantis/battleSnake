@@ -16,9 +16,6 @@
 #ifndef __GiocoLabInf__Engine__
 #define __GiocoLabInf__Engine__
 
-#include <iostream>
-#include <string>
-#include <vector>
 #include <deque>
 #include <map>
 #include <cmath>
@@ -33,12 +30,11 @@
 
 using namespace std;
 
-enum RateOfFire {
-    UNUSED_1,
-    HIGH,
-    MEDIUM,
-    UNUSED_2,
-    LOW
+enum Pattern {
+    SUNRAYS8,
+    SUNRAYS16,
+    FLOWER,
+    TYPHOON
 };
 
 class Engine {
@@ -49,45 +45,51 @@ public:
 private:
     int FPS;
     
+    int patternTurnsHelper;
+    
     int fleetsize;
     int enemysize;
     int score;
     int parts;
+    bool enemyOnScreen;
     Level* currentLevel;
+    Pattern currentPattern;
     
     Event lastTriggered;
     
     map<string, Item> inventory;        // As of now, not implemented
     deque<Direction> moveBuffer;
-    vector<FleetMember> fleet;  // I may have these become arrays of pointers
-    vector<Enemy> enemyFleet;   // Using the Enemy class allows me to create any kind of enemy, either alien or human or whatever, I just need to create a new object.
-    vector<Laser*> lasersOnMap;   // I need something made so that I can BOTH access elements in order AND delete one in every position (pop).
+    vector<FleetMember> fleet;          // I may have these become arrays of pointers
+    vector<Enemy> enemyFleet;           // Using the Enemy class allows me to create any kind of enemy, either alien or human or whatever, I just need to create a new object.
+    vector<Laser*> lasersOnMap;         // I need something made so that I can BOTH access elements in order AND delete one in every position (pop).
     
     void coordsOfNearestEnemy(int &x, int &y, int index);
     void addFleetMember(Characters choice);
     void addEnemyFleetMember(int x, int y, Characters choice);
     void fleetBuilder(Screens &lastDisplayed, Graphics* graph);
-    void addLaserToMap();
+    void allyShootsAimedLaser(int index);
+    void allyShootsSingleLaser(int index);
+    
+    void nextMove(int turn, Pattern patt);
     
     void getAllyOnMap(int x, int y, Spaceship* ship);
     void getEnemyOnMap(int x, int y, Spaceship* ship);
     void removeAllyFromMap(int x, int y);
     void removeEnemyFromMap(int x, int y);
     
-    void killShipsStartingWith(int index);
-    
     void printFleetStats();
     void moveFleetOnMap(Direction dest);
+    void moveEnemyOnMap(Direction dest);
     
-    void mainMenu();                    // TODO: Selezione nave, acquisto potenziamenti
+    void mainMenu();                    // TODO: Select ship, buy powerups
     void startLevel();
-    void endLevel();                    // TODO: finisce la missione dopo un po' di punti.
+    void endLevel();
     
     // The functions that spawn enemies
     Characters intToCharacterConvert(int input);
     Direction intToDirectionConvert(int input);
     int getRandInSpan(int lower, int upper);
-    void spawnEnemy(int x, int y);
+    void spawnEnemy(int x, int y, Characters ch);
     
     void killEnemy(Enemy* dead);   // TO ADJUST
     void collectParts(int amount);
@@ -105,11 +107,12 @@ private:
     // Draws the whole fleet
     void drawFleet(Graphics* graph);
     void drawEnemyFleet(Graphics* graph);
-    //Writes the selection of items. I will need many resources such as this. setView must be called on menu before this one.
+    // NOTE: These funcs have not be written. Their purpose is to write on screen dynamic info for the player.
+    // Writes the selection of items. setView must be called on menu before this one.
     void printEquipMenu(SDL_Renderer* renderer, TTF_Font* font);
-    //Writes the status menu.
+    // Writes the status menu.
     void printFleetStats(SDL_Renderer* renderer, TTF_Font* font);
-    //Writes battle info. Alerts and narration just need to be printed on screen, sometimes by events.
+    // Writes battle info. Alerts and narration just need to be printed on screen, sometimes by events.
     void printBattleInfo(SDL_Renderer* renderer, TTF_Font* font);
 };
 

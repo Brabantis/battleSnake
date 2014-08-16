@@ -68,7 +68,7 @@ bool Graphics::init()
                 //Initialize SDL_ttf
 				if( TTF_Init() == -1 )
 				{
-					printf( "SDL_ttf could not initialize! SDL_ttf Error: %s\n", TTF_GetError() );
+					cout << "SDL_ttf could not initialize! SDL_ttf Error: " << TTF_GetError() << endl;
 					success = false;
 				}
 			}
@@ -86,7 +86,7 @@ bool Graphics::loadMedia()
     gFont = TTF_OpenFont( "Font/5Identification.ttf", 28 );
     if( gFont == 0 )
     {
-        printf( "Failed to load the font! SDL_ttf Error: %s\n", TTF_GetError() );
+        cout << "Failed to load the font! SDL_ttf Error: " << TTF_GetError() << endl;
         success = false;
     }
     
@@ -99,6 +99,12 @@ bool Graphics::loadMedia()
 	}
     gTexture[GAME_OVER] = loadTexture("BGimages/game_over.png");
     if( gTexture[GAME_OVER] == 0 )
+	{
+		cout << "Failed to load texture image!" << endl;
+		success = false;
+	}
+    gTexture[GAME_WON] = loadTexture("BGimages/game_won.png");
+    if( gTexture[GAME_WON] == 0 )
 	{
 		cout << "Failed to load texture image!" << endl;
 		success = false;
@@ -137,7 +143,7 @@ bool Graphics::loadMedia()
         cout << "Failed to load texture image!" << endl;
         success = false;
     }
-    gSprites[EN_CORVETTE] = loadTexture("EnemySprites/en_fighter.png");
+    gSprites[EN_CORVETTE] = loadTexture("EnemySprites/en_corvette.png");
     if (gSprites[EN_CORVETTE] == 0) {
         cout << "Failed to load texture image!" << endl;
         success = false;
@@ -158,8 +164,13 @@ bool Graphics::loadMedia()
         success = false;
     }
     
-    gOther[LASER_BASIC] = loadTexture("OtherSprites/laser_all_basic.png");
-    if (gOther[LASER_BASIC] == 0) {
+    gOther[LASER_ALLIED] = loadTexture("OtherSprites/laser_all_basic.png");
+    if (gOther[LASER_ALLIED] == 0) {
+        cout << "Failed to load texture image!" << endl;
+        success = false;
+    }
+    gOther[LASER_ENEMY] = loadTexture("OtherSprites/laser_ene_basic.png");
+    if (gOther[LASER_ENEMY] == 0) {
         cout << "Failed to load texture image!" << endl;
         success = false;
     }
@@ -284,7 +295,7 @@ string Graphics::intToString(int input) {
 }
 
 void Graphics::printScore(int score) {
-    gScore = loadFromRenderedText(intToString(score), {0, 0, 0});
+    gScore = loadFromRenderedText(intToString(score), {255, 255, 0});
     int width = 0;
     if (score == 0)
         width = 30;
@@ -301,7 +312,7 @@ void Graphics::printScore(int score) {
 }
 
 void Graphics::printParts(int parts) {
-    gParts = loadFromRenderedText(intToString(parts), {0, 0, 0});
+    gParts = loadFromRenderedText(intToString(parts), {255, 255, 0});
     int width = 0;
     if (parts < 10)
         width = 30;

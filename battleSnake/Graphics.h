@@ -29,9 +29,9 @@ using namespace std;
 enum Direction
 {
     NORTH,
-    EAST,
-    SOUTH,
     WEST,
+    SOUTH,
+    EAST,
     DIRECTION_TOTAL
 };
 
@@ -39,6 +39,7 @@ enum Screens
 {
     MAIN_CAMERA,
     GAME_OVER,
+    GAME_WON,
     TEXTURES_TOTAL
 };
 
@@ -59,7 +60,8 @@ enum Characters
 
 enum OtherSprites
 {
-    LASER_BASIC,
+    LASER_ALLIED,
+    LASER_ENEMY,
     OTHER_TOTAL
 };
 

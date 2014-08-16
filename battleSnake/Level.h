@@ -15,7 +15,6 @@
 #ifndef __GiocoLabInf__Level__
 #define __GiocoLabInf__Level__
 
-#include <iostream>
 #include <vector>
 
 #include "Graphics.h"

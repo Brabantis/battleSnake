@@ -9,8 +9,6 @@
 #ifndef __battleSnake__Enemy__
 #define __battleSnake__Enemy__
 
-#include <iostream>
-#include <string>
 #include "Spaceship.h"
 
 using namespace std;

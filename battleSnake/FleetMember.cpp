@@ -13,8 +13,10 @@
 FleetMember::FleetMember() {}
 
 FleetMember::FleetMember(int ba, int bd, int bh, Characters sprite, location pos) : Spaceship(ba, bd, bh, sprite, pos) {
+    isAllied = true;
     armor = 0;
     weapon = 0;
+    accessory = 0;
 }
 
 string FleetMember::getClass() {

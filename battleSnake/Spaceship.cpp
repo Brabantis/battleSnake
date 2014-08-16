@@ -24,9 +24,9 @@ void Spaceship::takeDamage(int damage) {
     hp -= damage;
 }
 
-Laser* Spaceship::shootLaser(int xdest, int ydest){
+// This way I don't need to override the method for friends and foes
+Laser* Spaceship::shootLaser(int xdest, int ydest, OtherSprites sprt){
     // Shoots a MOTHERFRIGGIN' LAZERBEAM to a tile. If it collides with an enemy, it damages it. Else, it goes till it hits a wall.
-    // This allocates on the stack, which is really bad. Try to get it on the heap (Free Store or whatever) without creating a leak. Maybe with "new", when I am more lucid.
     double angle = 0;
     if (xdest != position.x) {
         double cosfact = (ydest - position.y);
@@ -44,11 +44,17 @@ Laser* Spaceship::shootLaser(int xdest, int ydest){
             angle = -pi/2;
         }
     }
-    Laser* tmp = new Laser(atk, (position.x-1) * TILE_WIDTH + 20, (position.y-1) * TILE_HEIGHT + 20, -angle, LASER_BASIC);
+    Laser* tmp = new Laser(atk, (position.x-3) * TILE_WIDTH + SPRITE_WIDTH/2, (position.y-1) * TILE_HEIGHT + SPRITE_HEIGHT/2, -angle, isAllied, sprt);
     return tmp;
 }
 
-void Spaceship::move(Direction dest, Level* lvl) {
+// IDK why, but the right place to shoot is from position-3 in the x, so it starts in the center
+Laser* Spaceship::shootLaser(double angle, OtherSprites sprt) {
+    Laser* tmp = new Laser(atk, (position.x-3) * TILE_WIDTH + SPRITE_WIDTH/2, (position.y-1) * TILE_HEIGHT + SPRITE_HEIGHT/2, angle, isAllied, sprt);
+    return tmp;
+}
+
+void Spaceship::move(Direction dest) {
     switch (dest) {
         case NORTH:
             position.y--;

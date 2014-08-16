@@ -22,10 +22,11 @@ class Spaceship;
 const int TILE_WIDTH = 4;
 const int TILE_HEIGHT = 4;
 
-// Should this be here? IDK
+// Should this be here? IDK, but this is one of the most basic classes I have.
 enum Event {
     ERR_LEVEL,
     GAME_LOST,
+    LEVEL_CLEAR,
     EVE_DEFAULT
 };
 

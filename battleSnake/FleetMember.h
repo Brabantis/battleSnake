@@ -16,7 +16,6 @@
 #ifndef __GiocoLabInf__PartyMember__
 #define __GiocoLabInf__PartyMember__
 
-#include <iostream>
 #include "Spaceship.h"
 #include "Item.h"
 

@@ -19,7 +19,6 @@
 #include "Graphics.h"
 #include "Laser.h"
 
-#include <iostream>
 #include <string>
 
 using namespace std;
@@ -35,20 +34,25 @@ protected:
     location position;
     Characters sprite;
     
+    bool isAllied;
+    
     void calculateStats();
     void explode();
     
-public:             //Solo le funzioni base per tutti
+public:             // just base funcs
     
-    Spaceship() {}                                          // Default
+    Spaceship() {}
     Spaceship(int ba, int bd, int bh, Characters spritesrc, location pos = {0, 0, SOUTH});
     
-    void move(Direction dest, Level* lvl);
+    void move(Direction dest);
     
     // to draw on scene, duh
     void drawOnScene(Graphics* graph);
     
-    Laser* shootLaser(int xdest, int ydest);
+    // i have to give the sprite, which is better for colourful patterns
+    Laser* shootLaser(int xdest, int ydest, OtherSprites sprt);
+    Laser* shootLaser(double angle, OtherSprites sprt);
+    
     void takeDamage(int damage);
     
     // the getters

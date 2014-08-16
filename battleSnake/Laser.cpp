@@ -8,25 +8,38 @@
 
 #include "Laser.h"
 
-Laser::Laser(int dmg, int x, int y, double ang, OtherSprites part) {
+Laser::Laser(int dmg, int x, int y, double ang, bool sBA, OtherSprites part) {
     power = dmg;
     gX = x;
     gY = y;
-    angle = ang;    // The angle is calculated from the vertical. Check the rotation center
-    sprite = part;
+    angle = ang;    // The angle is calculated from the vertical. Check the rotation center. Also, it is in RADIANS
+    sprite = part;  // Having to give the sprites mean that the same ship can shoot different lasers
+    if (sBA) {
+        speed = 20;
+    }
+    else{
+        speed = 9;
+    }
+    turnsInLife = 0;
+    shotByAlly = sBA;
 }
 
-bool Laser::isHittingEnemy(Level* currLevel, Spaceship* &target) {
+bool Laser::isHittingTarget(Level* currLevel, Spaceship* &target) {
     // This is the EVIL
+    // MAke it work differently whether or not the laser is shotByAlly
     int tmpX = gX/TILE_WIDTH;
     int tmpY = gY/TILE_HEIGHT;
     Tile* ref = currLevel->getTile((tmpX), (tmpY));
     if (ref == nullptr) {
-        cout << "Trouble in iHE at " << tmpX << ", " << tmpY << endl;
+        cout << "Trouble in iHT at " << tmpX << ", " << tmpY << endl;
         return false;
     }
-    if (ref->occupiedByEnemy == true) {
+    if (ref->occupiedByEnemy == true && shotByAlly == true) {
         target = ref->occupyingEnemy;
+        return true;
+    }
+    else if (ref->occupiedByAlly == true && shotByAlly == false) {
+        target = ref->occupyingAlly;
         return true;
     }
     target = nullptr;
@@ -35,11 +48,14 @@ bool Laser::isHittingEnemy(Level* currLevel, Spaceship* &target) {
 
 bool Laser::isHittingWall(Level* currLevel) {
     bool result = false;
-    //They look like magic numbers, they are magic numbers! I will switch them when I have worked the rest out.
-    if (gX <= 10 || gY <= 10 || gX >= 790 || gY >= 590) {
+    if (gX <= SPRITE_WIDTH/TILE_WIDTH || gY <= SPRITE_HEIGHT/TILE_HEIGHT || gX >= SCREEN_WIDTH-SPRITE_WIDTH/TILE_WIDTH || gY >= SCREEN_HEIGHT-SPRITE_HEIGHT/TILE_HEIGHT) {
         result = true;
     }
     return result;
+}
+
+bool Laser::isHittingPlayerHitbox(Level *currLevel) {
+    return false;
 }
 
 void Laser::drawOnScreen(Graphics* graph) {  // Float values allow me to move at the speed I need
@@ -50,8 +66,25 @@ void Laser::drawOnScreen(Graphics* graph) {  // Float values allow me to move at
 }
 
 void Laser::travel() {
-    gX += (9 * cos(angle));
-    gY -= (9 * sin(angle));
+    gX += (speed * cos(angle));
+    gY -= (speed * sin(angle));
+    turnsInLife++;
+}
+
+void Laser::setAngle(double targetAngle) {
+    angle = targetAngle;
+}
+
+void Laser::setSpeed(int targetSpeed) {
+    speed = targetSpeed;
+}
+
+int Laser::getTurnsInLife() {
+    return turnsInLife;
+}
+
+int Laser::getSpeed() {
+    return speed;
 }
 
 double Laser::getAngle() {
@@ -68,4 +101,8 @@ int Laser::getY() {
 
 int Laser::getPower() {
     return power;
+}
+
+bool Laser::isSBA() {
+    return shotByAlly;
 }
