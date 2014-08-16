@@ -72,7 +72,7 @@ private:
     
     void nextMove(int turn, Pattern patt);
     
-    void getAllyOnMap(int x, int y, Spaceship* ship);
+    void getAllyOnMap(int x, int y, FleetMember* ship);
     void getEnemyOnMap(int x, int y, Spaceship* ship);
     void removeAllyFromMap(int x, int y);
     void removeEnemyFromMap(int x, int y);

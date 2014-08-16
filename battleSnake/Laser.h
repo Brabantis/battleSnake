@@ -38,7 +38,6 @@ public:
     Laser(int power, int gX, int gY, double angle, bool sBA, OtherSprites part = LASER_ALLIED);
     bool isHittingTarget(Level* currLevel, Spaceship* &target);
     bool isHittingWall(Level* currLevel);
-    bool isHittingPlayerHitbox(Level* currLevel);
     
     void travel();
     void drawOnScreen(Graphics* graph);

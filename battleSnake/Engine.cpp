@@ -230,10 +230,13 @@ void Engine::allyShootsSingleLaser(int index) {
     lasersOnMap.push_back(tmp);
 }
 
-void Engine::getAllyOnMap(int x, int y, Spaceship* ship) {
+void Engine::getAllyOnMap(int x, int y, FleetMember* ship) {
     for (int i = 0; i<10; i++) {
         for (int j = 0; j<10; j++) {
-            currentLevel->giveCodeToTile(x+i, y+j, ALLY, ship);
+            // This is how it works (on the notes of Karma Police)
+            if ((i == 3 || i == 4) && (j == 3 || j == 4) && ship == &fleet[0]) {
+                currentLevel->giveCodeToTile(x+i, y+j, ALLY, ship);
+            }
         }
     }
 }
@@ -308,12 +311,9 @@ void Engine::moveFleetOnMap(Direction dest) {
     {
         if (/*!(y.occupiedByAlly)*/ true)
         {
-            if (y->checkForWallCollision()) {
-                setLastEvent(GAME_LOST);
-            }
-            if (y->checkForCollision()) {    // Non funge, uff.
+            if (y->checkForCollision()) {    // Works not.
                 fleet[0].takeDamage(y->occupyingEnemy->getAtk());
-                y->occupyingEnemy->takeDamage(1000000);
+                y->occupyingEnemy->takeDamage(10000);
             }
             // Works like a charm
             moveBuffer.pop_back();
@@ -437,7 +437,7 @@ void Engine::nextMove(int turn, Pattern patt) {
             if (enemyFleet[0].getHP() >= 0) {
                 if (turn >= 31 && turn % 10 == 1 && turn < 500) {
                     for (int i = 0; i<=20; i++) {
-                        Laser* tmp = enemyFleet[0].shootLaser(i*pi/10 + patternTurnsHelper*pi/50, LASER_ENEMY);
+                        Laser* tmp = enemyFleet[0].shootLaser(i*pi/10 + patternTurnsHelper*pi/32, LASER_ENEMY);
                         lasersOnMap.push_back(tmp);
                     }
                     // This looks more like a flower
@@ -450,9 +450,17 @@ void Engine::nextMove(int turn, Pattern patt) {
                         }
                         if (lasersOnMap[i]->getTurnsInLife() == 110 && !lasersOnMap[i]->isSBA()) {
                             lasersOnMap[i]->setAngle(lasersOnMap[i]->getAngle()-(pi/2));
+                            lasersOnMap[i]->setSpeed(5);
                         }
                     }
                     patternTurnsHelper++;
+                }
+                else if (turn == 500) {
+                    for (int i = 0; i<lasersOnMap.size(); i++) {
+                        if (!lasersOnMap[i]->isSBA()) {
+                            lasersOnMap[i]->setSpeed(5);
+                        }
+                    }
                 }
             }
             break;
@@ -578,6 +586,8 @@ int Engine::start()
                     // Maybe I'll say maybe -- What if the ship followed the mouse? I am sure it would be more responsive.
                     
                     //User presses a key
+                    // Key input is deactivated right now. moveFleetOnMap 
+                    /*
 					else if (e.type == SDL_KEYDOWN)
 					{
 						switch (e.key.keysym.sym)
@@ -631,6 +641,7 @@ int Engine::start()
                                 break;
 						}
 					}
+                     */
                     // Things over this brace are only invoked at the press of a button
 				}
                 // Here I invoke the functions I need each time
@@ -713,15 +724,9 @@ int Engine::start()
                     else if (lasersOnMap[i]->isHittingTarget(currentLevel, hitTarget)) {
                         if (hitTarget != nullptr){
                             // TODO: Una nave occupa uno spazio 10X10. Un hitbox dovrebbe essere circa 4X4, o meglio 2X2. Quindi consiglio di controllare la x e la y del laser, e danneggiare se e solo se
-                            bool impactRegistered = true;
-                            if (hitTarget == &(fleet[0]) && !(lasersOnMap[i]->isHittingPlayerHitbox(currentLevel))) {
-                                impactRegistered = false;
-                            }
-                            if (impactRegistered) {
-                                hitTarget->takeDamage(lasersOnMap[i]->getPower());
-                                delete(lasersOnMap[i]);
-                                lasersOnMap.erase(lasersOnMap.begin()+i);
-                            }
+                            hitTarget->takeDamage(lasersOnMap[i]->getPower());
+                            delete(lasersOnMap[i]);
+                            lasersOnMap.erase(lasersOnMap.begin()+i);
                         }
                         hitTarget = nullptr;
                         

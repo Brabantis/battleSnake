@@ -71,7 +71,6 @@ void Spaceship::move(Direction dest) {
         default:
             break;
     }
-    position.orient = dest;
 }
 
 void Spaceship::explode() {

@@ -54,10 +54,6 @@ bool Laser::isHittingWall(Level* currLevel) {
     return result;
 }
 
-bool Laser::isHittingPlayerHitbox(Level *currLevel) {
-    return false;
-}
-
 void Laser::drawOnScreen(Graphics* graph) {  // Float values allow me to move at the speed I need
     SDL_Rect dst = {static_cast<int>(gX), static_cast<int>(gY), LASERHEIGHT, LASERWIDTH};
     // Check formulas for finding the rendering area

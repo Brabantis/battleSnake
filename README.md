@@ -1,3 +1,3 @@
-Version 0.7.0  
-Spaceships fly quite nicely, but right now the allied ones superpose with each other. Collision and damage are done. TODO: main menu, enemy movement and multi-spawn.
+Version 0.9.0  
+Spaceships fly quite nicely, and the enemies follow patterns. Hitboxes work, all the skeleton is ready. TODO: menu, writing patterns.
 DESIRABLE: an interface for weapons, armor and so on, the equipment itself, powerups.
