@@ -45,6 +45,8 @@ public:             // just base funcs
     Spaceship(int ba, int bd, int bh, Characters spritesrc, location pos = {0, 0, SOUTH});
     
     void move(Direction dest);
+    void teleport(int dX, int dY);
+    // teleport is the new move
     
     // to draw on scene, duh
     void drawOnScene(Graphics* graph);

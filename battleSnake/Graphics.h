@@ -21,6 +21,8 @@
 #include <SDL2/SDL.h>
 #include <SDL2_image/SDL_image.h>
 #include <SDL2_ttf/SDL_ttf.h>
+#include <SDL2_mixer/SDL_mixer.h>
+
 
 using namespace std;
 
@@ -40,6 +42,7 @@ enum Screens
     MAIN_CAMERA,
     GAME_OVER,
     GAME_WON,
+    LEVEL_WON,
     TEXTURES_TOTAL
 };
 
@@ -87,6 +90,12 @@ private:
     
     TTF_Font* gFont;
     
+    Mix_Music *sStage;
+    Mix_Music *sBoss;
+    
+    Mix_Chunk *sZap;
+
+    
 public:
     Graphics();
     //Starts up SDL and creates window
@@ -114,6 +123,9 @@ public:
     SDL_Texture* getScore();
     SDL_Texture* getParts();
     TTF_Font* getFont();
+    Mix_Chunk* getZap();
+    Mix_Music* getMainStage();
+    Mix_Music* getBossTheme();
     
     string intToString(int input);    // Necessary for printing score and parts
     void printScore(int score);

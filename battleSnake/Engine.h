@@ -34,7 +34,7 @@ enum Pattern {
     SUNRAYS8,
     SUNRAYS16,
     FLOWER,
-    TYPHOON
+    TYPHOON,
 };
 
 class Engine {
@@ -44,6 +44,9 @@ public:
 
 private:
     int FPS;
+    
+    // To render in case of debug needed.
+    // SDL_Rect fillRect;
     
     int patternTurnsHelper;
     
@@ -70,7 +73,7 @@ private:
     void allyShootsAimedLaser(int index);
     void allyShootsSingleLaser(int index);
     
-    void nextMove(int turn, Pattern patt);
+    void nextMove(int turn, Pattern patt, Graphics* graph);
     
     void getAllyOnMap(int x, int y, FleetMember* ship);
     void getEnemyOnMap(int x, int y, Spaceship* ship);
@@ -97,7 +100,6 @@ private:
     bool isOccupied(int x, int y);
     
     void setLastEvent(Event last);
-    Event getLastEvent();
     
     void buyEquipment();        // TODO
     void loadEquipment();       // TODO

@@ -42,8 +42,8 @@ public:
     void travel();
     void drawOnScreen(Graphics* graph);
     
-    int getX();
-    int getY();
+    float getgX();
+    float getgY();
     int getPower();
     double getAngle();
     int getSpeed();

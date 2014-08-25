@@ -71,6 +71,12 @@ bool Graphics::init()
 					cout << "SDL_ttf could not initialize! SDL_ttf Error: " << TTF_GetError() << endl;
 					success = false;
 				}
+                //Initialize SDL_mixer
+                if( Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048 ) < 0 )
+                {
+                    printf( "SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError() );
+                    success = false;
+                }
 			}
 		}
 	}
@@ -105,6 +111,12 @@ bool Graphics::loadMedia()
 	}
     gTexture[GAME_WON] = loadTexture("BGimages/game_won.png");
     if( gTexture[GAME_WON] == 0 )
+	{
+		cout << "Failed to load texture image!" << endl;
+		success = false;
+	}
+    gTexture[LEVEL_WON] = loadTexture("BGimages/level_won.png");
+    if( gTexture[LEVEL_WON] == 0 )
 	{
 		cout << "Failed to load texture image!" << endl;
 		success = false;
@@ -164,6 +176,7 @@ bool Graphics::loadMedia()
         success = false;
     }
     
+    // Loading lasers
     gOther[LASER_ALLIED] = loadTexture("OtherSprites/laser_all_basic.png");
     if (gOther[LASER_ALLIED] == 0) {
         cout << "Failed to load texture image!" << endl;
@@ -174,6 +187,25 @@ bool Graphics::loadMedia()
         cout << "Failed to load texture image!" << endl;
         success = false;
     }
+    
+    // Loading sounds
+    sZap = Mix_LoadWAV("Music/laser.wav");
+    if (sZap == 0) {
+        cout << "Failed to load sound effect! SDL_mixer Error: " << Mix_GetError() << endl;
+        success = false;
+    }
+    sStage = Mix_LoadMUS("Music/main_stage.wav");
+    if (sStage == 0) {
+        cout << "Failed to load sound effect! SDL_mixer Error: " << Mix_GetError() << endl;
+        success = false;
+    }
+    sBoss = Mix_LoadMUS("Music/boss_battle.wav");
+    if (sBoss == 0) {
+        cout << "Failed to load sound effect! SDL_mixer Error: " << Mix_GetError() << endl;
+        success = false;
+    }
+    Mix_VolumeChunk(sZap, 64);
+    
 	return success;
 }
 
@@ -199,6 +231,11 @@ void Graphics::close()
     //Remove font
     TTF_CloseFont(gFont);
     gFont = 0;
+    
+    // Free sound FX
+    Mix_FreeChunk(sZap);
+    Mix_FreeMusic(sStage);
+    Mix_FreeMusic(sBoss);
     
 	//Destroy window
 	SDL_DestroyRenderer(gRenderer);
@@ -357,4 +394,12 @@ SDL_Texture* Graphics::getParts() {
 
 TTF_Font* Graphics::getFont() {
     return gFont;
+}
+
+Mix_Chunk* Graphics::getZap() {
+    return sZap;
+}
+
+Mix_Music* Graphics::getMainStage() {
+    return sStage;
 }

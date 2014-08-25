@@ -73,6 +73,11 @@ void Spaceship::move(Direction dest) {
     }
 }
 
+void Spaceship::teleport(int dX, int dY) {
+    position.x = dX;
+    position.y = dY;
+}
+
 void Spaceship::explode() {
     // KABLEW!!! HAHAHAHAHAHA
 }

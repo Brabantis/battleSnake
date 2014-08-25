@@ -20,6 +20,7 @@ Engine::Engine() {
     lastTriggered = EVE_DEFAULT;
 }
 
+// I don't think that this is much useful anymoar.
 void Engine::addFleetMember(Characters choice) {
     // Check if space is free
     int modX = 0, modY = 0;
@@ -131,7 +132,7 @@ void Engine::addEnemyFleetMember(int x, int y, Characters choice) {
         }
         case CORVETTE:
         {
-            opponent = new Enemy(100, 50, 100, EN_CORVETTE, {x, y, SOUTH});
+            opponent = new Enemy(10, 50, 100, EN_CORVETTE, {x, y, SOUTH});
             break;
         }
         case FRIGATE:
@@ -205,7 +206,7 @@ Direction Engine::intToDirectionConvert(int input) {
     return output;
 }
 
-void Engine::coordsOfNearestEnemy(int &x, int &y, int index) {  // NOTE: this gives the TILE coordinate.
+void Engine::coordsOfNearestEnemy(int &x, int &y, int index) { // NOTE: this gives the TILE coordinate.
     Enemy nearest;
     double minDist = 999;
     for (int i = 0; i<enemysize; i++) {
@@ -284,7 +285,8 @@ void Engine::printFleetStats() {
     }
 }
 
-// This whole function is the true evil in this program.
+// This whole function is the true evil in this program. And as it is an evil, it shall be vanquished FOR THE POWER OF GRAYSKULL!
+// Seriously, now this should only move the gregarious ships together with the main one.
 void Engine::moveFleetOnMap(Direction dest) {
     //for moving
     int tmpX = fleet[0].getX();
@@ -333,7 +335,7 @@ void Engine::moveFleetOnMap(Direction dest) {
 
 // This one makes me move coherently the main antagonist, enemyfleet[0].
 void Engine::moveEnemyOnMap(Direction dest) {
-    //for moving
+    // for moving
     int tmpX = enemyFleet[0].getX();
     int tmpY = enemyFleet[0].getY();
     switch (dest) {
@@ -355,7 +357,7 @@ void Engine::moveEnemyOnMap(Direction dest) {
     }
     Tile* y = currentLevel->getTile(tmpX, tmpY);
     if (y->partOfWall == false)   // Not moving through walls!
-    {   // No control is needed here, I Tink
+    {   // No control is needed here, I Tink (tinker tailor soldier sailor)
         removeEnemyFromMap(enemyFleet[0].getX(), enemyFleet[0].getY());
         enemyFleet[0].move(dest);
         getEnemyOnMap(enemyFleet[0].getX(), enemyFleet[0].getY(), &enemyFleet[0]);
@@ -383,6 +385,7 @@ void Engine::killEnemy(Enemy* dead) {
     
     enemysize--;
     
+    // Points are quite ok, although they should escalate somehow. Maybe give another variable. Parts should be WAY more rare.
     parts += 1; // Instead of parts, I can use a credit system
     //
     score += 100;   // This is why I don't need a addPoints func
@@ -417,12 +420,7 @@ int Engine::getRandInSpan(int lower, int upper) {
     return result;
 }
 
-// THIS MIGHT BE USELESS, CHECK LATER
-Event Engine::getLastEvent() {
-    return lastTriggered;
-}
-
-void Engine::nextMove(int turn, Pattern patt) {
+void Engine::nextMove(int turn, Pattern patt, Graphics* graph) {
     // I may place this into a nice class
     switch (patt) {
         case FLOWER:
@@ -440,7 +438,8 @@ void Engine::nextMove(int turn, Pattern patt) {
                         Laser* tmp = enemyFleet[0].shootLaser(i*pi/10 + patternTurnsHelper*pi/32, LASER_ENEMY);
                         lasersOnMap.push_back(tmp);
                     }
-                    // This looks more like a flower
+                    Mix_PlayChannel(-1, graph->getZap(), 0);
+                    
                     for (int i = 0; i<lasersOnMap.size(); i++) {
                         if (lasersOnMap[i]->getTurnsInLife() == 10 && !lasersOnMap[i]->isSBA()) {
                             lasersOnMap[i]->setAngle(lasersOnMap[i]->getAngle()+(pi/2));
@@ -465,6 +464,7 @@ void Engine::nextMove(int turn, Pattern patt) {
             }
             break;
             
+            // Note: Shooting single-line rotating sunrays is cool, like if you changed the 20 in FLOWER wit a 0
         case TYPHOON:
             // This looks like a typhoon, given enough lasers. Might be impossible, though.
             for (int i = 0; i<lasersOnMap.size(); i++) {
@@ -477,6 +477,29 @@ void Engine::nextMove(int turn, Pattern patt) {
             }
             break;
             
+            /*
+        case TEST_TEST:
+            if (turn == 0) {
+                spawnEnemy(98, 10, CORVETTE);
+                patternTurnsHelper = 0;   // The pattern is nicer this way
+            }
+            else if (turn <= 30) {
+                moveEnemyOnMap(SOUTH);
+            }
+            else if (turn == 40) {
+                Laser* tmp = enemyFleet[0].shootLaser(pi/2, LASER_ALLIED);
+                                lasersOnMap.push_back(tmp);
+            }
+            else {
+                for (int i = 0; i<lasersOnMap.size(); i++) {
+                    if (!lasersOnMap[i]->isSBA()) {
+                        fillRect = {static_cast<int>(lasersOnMap[i]->getgX()), static_cast<int>(lasersOnMap[i]->getgY()), 1, 1};
+                    }
+                }
+            }
+            break;
+             */
+             
         default:
             break;
     }
@@ -492,22 +515,27 @@ void Engine::nextMove(int turn, Pattern patt) {
  * -- Solve multiship problems like trying to spawn a ship in a non permitted zone or ships crashing when going opposite directions. Priority BLUE
  * -- Make it run faster. Priority GREEN. It was really really trivial. I feel stupid now.
  * -- Write the pattern manager and create some nice ways for enemies to shoot. Priority VIOLET
+ * -- Have the ship move fast and fluid. Priority BLUE
+ * -- Avoid EXC_BAD_ACCESS when one hits the wall. make movement impossible and/or free the mouse instead. Priority ULTRAVIOLET
  *
  * TODO:
  *
- * -- Have the patterns work well. Priority BLUE
- * -- Have the ship move fast and fluid. Priority BLUE
+ * -- Abolish direction. Priority VIOLET
+ * -- The lasers collide with their tail. Avoid this. IDEA: I can find the float position in the 4 angles and check collision for THOSE. Trigonometry incoming. Priority VIOLET
+ * -- Have the patterns work well and enemies move realistically. Priority BLUE
  * -- Move will obsolesce as soon as I make the ship follow the mouse. Make it so. Priority GREEN
- * -- Sometimes lasers deal no damage. Avoid this. Priority GREEN
+ * -- Sometimes lasers deal no damage. Avoid this. Priority GREEN. Maybe done?
  * -- Reduce the hitbox of the player and other Touhou adjustments. Priority GREEN
  * -- Create menus, implement items. Priority YELLOW
  * -- Add little green/red health boxes over the ships, or life bars like in Touhou. Priority YELLOW
+ * -- Make simple explode animations. PRiority YELLOW
  * -- Rewrite everything packaging more nicely some code bundles and using the GameLoop design. Priority RED
  * -- Graphical improvements, such as an animated background. Priority INFRARED
  *
  * NOTE:
  * -- Having lasers turn at weird irregular angles creates nice patterns
  * -- A nice location for shooting lasers is (98, 40)
+ * -- Spawning allies without putting them on map is a nice way to make them bulletproof, like those spheres Reimu has
  */
 
 // the main function, transferred in engine. Setting all the graphics stuff as children of Graphics and so on allowed me to make the functions slimmer
@@ -541,16 +569,16 @@ int Engine::start()
 		else
 		{
             // Here go all the things I need to start up the game. Eventually they'll get into a new nice function.
-			//Main loop flag
+			// Main loop flag
 			bool quit = false;
             
-			//Event handler
+			// Event handler
 			SDL_Event e;
             
-            //Background color
+            // Background color
             SDL_SetRenderDrawColor(graphEngine->getRenderer(), 255, 255, 255, 1);
             
-            //Reminder of the last displayed
+            // Reminder of the last displayed
             Screens gLastDisplayed = MAIN_CAMERA;
             
             // Is there an enemy?
@@ -569,6 +597,9 @@ int Engine::start()
             drawFleet(graphEngine);
             SDL_RenderPresent(graphEngine->getRenderer());
             SDL_Delay(300); // TO DECUPLICATE
+            // Start the music
+            Mix_PlayMusic(graphEngine->getMainStage(), -1);
+            
 			while( !quit )
 			{
                 // This is to achieve a nice stable framerate
@@ -583,16 +614,13 @@ int Engine::start()
 						quit = true;
 					}
                     
-                    // Maybe I'll say maybe -- What if the ship followed the mouse? I am sure it would be more responsive.
-                    
-                    //User presses a key
-                    // Key input is deactivated right now. moveFleetOnMap 
-                    /*
+                    // User presses a key
+                    // Key input is deactivated right now.
 					else if (e.type == SDL_KEYDOWN)
 					{
 						switch (e.key.keysym.sym)
 						{
-                                // TODO: make them move better, more realistically
+                                /*
 							case SDLK_UP:
                                     moveFleetOnMap(NORTH);
                                 break;
@@ -630,6 +658,22 @@ int Engine::start()
                                     addFleetMember(CRUISER);
                                 }
                                 break;
+                                */
+                            case SDLK_t:
+                            {
+                                if (SDL_ShowCursor(-1) == 0) {
+                                    SDL_ShowCursor(1);
+                                }
+                                else {
+                                    SDL_ShowCursor(0);
+                                }
+                                break;
+                            }
+                            case SDLK_ESCAPE:
+                            {
+                                quit = true;
+                                break;
+                            }
                             case SDLK_SPACE:    // For a triggerable breakpoint
                             {
                                 currentLevel->printMap(graphEngine);
@@ -641,10 +685,35 @@ int Engine::start()
                                 break;
 						}
 					}
-                     */
                     // Things over this brace are only invoked at the press of a button
 				}
                 // Here I invoke the functions I need each time
+                
+                // This moves the ship on the position of the mouse.
+                // Must start later
+                int tX = 0, tY = 0;
+                SDL_GetMouseState(&tX, &tY);
+                tX /= TILE_WIDTH;
+                tY /= TILE_HEIGHT;
+                // Ths avoids me going out of screen
+                if (tX > (SCREEN_WIDTH/TILE_WIDTH)-10) {
+                    tX = (SCREEN_WIDTH/TILE_WIDTH)-10;
+                }
+                if (tX < 2) {
+                    tX = 2;
+                }
+                if (tY > (SCREEN_HEIGHT/TILE_HEIGHT)-10) {
+                    tY = (SCREEN_HEIGHT/TILE_HEIGHT)-10;
+                }
+                if (tY < 2) {
+                    tY = 2;
+                }
+                
+                removeAllyFromMap(fleet[0].getX(), fleet[0].getY());
+                fleet[0].teleport(tX, tY);
+                getAllyOnMap(tX, tY, &(fleet[0]));
+                
+                // cout << fleet[0].getHP() << endl;
                 
                 // Spawning a new enemy
                 /*
@@ -667,9 +736,7 @@ int Engine::start()
                     spawnEnemy(tmpx, tmpy);
                     currentLevel->giveCodeToTile(tmpx, tmpy, ENEMY);
                     enemyOnScreen = true;
-                    
-                    // There is a chance that making the patterny enemy on screen the element zero might be easier. I could also have a boolean on enemy. Fact is, I likely will find it better to swap the patterny one in position zero. Of course, this only applies if they can move.
-                    
+                 
                 }*/
                 // TODO: Regulate this treshold to achieve believable rate of fire
                 if (!quit && intervalLaserCounter==5) {
@@ -711,7 +778,7 @@ int Engine::start()
                 if (turnCounter > 600) {
                     turnCounter = 0;
                 }
-                nextMove(turnCounter, currentPattern);
+                nextMove(turnCounter, currentPattern, graphEngine);
                 
                 // Damaging enemies
                 for (int i = 0; i<static_cast<int>(lasersOnMap.size()); i++) {
@@ -751,6 +818,12 @@ int Engine::start()
                 }
                 drawFleet(graphEngine);
                 drawEnemyFleet(graphEngine);
+                
+                /*
+                SDL_SetRenderDrawColor(graphEngine->getRenderer(), 255, 0, 0, 0);
+                SDL_RenderFillRect(graphEngine->getRenderer(), &fillRect);
+                */
+                
                 intervalLaserCounter++;
                 turnCounter++;
                 SDL_RenderPresent(graphEngine->getRenderer());
