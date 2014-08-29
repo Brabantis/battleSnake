@@ -30,25 +30,31 @@ private:
     OtherSprites sprite;
     int power;
     float gX, gY;       // Graphics coordinates of the collision center (on top)
+    int width, height;
     double angle;       // I will build the direction moving according to the sin and cos of the angle
     int turnsInLife;    // To make them turn after a while
     int speed;
+    int destroyCounter;
+    bool exploding;
+    bool markedForDeletion;
 public:
-    int TEMPlifeCounter = 0;
     Laser(int power, int gX, int gY, double angle, bool sBA, OtherSprites part = LASER_ALLIED);
-    bool isHittingTarget(Level* currLevel, Spaceship* &target);
     bool isHittingWall(Level* currLevel);
     
     void travel();
+    void explode();
     void drawOnScreen(Graphics* graph);
     
     float getgX();
     float getgY();
+    float getCentergX();
+    float getCentergY();
     int getPower();
     double getAngle();
     int getSpeed();
     int getTurnsInLife();
     bool isSBA();
+    bool isMFD();
     void setAngle(double targetAngle);
     void setSpeed(int targetSpeed);
 };

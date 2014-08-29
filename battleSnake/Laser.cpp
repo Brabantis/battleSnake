@@ -12,6 +12,8 @@ Laser::Laser(int dmg, int x, int y, double ang, bool sBA, OtherSprites part) {
     power = dmg;
     gX = x;
     gY = y;
+    width = LASERWIDTH;
+    height = LASERHEIGHT;
     angle = ang;    // The angle is calculated from the vertical. Check the rotation center. Also, it is in RADIANS
     sprite = part;  // Having to give the sprites mean that the same ship can shoot different lasers
     if (sBA) {
@@ -22,41 +24,22 @@ Laser::Laser(int dmg, int x, int y, double ang, bool sBA, OtherSprites part) {
     }
     turnsInLife = 0;
     shotByAlly = sBA;
-}
-
-bool Laser::isHittingTarget(Level* currLevel, Spaceship* &target) {
-    // This is the EVIL
-    // MAke it work differently whether or not the laser is shotByAlly
-    int tmpX = gX/TILE_WIDTH;
-    int tmpY = gY/TILE_HEIGHT;
-    Tile* ref = currLevel->getTile((tmpX), (tmpY));
-    if (ref == nullptr) {
-        cout << "Trouble in iHT at " << tmpX << ", " << tmpY << endl;
-        return false;
-    }
-    if (ref->occupiedByEnemy == true && shotByAlly == true) {
-        target = ref->occupyingEnemy;
-        return true;
-    }
-    else if (ref->occupiedByAlly == true && shotByAlly == false) {
-        target = ref->occupyingAlly;
-        return true;
-    }
-    target = nullptr;
-    return false;
+    destroyCounter = 3;
+    exploding = false;
+    markedForDeletion = false;
 }
 
 bool Laser::isHittingWall(Level* currLevel) {
     bool result = false;
-    if (gX <= SPRITE_WIDTH/TILE_WIDTH || gY <= SPRITE_HEIGHT/TILE_HEIGHT || gX >= SCREEN_WIDTH-SPRITE_WIDTH/TILE_WIDTH || gY >= SCREEN_HEIGHT-SPRITE_HEIGHT/TILE_HEIGHT) {
+    if (gX <= SPRITE_WIDTH/TILE_WIDTH || gY <= SPRITE_HEIGHT/TILE_HEIGHT || gX >= SCREEN_WIDTH-SPRITE_WIDTH/TILE_WIDTH || gY >= SCREEN_HEIGHT-SPRITE_HEIGHT/TILE_HEIGHT ) {
         result = true;
     }
     return result;
 }
 
 void Laser::drawOnScreen(Graphics* graph) {  // Float values allow me to move at the speed I need
-    SDL_Rect dst = {static_cast<int>(gX), static_cast<int>(gY), LASERHEIGHT, LASERWIDTH};
-    // Check formulas for finding the rendering area
+    SDL_Rect dst = {static_cast<int>(gX), static_cast<int>(gY), height, width};
+    // I think that some pain to me came from having put height before width. Damn.
     SDL_Point corner = {0, 0};
     SDL_RenderCopyEx(graph->getRenderer(), graph->getOtherSprite(sprite), 0, &dst, -(angle/pi*180), &corner, SDL_FLIP_NONE);
     // Angle reversed because i'm using reverse coords
@@ -66,6 +49,26 @@ void Laser::travel() {
     gX += (speed * cos(angle));
     gY -= (speed * sin(angle));
     turnsInLife++;
+    // since travel is called each turn, it if good for making lasers explode without creating other functions, setters and getters.
+    if (exploding) {
+        explode();
+    }
+}
+
+void Laser::explode() {
+    // This makes the laser become cosmetic only
+    if (destroyCounter == 3) {
+        exploding = true;
+        sprite = LASER_EXPLODE;
+        speed = 0;
+        width = 15;
+        height = 15;
+        power = 0;
+    }
+    destroyCounter--;
+    if (destroyCounter == 0) {
+        markedForDeletion = true;
+    }
 }
 
 void Laser::setAngle(double targetAngle) {
@@ -96,10 +99,36 @@ float Laser::getgY() {
     return gY;
 }
 
+float Laser::getCentergX() {
+    float retX = (gX + ((width/2)*cos(angle)) + ((height/2)*sin(angle)));
+    if (retX < 1) {
+        retX = 1;
+    }
+    if (retX > 199) {
+        retX = 199;
+    }
+    return retX;
+}
+
+float Laser::getCentergY() {
+    float retY = (gY - ((width/2)*sin(angle)) + ((height/2)*cos(angle)));
+    if (retY < 1) {
+        retY = 1;
+    }
+    if (retY > 149) {
+        retY = 149;
+    }
+    return retY;
+}
+
 int Laser::getPower() {
     return power;
 }
 
 bool Laser::isSBA() {
     return shotByAlly;
+}
+
+bool Laser::isMFD() {
+    return markedForDeletion;
 }

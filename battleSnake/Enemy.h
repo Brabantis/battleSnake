@@ -18,7 +18,7 @@ class Enemy : public Spaceship {
 private:
 public:
     Enemy();
-    Enemy(int ba, int bd, int bh, Characters spritesrc, location pos = {0, 0, NORTH});
+    Enemy(int ba, int bd, int bh, Characters spritesrc, location pos = {0, 0});
     string getClass();
     void drawEnemyOnScene(Graphics* graph);
     // If I ever am to make the enemy move, I shall need to avoid him bouncing into walls by means of something like FleetMember::isColliding

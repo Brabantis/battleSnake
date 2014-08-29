@@ -25,7 +25,6 @@ using namespace std;
 
 struct location {
     int x, y; // coordinates divided by 10 to move on tiles
-    Direction orient;
 };
 
 class Spaceship {
@@ -42,9 +41,8 @@ protected:
 public:             // just base funcs
     
     Spaceship() {}
-    Spaceship(int ba, int bd, int bh, Characters spritesrc, location pos = {0, 0, SOUTH});
+    Spaceship(int ba, int bd, int bh, Characters spritesrc, location pos = {0, 0});
     
-    void move(Direction dest);
     void teleport(int dX, int dY);
     // teleport is the new move
     
@@ -63,13 +61,13 @@ public:             // just base funcs
     int getHP();
     int getX();
     int getY();
-    Direction getDirection();
+    int getCenterX();
+    int getCenterY();
     Characters getSprite();
     
     // the setters
     void setX(int value);
     void setY(int value);
-    void setDirection(Direction next);
 };
 
 #endif /* defined(__GiocoLabInf__Creature__) */

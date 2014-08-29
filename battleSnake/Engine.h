@@ -31,10 +31,10 @@
 using namespace std;
 
 enum Pattern {
-    SUNRAYS8,
-    SUNRAYS16,
+    MAIN_STAGE,
     FLOWER,
     TYPHOON,
+    TEST_TEST
 };
 
 class Engine {
@@ -45,8 +45,13 @@ public:
 private:
     int FPS;
     
-    // To render in case of debug needed.
-    // SDL_Rect fillRect;
+    // To render in case of graphical debug needed.
+    /*
+    SDL_Rect fillRect1;
+    SDL_Rect fillRect2;
+    SDL_Rect fillRect3;
+    SDL_Rect fillRect4;
+    */
     
     int patternTurnsHelper;
     
@@ -61,9 +66,8 @@ private:
     Event lastTriggered;
     
     map<string, Item> inventory;        // As of now, not implemented
-    deque<Direction> moveBuffer;
     vector<FleetMember> fleet;          // I may have these become arrays of pointers
-    vector<Enemy> enemyFleet;           // Using the Enemy class allows me to create any kind of enemy, either alien or human or whatever, I just need to create a new object.
+    vector<Enemy> enemyFleet;
     vector<Laser*> lasersOnMap;         // I need something made so that I can BOTH access elements in order AND delete one in every position (pop).
     
     void coordsOfNearestEnemy(int &x, int &y, int index);
@@ -73,6 +77,8 @@ private:
     void allyShootsAimedLaser(int index);
     void allyShootsSingleLaser(int index);
     
+    bool laserIsHittingTarget(int index, Spaceship* &target);
+    
     void nextMove(int turn, Pattern patt, Graphics* graph);
     
     void getAllyOnMap(int x, int y, FleetMember* ship);
@@ -81,8 +87,8 @@ private:
     void removeEnemyFromMap(int x, int y);
     
     void printFleetStats();
-    void moveFleetOnMap(Direction dest);
-    void moveEnemyOnMap(Direction dest);
+    void moveFleetOnMap();
+    void moveEnemyOnMap(double directangle, int speed);
     
     void mainMenu();                    // TODO: Select ship, buy powerups
     void startLevel();
@@ -90,10 +96,10 @@ private:
     
     // The functions that spawn enemies
     Characters intToCharacterConvert(int input);
-    Direction intToDirectionConvert(int input);
     int getRandInSpan(int lower, int upper);
     void spawnEnemy(int x, int y, Characters ch);
-    
+    int doubleToInt(double input);
+
     void killEnemy(Enemy* dead);   // TO ADJUST
     void collectParts(int amount);
     

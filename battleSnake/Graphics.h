@@ -28,15 +28,6 @@ using namespace std;
 
 // These enums are used throughout the game
 
-enum Direction
-{
-    NORTH,
-    WEST,
-    SOUTH,
-    EAST,
-    DIRECTION_TOTAL
-};
-
 enum Screens
 {
     MAIN_CAMERA,
@@ -65,6 +56,7 @@ enum OtherSprites
 {
     LASER_ALLIED,
     LASER_ENEMY,
+    LASER_EXPLODE,
     OTHER_TOTAL
 };
 
@@ -94,7 +86,7 @@ private:
     Mix_Music *sBoss;
     
     Mix_Chunk *sZap;
-
+    Mix_Chunk *sBoom;
     
 public:
     Graphics();
@@ -124,6 +116,7 @@ public:
     SDL_Texture* getParts();
     TTF_Font* getFont();
     Mix_Chunk* getZap();
+    Mix_Chunk* getBoom();
     Mix_Music* getMainStage();
     Mix_Music* getBossTheme();
     

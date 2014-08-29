@@ -177,6 +177,11 @@ bool Graphics::loadMedia()
     }
     
     // Loading lasers
+    gOther[LASER_EXPLODE] = loadTexture("OtherSprites/explosion_laser.png");
+    if (gOther[LASER_EXPLODE] == 0) {
+        cout << "Failed to load texture image!" << endl;
+        success = false;
+    }
     gOther[LASER_ALLIED] = loadTexture("OtherSprites/laser_all_basic.png");
     if (gOther[LASER_ALLIED] == 0) {
         cout << "Failed to load texture image!" << endl;
@@ -194,6 +199,11 @@ bool Graphics::loadMedia()
         cout << "Failed to load sound effect! SDL_mixer Error: " << Mix_GetError() << endl;
         success = false;
     }
+    sBoom = Mix_LoadWAV("Music/hit.wav");
+    if (sBoom == 0) {
+        cout << "Failed to load sound effect! SDL_mixer Error: " << Mix_GetError() << endl;
+        success = false;
+    }
     sStage = Mix_LoadMUS("Music/main_stage.wav");
     if (sStage == 0) {
         cout << "Failed to load sound effect! SDL_mixer Error: " << Mix_GetError() << endl;
@@ -205,6 +215,7 @@ bool Graphics::loadMedia()
         success = false;
     }
     Mix_VolumeChunk(sZap, 64);
+    Mix_VolumeChunk(sBoom, 64);
     
 	return success;
 }
@@ -394,6 +405,10 @@ SDL_Texture* Graphics::getParts() {
 
 TTF_Font* Graphics::getFont() {
     return gFont;
+}
+
+Mix_Chunk* Graphics::getBoom() {
+    return sBoom;
 }
 
 Mix_Chunk* Graphics::getZap() {
