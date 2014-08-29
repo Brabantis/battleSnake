@@ -65,8 +65,8 @@ const double pi = 3.141592;
 
 const int SCREEN_WIDTH = 800;
 const int SCREEN_HEIGHT = 600;
-const int SPRITE_WIDTH = SCREEN_WIDTH/20;
-const int SPRITE_HEIGHT = SCREEN_HEIGHT/15;
+const int SPRITE_WIDTH = 40;
+const int SPRITE_HEIGHT = 40;
 
 class Graphics {
 private:
@@ -78,7 +78,7 @@ private:
     SDL_Texture* gOther[OTHER_TOTAL];
     
     SDL_Texture* gScore;
-    SDL_Texture* gParts;
+    SDL_Texture* gPowerups;
     
     TTF_Font* gFont;
     
@@ -113,16 +113,16 @@ public:
     SDL_Texture* getSprite(Characters sprite);
     SDL_Texture* getOtherSprite(OtherSprites sprite);
     SDL_Texture* getScore();
-    SDL_Texture* getParts();
+    SDL_Texture* getPowerups();
     TTF_Font* getFont();
     Mix_Chunk* getZap();
     Mix_Chunk* getBoom();
     Mix_Music* getMainStage();
     Mix_Music* getBossTheme();
     
-    string intToString(int input);    // Necessary for printing score and parts
+    string intToString(int input);    // Necessary for printing score and powerups
     void printScore(int score);
-    void printParts(int parts);
+    void printPowerups(int powerups);
 };
 
 #endif /* defined(__GiocoLabInf__Graphics__) */

@@ -20,7 +20,7 @@ Laser::Laser(int dmg, int x, int y, double ang, bool sBA, OtherSprites part) {
         speed = 20;
     }
     else{
-        speed = 9;
+        speed = 6;
     }
     turnsInLife = 0;
     shotByAlly = sBA;
@@ -29,17 +29,17 @@ Laser::Laser(int dmg, int x, int y, double ang, bool sBA, OtherSprites part) {
     markedForDeletion = false;
 }
 
-bool Laser::isHittingWall(Level* currLevel) {
+bool Laser::isHittingWall() {
     bool result = false;
-    if (gX <= SPRITE_WIDTH/TILE_WIDTH || gY <= SPRITE_HEIGHT/TILE_HEIGHT || gX >= SCREEN_WIDTH-SPRITE_WIDTH/TILE_WIDTH || gY >= SCREEN_HEIGHT-SPRITE_HEIGHT/TILE_HEIGHT ) {
+    // These magic numbers are the borders of the screen
+    if (gX <= 10 || gY <= 10 || gX >= 790 || gY >= 590 ) {
         result = true;
     }
     return result;
 }
 
-void Laser::drawOnScreen(Graphics* graph) {  // Float values allow me to move at the speed I need
-    SDL_Rect dst = {static_cast<int>(gX), static_cast<int>(gY), height, width};
-    // I think that some pain to me came from having put height before width. Damn.
+void Laser::drawOnScreen(Graphics* graph) {  // double values allow me to move at the speed I need
+    SDL_Rect dst = {static_cast<int>(gX), static_cast<int>(gY), width, height};
     SDL_Point corner = {0, 0};
     SDL_RenderCopyEx(graph->getRenderer(), graph->getOtherSprite(sprite), 0, &dst, -(angle/pi*180), &corner, SDL_FLIP_NONE);
     // Angle reversed because i'm using reverse coords
@@ -91,32 +91,32 @@ double Laser::getAngle() {
     return angle;
 }
 
-float Laser::getgX() {
+double Laser::getgX() {
     return gX;
 }
 
-float Laser::getgY() {
+double Laser::getgY() {
     return gY;
 }
 
-float Laser::getCentergX() {
-    float retX = (gX + ((width/2)*cos(angle)) + ((height/2)*sin(angle)));
+double Laser::getCentergX() {
+    double retX = (gX + ((width/2)*cos(angle)) + ((height/2)*sin(angle)));
     if (retX < 1) {
         retX = 1;
     }
-    if (retX > 199) {
-        retX = 199;
+    if (retX > 799) {
+        retX = 799;
     }
     return retX;
 }
 
-float Laser::getCentergY() {
-    float retY = (gY - ((width/2)*sin(angle)) + ((height/2)*cos(angle)));
+double Laser::getCentergY() {
+    double retY = (gY - ((width/2)*sin(angle)) + ((height/2)*cos(angle)));
     if (retY < 1) {
         retY = 1;
     }
-    if (retY > 149) {
-        retY = 149;
+    if (retY > 599) {
+        retY = 599;
     }
     return retY;
 }

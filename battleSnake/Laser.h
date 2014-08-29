@@ -21,15 +21,15 @@
 #include "Graphics.h"
 #include "Level.h"
 
-const int LASERWIDTH = 5;
-const int LASERHEIGHT = 20;
+const int LASERWIDTH = 20;
+const int LASERHEIGHT = 5;
 
 class Laser {
 private:
     bool shotByAlly;
     OtherSprites sprite;
     int power;
-    float gX, gY;       // Graphics coordinates of the collision center (on top)
+    double gX, gY;       // Graphics coordinates of the collision center (on top)
     int width, height;
     double angle;       // I will build the direction moving according to the sin and cos of the angle
     int turnsInLife;    // To make them turn after a while
@@ -39,16 +39,16 @@ private:
     bool markedForDeletion;
 public:
     Laser(int power, int gX, int gY, double angle, bool sBA, OtherSprites part = LASER_ALLIED);
-    bool isHittingWall(Level* currLevel);
+    bool isHittingWall();
     
     void travel();
     void explode();
     void drawOnScreen(Graphics* graph);
     
-    float getgX();
-    float getgY();
-    float getCentergX();
-    float getCentergY();
+    double getgX();
+    double getgY();
+    double getCentergX();
+    double getCentergY();
     int getPower();
     double getAngle();
     int getSpeed();

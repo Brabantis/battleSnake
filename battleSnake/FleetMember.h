@@ -34,7 +34,6 @@ public:
     string getClass();
     void equip(Item equip);
     void calculateStats();
-    bool isColliding(Level lvl);
 };
 
 #endif /* defined(__GiocoLabInf__PartyMember__) */

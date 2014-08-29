@@ -29,10 +29,10 @@ Laser* Spaceship::shootLaser(int xdest, int ydest, OtherSprites sprt){
     // Shoots a MOTHERFRIGGIN' LAZERBEAM to a tile. If it collides with an enemy, it damages it. Else, it goes till it hits a wall.
     double angle = 0;
     if (xdest != position.x) {
-        double cosfact = (ydest - position.y);
-        double sinfact = (xdest - position.x);
-        angle = atan(cosfact / sinfact);
-        if (sinfact <= 0) {
+        double sinfact = (ydest - position.y - SPRITE_HEIGHT/2);
+        double cosfact = (xdest - position.x - SPRITE_WIDTH/2);
+        angle = atan(sinfact / cosfact);
+        if (cosfact <= 0) {
             angle -= pi;
         }
     }
@@ -44,13 +44,12 @@ Laser* Spaceship::shootLaser(int xdest, int ydest, OtherSprites sprt){
             angle = -pi/2;
         }
     }
-    Laser* tmp = new Laser(atk, (position.x-3) * TILE_WIDTH + SPRITE_WIDTH/2, (position.y-1) * TILE_HEIGHT + SPRITE_HEIGHT/2, -angle, isAllied, sprt);
+    Laser* tmp = new Laser(atk, (position.x-1) + SPRITE_WIDTH/2, (position.y-1) + SPRITE_HEIGHT/2, -angle, isAllied, sprt);
     return tmp;
 }
 
-// IDK why, but the right place to shoot is from position-3 in the x, so it starts in the center
 Laser* Spaceship::shootLaser(double angle, OtherSprites sprt) {
-    Laser* tmp = new Laser(atk, (position.x-1) * TILE_WIDTH + SPRITE_WIDTH/2, (position.y-1) * TILE_HEIGHT + SPRITE_HEIGHT/2, angle, isAllied, sprt);
+    Laser* tmp = new Laser(atk, (position.x-1) + SPRITE_WIDTH/2, (position.y-1) + SPRITE_HEIGHT/2, angle, isAllied, sprt);
     return tmp;
 }
 
@@ -65,7 +64,7 @@ void Spaceship::explode() {
 
 void Spaceship::drawOnScene(Graphics* graph) {
     // To make them only move by one tile at the time.
-    SDL_Rect renderZone = {(position.x-1) * TILE_WIDTH, (position.y-1) * TILE_HEIGHT, SPRITE_WIDTH, SPRITE_HEIGHT};
+    SDL_Rect renderZone = {static_cast<int>((position.x-1)), static_cast<int>((position.y-1)), SPRITE_WIDTH, SPRITE_HEIGHT};
     SDL_RenderCopy(graph->getRenderer(), graph->getSprite(sprite), 0, &renderZone);
 }
 // x-1 and y-1 because we are working on an array
@@ -82,20 +81,20 @@ int Spaceship::getHP() {
     return hp;
 }
 
-int Spaceship::getX() {
+double Spaceship::getX() {
     return position.x;
 }
 
-int Spaceship::getY() {
+double Spaceship::getY() {
     return position.y;
 }
 
-int Spaceship::getCenterX() {
-    return (position.x) + (SPRITE_WIDTH/2);
+double Spaceship::getCenterX() {
+    return (position.x) + 20;
 }
 
-int Spaceship::getCenterY() {
-    return (position.y) + (SPRITE_HEIGHT/2);
+double Spaceship::getCenterY() {
+    return (position.y) + 20;
 }
 
 void Spaceship::setX(int value) {

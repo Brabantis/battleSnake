@@ -24,7 +24,7 @@
 using namespace std;
 
 struct location {
-    int x, y; // coordinates divided by 10 to move on tiles
+    double x, y; // coordinates divided by 10 to move on tiles
 };
 
 class Spaceship {
@@ -59,10 +59,10 @@ public:             // just base funcs
     int getAtk();
     int getDef();
     int getHP();
-    int getX();
-    int getY();
-    int getCenterX();
-    int getCenterY();
+    double getX();
+    double getY();
+    double getCenterX();
+    double getCenterY();
     Characters getSprite();
     
     // the setters

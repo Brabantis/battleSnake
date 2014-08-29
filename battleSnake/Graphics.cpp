@@ -236,8 +236,8 @@ void Graphics::close()
     SDL_DestroyTexture(gScore);
     gScore = 0;
     
-    SDL_DestroyTexture(gParts);
-    gParts = 0;
+    SDL_DestroyTexture(gPowerups);
+    gPowerups = 0;
     
     //Remove font
     TTF_CloseFont(gFont);
@@ -356,24 +356,24 @@ void Graphics::printScore(int score) {
     SDL_Rect dst = {40, 10, width, 30};
     SDL_RenderCopy(gRenderer, gScore, 0, &dst);
     SDL_DestroyTexture(gScore);
-    gParts = 0;
+    gPowerups = 0;
 }
 
-void Graphics::printParts(int parts) {
-    gParts = loadFromRenderedText(intToString(parts), {255, 255, 0});
+void Graphics::printPowerups(int powerups) {
+    gPowerups = loadFromRenderedText(intToString(powerups), {255, 255, 0});
     int width = 0;
-    if (parts < 10)
+    if (powerups < 10)
         width = 30;
-    else if (parts < 100)
+    else if (powerups < 100)
         width = 60;
-    else if (parts < 1000)
+    else if (powerups < 1000)
         width = 90;
     else
         width = 120;
     SDL_Rect dst = {760-width, 10, width, 30};
-    SDL_RenderCopy(gRenderer, gParts, 0, &dst);
-    SDL_DestroyTexture(gParts);
-    gParts = 0;
+    SDL_RenderCopy(gRenderer, gPowerups, 0, &dst);
+    SDL_DestroyTexture(gPowerups);
+    gPowerups = 0;
 }
 
 SDL_Window* Graphics::getWindow() {
@@ -399,8 +399,8 @@ SDL_Texture* Graphics::getScore() {
     return gScore;
 }
 
-SDL_Texture* Graphics::getParts() {
-    return gParts;
+SDL_Texture* Graphics::getPowerups() {
+    return gPowerups;
 }
 
 TTF_Font* Graphics::getFont() {

@@ -19,13 +19,13 @@
 #include <deque>
 #include <map>
 #include <cmath>
+#include <vector>
 
 #include <stdlib.h>
 #include <time.h>
 
 #include "FleetMember.h"
 #include "Graphics.h"
-#include "Level.h"
 #include "Enemy.h"
 
 using namespace std;
@@ -58,9 +58,8 @@ private:
     int fleetsize;
     int enemysize;
     int score;
-    int parts;
+    int powerups;
     bool enemyOnScreen;
-    Level* currentLevel;
     Pattern currentPattern;
     
     Event lastTriggered;
@@ -72,7 +71,7 @@ private:
     
     void coordsOfNearestEnemy(int &x, int &y, int index);
     void addFleetMember(Characters choice);
-    void addEnemyFleetMember(int x, int y, Characters choice);
+    void addEnemyFleetMember(double x, double y, Characters choice);
     void fleetBuilder(Screens &lastDisplayed, Graphics* graph);
     void allyShootsAimedLaser(int index);
     void allyShootsSingleLaser(int index);
@@ -81,19 +80,12 @@ private:
     
     void nextMove(int turn, Pattern patt, Graphics* graph);
     
-    void getAllyOnMap(int x, int y, FleetMember* ship);
-    void getEnemyOnMap(int x, int y, Spaceship* ship);
-    void removeAllyFromMap(int x, int y);
-    void removeEnemyFromMap(int x, int y);
-    
     void printFleetStats();
     void moveFleetOnMap();
     void moveEnemyOnMap(double directangle, int speed);
     
     void mainMenu();                    // TODO: Select ship, buy powerups
-    void startLevel();
-    void endLevel();
-    
+
     // The functions that spawn enemies
     Characters intToCharacterConvert(int input);
     int getRandInSpan(int lower, int upper);
@@ -101,9 +93,7 @@ private:
     int doubleToInt(double input);
 
     void killEnemy(Enemy* dead);   // TO ADJUST
-    void collectParts(int amount);
-    
-    bool isOccupied(int x, int y);
+    void collectPowerups(int amount);
     
     void setLastEvent(Event last);
     
