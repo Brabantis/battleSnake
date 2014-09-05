@@ -14,9 +14,10 @@ Engine::Engine() {
     fleetsize = 0;
     enemysize = 0;
     score = 0;
-    powerups = 1000;
-    currentPattern = FLOWER;
+    powerups = 0;
+    currentPattern = BOSS_STAGE;
     lastTriggered = EVE_DEFAULT;
+    areLasersAimed = false;
 }
 
 // This function must be checked to see if it works well for gregarious guys
@@ -39,7 +40,7 @@ void Engine::addFleetMember(Characters choice) {
         case FIGHTER:
         {
             powerups -= 10;
-            player = new FleetMember(2, 30, 10000, FIGHTER);
+            player = new FleetMember(2, 30, 100, FIGHTER);
             break;
         }
         case CORVETTE:
@@ -97,7 +98,7 @@ void Engine::addEnemyFleetMember(double x, double y, Characters choice) {
     switch (choice) {
         case FIGHTER:
         {
-            opponent = new Enemy(50, 30, 100, EN_FIGHTER, {x, y});
+            opponent = new Enemy(50, 0, 50, EN_FIGHTER, {x, y});
             break;
         }
         case CORVETTE:
@@ -156,13 +157,20 @@ Characters Engine::intToCharacterConvert(int input) {
     return output;
 }
 
-void Engine::coordsOfNearestEnemy(int &x, int &y, int index) { // NOTE: this gives the GRAPHIC coordinate.
+void Engine::coordsOfNearestEnemy(int &x, int &y, int index, bool shipSearch) { // NOTE: this gives the GRAPHIC coordinate.
     Enemy nearest;
     double minDist = 999;
     for (int i = 0; i<enemysize; i++) {
-        double currDist = sqrt(pow((enemyFleet[i].getCenterX() - fleet[index].getCenterX()), 2) + pow((enemyFleet[i].getCenterY() - fleet[index].getCenterY()), 2));
+        double currDist;
+        if (shipSearch) {
+            currDist = sqrt(pow((enemyFleet[i].getCenterX() - fleet[index].getCenterX()), 2) + pow((enemyFleet[i].getCenterY() - fleet[index].getCenterY()), 2));
+        }
+        else {
+            currDist = sqrt(pow((enemyFleet[i].getCenterX() - lasersOnMap[index]->getCentergX()), 2) + pow((enemyFleet[i].getCenterY() - lasersOnMap[index]->getCentergY()), 2));
+        }
         if (currDist < minDist) {
             nearest = enemyFleet[i];
+            minDist = currDist;
         }
     }
     x = nearest.getCenterX();
@@ -171,7 +179,11 @@ void Engine::coordsOfNearestEnemy(int &x, int &y, int index) { // NOTE: this giv
 
 void Engine::allyShootsAimedLaser(int index) {
     int tmpx = 0, tmpy = 0;
-    coordsOfNearestEnemy(tmpx, tmpy, index);
+    if (!areLasersAimed) {
+        areLasersAimed = true;
+    }
+    // This func is only called if (enemyOnScreen) so it is safe 
+    coordsOfNearestEnemy(tmpx, tmpy, index, true);
     Laser* tmp = fleet[index].shootLaser(tmpx, tmpy, LASER_ALLIED);
     lasersOnMap.push_back(tmp);
 }
@@ -230,10 +242,10 @@ void Engine::printFleetStats() {
 // Here stood moveFleetOnMap. Let it not be forgotten, for the pain it brought was much.
 
 // This one makes me move coherently the main antagonist, enemyfleet[0].
-void Engine::moveEnemyOnMap(double directangle, int speed) {
+void Engine::moveEnemyOnMap(double directangle, int speed, int index) {
     // for moving
-    int tmpX = enemyFleet[0].getX();
-    int tmpY = enemyFleet[0].getY();
+    int tmpX = enemyFleet[index].getX();
+    int tmpY = enemyFleet[index].getY();
     if (cos(directangle) > 0) {
         tmpX += SPRITE_WIDTH;
     }
@@ -248,7 +260,7 @@ void Engine::moveEnemyOnMap(double directangle, int speed) {
         double plusY = -(sin(directangle));
         plusX *= speed;
         plusY *= speed;
-        enemyFleet[0].teleport(enemyFleet[0].getX() + doubleToInt(plusX), enemyFleet[0].getY() + doubleToInt(plusY));
+        enemyFleet[index].teleport(enemyFleet[index].getX() + doubleToInt(plusX), enemyFleet[index].getY() + doubleToInt(plusY));
     }
 }
 
@@ -264,13 +276,7 @@ void Engine::killEnemy(Enemy* dead) {
         }
     }
     dead = nullptr;
-    
     enemysize--;
-    
-    // Points are quite ok, although they should escalate somehow. Maybe give another variable. Powerups should be WAY more rare.
-    powerups += 1;
-    
-    score += 100;   // This is why I don't need a addPoints func
 }
 
 void Engine::collectPowerups(int amount) {
@@ -299,53 +305,91 @@ int Engine::doubleToInt(double input) {
 }
 
 void Engine::nextMove(int turn, Pattern patt, Graphics* graph) {
-    // I may place this into a nice class
+    // Big and ugly switch function, but much less work than using functors, for the same effect
     switch (patt) {
-        case FLOWER:
+        case MAIN_STAGE:
             if (turn == 0) {
-                if (enemysize == 0)
+                Mix_PlayChannel(-1, graph->getPortOut(), 0);
+            }
+            if (turn < 20 ) {
+                // This is an excellent porting
+                graph->printOtherOnScreen(SHIP_PORTING, 60, 60, turn*18, static_cast<double>(turn)/20);
+            }
+            else if (turn == 20) {
+                if (enemysize == 0) {
+                    spawnEnemy(40, 40, FIGHTER);
+                }
+            }
+            else if (turn > 20 && turn < 200) {
+                // TODO: Adjust values
+                moveEnemyOnMap(0, 4, 0);
+            }
+            else if (turn == 200) {
+                enemyFleet.erase(enemyFleet.begin());
+                enemysize--;
+                if (enemysize == 0) {
+                    enemyOnScreen = false;
+                }
+                Mix_PlayChannel(-1, graph->getPortOut(), 0);
+            }
+            else if (turn > 200 && turn <= 220) {
+                graph->printOtherOnScreen(SHIP_PORTING, 740, 60, turn*18, static_cast<double>(220 - turn)/20);
+            }
+            
+            // I should make a function that prints warnings like "WARNING: TYPHOON MULTITARGET SYSTEM ENGAGED"
+            if (turn >= 31 && turn % 10 == 1 && turn < 500) {
+                if (enemysize > 0 && enemyFleet[0].getHP() >= 0 && turn < 400) {
+                    for (int i = -2; i<= 2; i++) {
+                        Laser* tmp = enemyFleet[0].shootLaser(i*pi/100 + (pi*1.5), LASER_ENEMY);
+                        tmp->setSpeed(8);
+                        lasersOnMap.push_back(tmp);
+                    }
+                    Mix_PlayChannel(-1, graph->getZap(), 0);
+                }
+            }
+            break;
+            
+            // Formerly FLOWER
+        case BOSS_STAGE:
+            if (turn == 0) {
+                if (enemysize == 0) {
                     spawnEnemy(380, 40, CORVETTE);
+                }
                 patternTurnsHelper = 0;   // The pattern is nicer this way
             }
             else if (turn <= 30) {
                 // TODO: Adjust values
-                moveEnemyOnMap((pi*1.5), 3);
+                moveEnemyOnMap((pi*1.5), 3, 0);
             }
+            
             // I should make a function that prints warnings like "WARNING: TYPHOON MULTITARGET SYSTEM ENGAGED"
             if (turn >= 31 && turn % 10 == 1 && turn < 500) {
-                if (enemyFleet[0].getHP() >= 0 && enemysize > 0) {
+                if (enemyFleet[0].getHP() >= 0 && enemysize > 0 && turn < 400) {
                     for (int i = 0; i<=20; i++) {
                         Laser* tmp = enemyFleet[0].shootLaser(i*pi/10 + patternTurnsHelper*pi/32, LASER_ENEMY);
                         tmp->setSpeed(8);
                         lasersOnMap.push_back(tmp);
                     }
                     Mix_PlayChannel(-1, graph->getZap(), 0);
-                    
-                    for (int i = 0; i<lasersOnMap.size(); i++) {
-                        if (lasersOnMap[i]->getTurnsInLife() == 10 && !lasersOnMap[i]->isSBA()) {
-                            lasersOnMap[i]->setAngle(lasersOnMap[i]->getAngle()+(pi/2));
-                        }
-                        if (lasersOnMap[i]->getTurnsInLife() > 10 && lasersOnMap[i]->getTurnsInLife() <= 100 && !lasersOnMap[i]->isSBA()) {
-                            lasersOnMap[i]->setAngle(lasersOnMap[i]->getAngle()+(pi/3));
-                        }
-                        if (lasersOnMap[i]->getTurnsInLife() == 110 && !lasersOnMap[i]->isSBA()) {
-                            lasersOnMap[i]->setAngle(lasersOnMap[i]->getAngle()-(pi/2));
-                            lasersOnMap[i]->setSpeed(6);
-                        }
-                    }
-                    patternTurnsHelper++;
                 }
-            }
-            else if (turn == 500) {
+                
                 for (int i = 0; i<lasersOnMap.size(); i++) {
-                    if (!lasersOnMap[i]->isSBA()) {
+                    if (lasersOnMap[i]->getTurnsInLife() == 10 && !lasersOnMap[i]->isSBA()) {
+                        lasersOnMap[i]->setAngle(lasersOnMap[i]->getAngle()+(pi/2));
+                    }
+                    if (lasersOnMap[i]->getTurnsInLife() > 10 && lasersOnMap[i]->getTurnsInLife() <= 90 && !lasersOnMap[i]->isSBA()) {
+                        lasersOnMap[i]->setAngle(lasersOnMap[i]->getAngle()+(pi/3));
+                    }
+                    if (lasersOnMap[i]->getTurnsInLife() == 100 && !lasersOnMap[i]->isSBA()) {
+                        lasersOnMap[i]->setAngle(lasersOnMap[i]->getAngle()-(pi/2));
                         lasersOnMap[i]->setSpeed(6);
                     }
                 }
+                patternTurnsHelper++;
             }
             break;
             
-            // Note: Shooting single-line rotating sunrays is cool, like if you changed the 20 in FLOWER wit a 0
+            // Note: Shooting single-line rotating sunrays is cool, like if you changed the 20 in BOSS_STAGE wit a 0
         case TYPHOON:
             // This looks like a typhoon, given enough lasers. Might be impossible, though.
             for (int i = 0; i<lasersOnMap.size(); i++) {
@@ -360,10 +404,9 @@ void Engine::nextMove(int turn, Pattern patt, Graphics* graph) {
             
             
         case TEST_TEST:
-            
             if (turn == 0) {
                 spawnEnemy(400, 80, CORVETTE);
-                patternTurnsHelper = 0;   // The pattern is nicer this way
+                patternTurnsHelper = 0;
             }
             else if (turn == 40) {
                 Laser* tmp = enemyFleet[0].shootLaser(0, LASER_ALLIED);
@@ -408,23 +451,25 @@ void Engine::nextMove(int turn, Pattern patt, Graphics* graph) {
  * -- Move will obsolesce as soon as I make the ship follow the mouse. Make it so. Priority GREEN
  * -- Sometimes lasers deal no damage. Avoid this. Priority GREEN. Maybe done?
  * -- Reduce the hitbox of the player and other Touhou adjustments. Priority GREEN
+ * -- Circle collider. Priority VIOLET
+ * -- It pains my heart, but Tiles shall be deprecated. Priority BLUE
+ * -- Safeguard adding new ships against going out of the borders. Priority YELLOW
  *
  * TODO:
  *
- * -- Circle collider. Priority VIOLET
- * -- Have the patterns work well and enemies move realistically. Priority BLUE
- * -- It pains my heart, but Tiles shall be deprecated. Priority BLUE
- * -- Safeguard adding new ships against going out of the borders. Priority YELLOW
- * -- Create menus, implement items. Priority YELLOW
+ * -- Have the patterns work well. Priority BLUE
+ * -- Think about points and implement powerups maybe. Priority GREEN
+ * -- Create menus, implement items. Possibly making Engine only work in gaming and having the menus as a responsibility of main. Priority YELLOW
  * -- Add little green/red health boxes over the ships, or life bars like in Touhou. Priority YELLOW
- * -- Make simple explode animations for lasers and ships. PRiority YELLOW
+ * -- Make simple explode animations for lasers and ships. Priority YELLOW
+ * -- Make allies timed and bulletproof. Priority ORANGE
  * -- Rewrite everything packaging more nicely some code bundles and using the GameLoop design. Priority RED
  * -- Graphical improvements, such as an animated background. Priority INFRARED
  *
  * NOTE:
  * -- Having lasers turn at weird irregular angles creates nice patterns
  * -- A nice location for shooting lasers is (98, 40)
- * -- Spawning allies without putting them on map is a nice way to make them bulletproof, like those spheres Reimu has
+ *
  */
 
 // the main function, transferred in engine. Setting all the graphics stuff as children of Graphics and so on allowed me to make the functions slimmer
@@ -479,7 +524,7 @@ int Engine::start()
             // The address of the enemy ship hit by lasers each turn
             Spaceship* hitTarget = nullptr;
             
-            currentPattern = FLOWER;
+            currentPattern = MAIN_STAGE;
 
             //First drawing
             SDL_RenderClear(graphEngine->getRenderer());
@@ -488,6 +533,7 @@ int Engine::start()
             SDL_RenderPresent(graphEngine->getRenderer());
             SDL_Delay(300); // TO DECUPLICATE
             // Start the music
+            // TODO: this should change between states
             Mix_PlayMusic(graphEngine->getMainStage(), -1);
             
 			while( !quit )
@@ -511,18 +557,6 @@ int Engine::start()
 						switch (e.key.keysym.sym)
 						{
                                 /*
-							case SDLK_UP:
-                                    moveFleetOnMap(NORTH);
-                                break;
-							case SDLK_DOWN:
-                                    moveFleetOnMap(SOUTH);
-                                break;
-							case SDLK_LEFT:
-                                    moveFleetOnMap(WEST);
-                                break;
-							case SDLK_RIGHT:
-                                    moveFleetOnMap(EAST);
-                                break;
                             case SDLK_1:
                                 if (powerups >= 10) {
                                     addFleetMember(FIGHTER);
@@ -612,23 +646,21 @@ int Engine::start()
                     SDL_Delay(50); // TO DECUPLICATE
                     quit = true;
                 }
-                else if (lastTriggered == LEVEL_CLEAR) {
+                else if (lastTriggered == MAIN_STAGE_CLEAR) {
                     graphEngine->setView(GAME_WON, gLastDisplayed);
                     SDL_Delay(1000);
                     quit = true;
                 }
                 for (int i = 0; i<fleetsize; i++) {
-                    if (readyToFire) { // I shall make the count start from a ertain turn
+                    if (readyToFire && enemyOnScreen) { // I shall make the count start from a certain turn
                         readyToFire = false;
                         // Contrarily to popular belief, lasers do NOT cause memory leaks.
                         // This means that the zeroeth element shoots.
-                        allyShootsSingleLaser(0);
+                        allyShootsAimedLaser(0);
+                        areLasersAimed = true;
                     }
                 }
                 
-                if (turnCounter > 600) {
-                    turnCounter = 0;
-                }
                 nextMove(turnCounter, currentPattern, graphEngine);
                 
                 // Damaging enemies
@@ -641,6 +673,7 @@ int Engine::start()
                         lasersOnMap.erase(lasersOnMap.begin()+i);
                         if (!explosionPlayed) {
                             Mix_PlayChannel(-1, graphEngine->getBoom(), 0);
+                            explosionPlayed = true;
                         }
                     }
                     else if (lasersOnMap[i]->isHittingWall()) {
@@ -657,13 +690,43 @@ int Engine::start()
                 }
                 // Cleaning the lasers
                 for (int i = 0; i<lasersOnMap.size(); i++) {
-                    lasersOnMap[i]->travel();
+                    if (!areLasersAimed) {
+                        lasersOnMap[i]->travel();
+                    }
+                    else {
+                        if (lasersOnMap[i]->isSBA() && enemyOnScreen) {
+                            int x = 0, y = 0;
+                            coordsOfNearestEnemy(x, y, i, false);
+                            
+                            int cosfact = x - lasersOnMap[i]->getCentergX();
+                            int sinfact = y - lasersOnMap[i]->getCentergY();
+                            double targAngle;
+                            if (cosfact != 0) {
+                                targAngle = atan2(sinfact, cosfact);
+                            }
+                            else {
+                                if (sinfact > 0) {
+                                    targAngle = pi/2;
+                                }
+                                else {
+                                    targAngle = -pi/2;
+                                }
+                            }
+                            lasersOnMap[i]->setAngle(-targAngle);
+                            lasersOnMap[i]->travel();
+                        }
+                        else {
+                            lasersOnMap[i]->travel();
+                        }
+                    }
                 }
                 // Killing the enemy // TO MODIFICATE
                 if (enemyOnScreen == true && enemyFleet[0].getHP() <= 0) {
                     killEnemy(&(enemyFleet[0]));
                     hitTarget = nullptr;
-                    enemyOnScreen = false;
+                    if (enemysize == 0) {
+                        enemyOnScreen = false;
+                    }
                 }
                 if (fleet[0].getHP() <= 0) {
                     setLastEvent(GAME_LOST);

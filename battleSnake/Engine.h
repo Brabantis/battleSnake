@@ -32,9 +32,16 @@ using namespace std;
 
 enum Pattern {
     MAIN_STAGE,
-    FLOWER,
+    BOSS_STAGE,
     TYPHOON,
     TEST_TEST
+};
+
+enum Event {
+    ERR_LEVEL,
+    GAME_LOST,
+    MAIN_STAGE_CLEAR,
+    EVE_DEFAULT
 };
 
 class Engine {
@@ -60,6 +67,9 @@ private:
     int score;
     int powerups;
     bool enemyOnScreen;
+    
+    bool areLasersAimed;
+
     Pattern currentPattern;
     
     Event lastTriggered;
@@ -69,7 +79,7 @@ private:
     vector<Enemy> enemyFleet;
     vector<Laser*> lasersOnMap;         // I need something made so that I can BOTH access elements in order AND delete one in every position (pop).
     
-    void coordsOfNearestEnemy(int &x, int &y, int index);
+    void coordsOfNearestEnemy(int &x, int &y, int index, bool shipSearch);
     void addFleetMember(Characters choice);
     void addEnemyFleetMember(double x, double y, Characters choice);
     void fleetBuilder(Screens &lastDisplayed, Graphics* graph);
@@ -81,8 +91,7 @@ private:
     void nextMove(int turn, Pattern patt, Graphics* graph);
     
     void printFleetStats();
-    void moveFleetOnMap();
-    void moveEnemyOnMap(double directangle, int speed);
+    void moveEnemyOnMap(double directangle, int speed, int index);
     
     void mainMenu();                    // TODO: Select ship, buy powerups
 

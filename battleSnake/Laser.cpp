@@ -17,7 +17,7 @@ Laser::Laser(int dmg, int x, int y, double ang, bool sBA, OtherSprites part) {
     angle = ang;    // The angle is calculated from the vertical. Check the rotation center. Also, it is in RADIANS
     sprite = part;  // Having to give the sprites mean that the same ship can shoot different lasers
     if (sBA) {
-        speed = 20;
+        speed = 10;
     }
     else{
         speed = 6;

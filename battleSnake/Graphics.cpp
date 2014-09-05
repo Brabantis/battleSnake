@@ -192,6 +192,11 @@ bool Graphics::loadMedia()
         cout << "Failed to load texture image!" << endl;
         success = false;
     }
+    gOther[SHIP_PORTING] = loadTexture("OtherSprites/porting.png");
+    if (gOther[SHIP_PORTING] == 0) {
+        cout << "Failed to load texture image!" << endl;
+        success = false;
+    }
     
     // Loading sounds
     sZap = Mix_LoadWAV("Music/laser.wav");
@@ -201,6 +206,16 @@ bool Graphics::loadMedia()
     }
     sBoom = Mix_LoadWAV("Music/hit.wav");
     if (sBoom == 0) {
+        cout << "Failed to load sound effect! SDL_mixer Error: " << Mix_GetError() << endl;
+        success = false;
+    }
+    sPortIn = Mix_LoadWAV("Music/portin.wav");
+    if (sPortIn == 0) {
+        cout << "Failed to load sound effect! SDL_mixer Error: " << Mix_GetError() << endl;
+        success = false;
+    }
+    sPortOut = Mix_LoadWAV("Music/portout.wav");
+    if (sPortOut == 0) {
         cout << "Failed to load sound effect! SDL_mixer Error: " << Mix_GetError() << endl;
         success = false;
     }
@@ -214,8 +229,15 @@ bool Graphics::loadMedia()
         cout << "Failed to load sound effect! SDL_mixer Error: " << Mix_GetError() << endl;
         success = false;
     }
+    sVictory = Mix_LoadMUS("Music/victory.wav");
+    if (sVictory == 0) {
+        cout << "Failed to load sound effect! SDL_mixer Error: " << Mix_GetError() << endl;
+        success = false;
+    }
     Mix_VolumeChunk(sZap, 64);
-    Mix_VolumeChunk(sBoom, 64);
+    Mix_VolumeChunk(sBoom, 32);
+    Mix_VolumeChunk(sPortIn, 64);
+    Mix_VolumeChunk(sPortOut, 64);
     
 	return success;
 }
@@ -245,6 +267,9 @@ void Graphics::close()
     
     // Free sound FX
     Mix_FreeChunk(sZap);
+    Mix_FreeChunk(sBoom);
+    Mix_FreeChunk(sPortIn);
+    Mix_FreeChunk(sPortOut);
     Mix_FreeMusic(sStage);
     Mix_FreeMusic(sBoss);
     
@@ -334,8 +359,15 @@ void Graphics::printTextOnScreen (string txtInput, SDL_Rect* destination) {
     tempTexture = 0;
 }
 
+void Graphics::printOtherOnScreen(OtherSprites sprtsource, int xCenter, int yCenter, double angle, double zoomFactor, int width, int heigth) {
+    SDL_Rect destRect = {static_cast<int>(xCenter - (width*zoomFactor/2)), static_cast<int>(yCenter - (heigth*zoomFactor/2)), static_cast<int>(width*zoomFactor), static_cast<int>(heigth*zoomFactor)};
+    SDL_RenderCopyEx(gRenderer, gOther[sprtsource], 0, &destRect, angle, 0, SDL_FLIP_NONE);
+}
+
+
 string Graphics::intToString(int input) {
     string s;
+    
     stringstream out;
     out << input;
     s = out.str();
@@ -415,6 +447,22 @@ Mix_Chunk* Graphics::getZap() {
     return sZap;
 }
 
+Mix_Chunk* Graphics::getPortIn() {
+    return sPortIn;
+}
+
+Mix_Chunk* Graphics::getPortOut() {
+    return sPortOut;
+}
+
 Mix_Music* Graphics::getMainStage() {
     return sStage;
+}
+
+Mix_Music* Graphics::getBossTheme() {
+    return sBoss;
+}
+
+Mix_Music* Graphics::getVictoryTheme() {
+    return sVictory;
 }

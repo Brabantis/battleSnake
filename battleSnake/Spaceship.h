@@ -68,6 +68,7 @@ public:             // just base funcs
     // the setters
     void setX(int value);
     void setY(int value);
+    void setSprite(Characters spritesrc);
 };
 
 #endif /* defined(__GiocoLabInf__Creature__) */

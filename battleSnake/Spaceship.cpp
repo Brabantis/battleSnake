@@ -31,10 +31,7 @@ Laser* Spaceship::shootLaser(int xdest, int ydest, OtherSprites sprt){
     if (xdest != position.x) {
         double sinfact = (ydest - position.y - SPRITE_HEIGHT/2);
         double cosfact = (xdest - position.x - SPRITE_WIDTH/2);
-        angle = atan(sinfact / cosfact);
-        if (cosfact <= 0) {
-            angle -= pi;
-        }
+        angle = atan2(sinfact, cosfact);
     }
     else {
         if (ydest > position.y) {
@@ -107,4 +104,8 @@ void Spaceship::setY(int value) {
 
 Characters Spaceship::getSprite() {
     return sprite;
+}
+
+void Spaceship::setSprite(Characters spritesrc) {
+    sprite = spritesrc;
 }

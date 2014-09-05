@@ -19,7 +19,6 @@
 #include <cmath>
 
 #include "Graphics.h"
-#include "Level.h"
 
 const int LASERWIDTH = 20;
 const int LASERHEIGHT = 5;

@@ -57,6 +57,7 @@ enum OtherSprites
     LASER_ALLIED,
     LASER_ENEMY,
     LASER_EXPLODE,
+    SHIP_PORTING,
     OTHER_TOTAL
 };
 
@@ -84,26 +85,31 @@ private:
     
     Mix_Music *sStage;
     Mix_Music *sBoss;
+    Mix_Music *sVictory;
     
     Mix_Chunk *sZap;
     Mix_Chunk *sBoom;
+    Mix_Chunk *sPortIn;
+    Mix_Chunk *sPortOut;
     
 public:
     Graphics();
-    //Starts up SDL and creates window
+    // Starts up SDL and creates window
     bool init();
-    //Loads media
+    // Loads media
     bool loadMedia();
-    //Frees media and shuts down SDL
+    // Frees media and shuts down SDL
     void close();
-    //loads a texture and assigns it to an element in a texture array
+    // Loads a texture and assigns it to an element in a texture array
     SDL_Texture* loadTexture( string path);
-    //Texture from text
+    // Texture from text
     SDL_Texture* loadFromRenderedText(string textureText, SDL_Color textColor);
-    //Sets camera view to choice
+    // Sets camera view to choice
     void setView (Screens choice, Screens &lastDisplayed);
-    //Writes something from text on screen. Gives some trouble to close apparently.
+    // Writes something from text on screen. Gives some trouble to close apparently.
     void printTextOnScreen (string txtInput, SDL_Rect* destination);
+    // Printing an OtherSprite on the screen
+    void printOtherOnScreen(OtherSprites sprtsource, int xCenter, int yCenter, double angle, double zoomFactor, int width = 40, int height = 40);
     
     // We will never be free from getters
     SDL_Window* getWindow();
@@ -117,8 +123,11 @@ public:
     TTF_Font* getFont();
     Mix_Chunk* getZap();
     Mix_Chunk* getBoom();
+    Mix_Chunk* getPortIn();
+    Mix_Chunk* getPortOut();
     Mix_Music* getMainStage();
     Mix_Music* getBossTheme();
+    Mix_Music* getVictoryTheme();
     
     string intToString(int input);    // Necessary for printing score and powerups
     void printScore(int score);
