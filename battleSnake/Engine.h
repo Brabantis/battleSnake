@@ -41,14 +41,21 @@ enum Event {
     ERR_LEVEL,
     GAME_LOST,
     MAIN_STAGE_CLEAR,
+    BOSS_STAGE_CLEAR,
     EVE_DEFAULT
 };
 
 class Engine {
 public:
     Engine();
-    int start();
-
+    int start(Pattern patt);
+    
+    Event getLastEvent();
+    void setLastEvent(Event last);
+    Graphics* getGraphicsEngine();
+    
+    void narrate(Screens narrator, int phase);
+    
 private:
     int FPS;
     
@@ -60,51 +67,55 @@ private:
     SDL_Rect fillRect4;
     */
     
+    Graphics* graphEngine;
+    
     int patternTurnsHelper;
     
-    int fleetsize;
-    int enemysize;
     int score;
-    int powerups;
+    int kills;
     bool enemyOnScreen;
     
-    bool areLasersAimed;
+    // If I ever want to implement aiming back, like a powerup
+    // bool areLasersAimed;
 
     Pattern currentPattern;
     
     Event lastTriggered;
     
-    map<string, Item> inventory;        // As of now, not implemented
-    vector<FleetMember> fleet;          // I may have these become arrays of pointers
-    vector<Enemy> enemyFleet;
+    vector<Enemy*> enemyFleet;
     vector<Laser*> lasersOnMap;         // I need something made so that I can BOTH access elements in order AND delete one in every position (pop).
+    // These are needed for managing multiple movements and KILLS
+    FleetMember* protagonist;
+        
+    bool expiredEnemy0;
+    bool expiredEnemy1;
     
     void coordsOfNearestEnemy(int &x, int &y, int index, bool shipSearch);
     void addFleetMember(Characters choice);
-    void addEnemyFleetMember(double x, double y, Characters choice);
-    void fleetBuilder(Screens &lastDisplayed, Graphics* graph);
-    void allyShootsAimedLaser(int index);
-    void allyShootsSingleLaser(int index);
+    void addEnemyFleetMember(double x, double y, Characters choice, float hM);
+    void cleanEnemyFleet();
+    void cleanLasers();
+    
+    void printHealth();
+    
+    void protagonistShootsAimedLaser();
+    void protagonistShootsSingleLaser();
     
     bool laserIsHittingTarget(int index, Spaceship* &target);
     
     void nextMove(int turn, Pattern patt, Graphics* graph);
     
-    void printFleetStats();
-    void moveEnemyOnMap(double directangle, int speed, int index);
+    void moveEnemyOnMap(double directangle, double speed, Spaceship* enemy);
     
-    void mainMenu();                    // TODO: Select ship, buy powerups
+    void mainMenu();                    // TODO: Select ship, buy kills
 
     // The functions that spawn enemies
     Characters intToCharacterConvert(int input);
     int getRandInSpan(int lower, int upper);
-    void spawnEnemy(int x, int y, Characters ch);
+    void spawnEnemy(int x, int y, Characters ch, float healthMod);
     int doubleToInt(double input);
 
-    void killEnemy(Enemy* dead);   // TO ADJUST
-    void collectPowerups(int amount);
-    
-    void setLastEvent(Event last);
+    void collectkills(int amount);
     
     void buyEquipment();        // TODO
     void loadEquipment();       // TODO

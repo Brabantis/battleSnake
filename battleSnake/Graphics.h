@@ -23,17 +23,17 @@
 #include <SDL2_ttf/SDL_ttf.h>
 #include <SDL2_mixer/SDL_mixer.h>
 
-
 using namespace std;
 
 // These enums are used throughout the game
 
 enum Screens
 {
+    MAIN_MENU,
     MAIN_CAMERA,
     GAME_OVER,
-    GAME_WON,
-    LEVEL_WON,
+    ADMIRAL_SPEAK,
+    CHANCELLOR_SPEAK,
     TEXTURES_TOTAL
 };
 
@@ -41,14 +41,11 @@ enum Characters
 {
     FIGHTER,
     CORVETTE,
+    EN_FIGHTER,
+    EN_CORVETTE,
     FRIGATE,
     DESTROYER,
     CRUISER,
-    EN_FIGHTER,
-    EN_CORVETTE,
-    EN_FRIGATE,
-    EN_DESTROYER,
-    EN_CRUISER,
     SHIP_TYPES
 };
 
@@ -71,26 +68,26 @@ const int SPRITE_HEIGHT = 40;
 
 class Graphics {
 private:
-    SDL_Window* gWindow;
-    SDL_Renderer* gRenderer;
+    SDL_Window* gWindow = nullptr;
+    SDL_Renderer* gRenderer = nullptr;
     
     SDL_Texture* gTexture[TEXTURES_TOTAL];
     SDL_Texture* gSprites[SHIP_TYPES];
     SDL_Texture* gOther[OTHER_TOTAL];
     
-    SDL_Texture* gScore;
-    SDL_Texture* gPowerups;
+    SDL_Texture* gScore = nullptr;
+    SDL_Texture* gKills = nullptr;
     
-    TTF_Font* gFont;
+    TTF_Font* gFont = nullptr;
     
-    Mix_Music *sStage;
-    Mix_Music *sBoss;
-    Mix_Music *sVictory;
+    Mix_Music *sStage = nullptr;
+    Mix_Music *sBoss = nullptr;
+    Mix_Music *sVictory = nullptr;
     
-    Mix_Chunk *sZap;
-    Mix_Chunk *sBoom;
-    Mix_Chunk *sPortIn;
-    Mix_Chunk *sPortOut;
+    Mix_Chunk *sZap = nullptr;
+    Mix_Chunk *sBoom = nullptr;
+    Mix_Chunk *sPortIn = nullptr;
+    Mix_Chunk *sPortOut = nullptr;
     
 public:
     Graphics();
@@ -105,7 +102,7 @@ public:
     // Texture from text
     SDL_Texture* loadFromRenderedText(string textureText, SDL_Color textColor);
     // Sets camera view to choice
-    void setView (Screens choice, Screens &lastDisplayed);
+    void setView (Screens choice);
     // Writes something from text on screen. Gives some trouble to close apparently.
     void printTextOnScreen (string txtInput, SDL_Rect* destination);
     // Printing an OtherSprite on the screen
@@ -119,7 +116,7 @@ public:
     SDL_Texture* getSprite(Characters sprite);
     SDL_Texture* getOtherSprite(OtherSprites sprite);
     SDL_Texture* getScore();
-    SDL_Texture* getPowerups();
+    SDL_Texture* getkills();
     TTF_Font* getFont();
     Mix_Chunk* getZap();
     Mix_Chunk* getBoom();
@@ -129,9 +126,9 @@ public:
     Mix_Music* getBossTheme();
     Mix_Music* getVictoryTheme();
     
-    string intToString(int input);    // Necessary for printing score and powerups
+    string intToString(int input);    // Necessary for printing score and kills
     void printScore(int score);
-    void printPowerups(int powerups);
+    void printkills(int kills);
 };
 
 #endif /* defined(__GiocoLabInf__Graphics__) */

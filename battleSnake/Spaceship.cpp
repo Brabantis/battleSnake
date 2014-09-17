@@ -55,10 +55,6 @@ void Spaceship::teleport(int dX, int dY) {
     position.y = dY;
 }
 
-void Spaceship::explode() {
-    // KABLEW!!! HAHAHAHAHAHA
-}
-
 void Spaceship::drawOnScene(Graphics* graph) {
     // To make them only move by one tile at the time.
     SDL_Rect renderZone = {static_cast<int>((position.x-1)), static_cast<int>((position.y-1)), SPRITE_WIDTH, SPRITE_HEIGHT};
@@ -92,6 +88,15 @@ double Spaceship::getCenterX() {
 
 double Spaceship::getCenterY() {
     return (position.y) + 20;
+}
+
+bool Spaceship::isAlive() {
+    return hp>0 ? true : false;
+}
+
+
+void Spaceship::setAtk(int value) {
+    atk = value;
 }
 
 void Spaceship::setX(int value) {

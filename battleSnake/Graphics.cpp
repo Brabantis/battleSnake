@@ -97,6 +97,12 @@ bool Graphics::loadMedia()
     }
     
 	//Load PNG texture
+    gTexture[MAIN_MENU] = loadTexture( "BGimages/main_menu.png");
+	if( gTexture[MAIN_MENU] == 0 )
+	{
+		cout << "Failed to load texture image!" << endl;
+		success = false;
+	}
 	gTexture[MAIN_CAMERA] = loadTexture( "BGimages/main_camera.png");
 	if( gTexture[MAIN_CAMERA] == 0 )
 	{
@@ -109,14 +115,14 @@ bool Graphics::loadMedia()
 		cout << "Failed to load texture image!" << endl;
 		success = false;
 	}
-    gTexture[GAME_WON] = loadTexture("BGimages/game_won.png");
-    if( gTexture[GAME_WON] == 0 )
+    gTexture[ADMIRAL_SPEAK] = loadTexture("BGimages/admiral_speak.png");
+    if( gTexture[ADMIRAL_SPEAK] == 0 )
 	{
 		cout << "Failed to load texture image!" << endl;
 		success = false;
 	}
-    gTexture[LEVEL_WON] = loadTexture("BGimages/level_won.png");
-    if( gTexture[LEVEL_WON] == 0 )
+    gTexture[CHANCELLOR_SPEAK] = loadTexture("BGimages/chancellor_speak.png");
+    if( gTexture[CHANCELLOR_SPEAK] == 0 )
 	{
 		cout << "Failed to load texture image!" << endl;
 		success = false;
@@ -133,21 +139,6 @@ bool Graphics::loadMedia()
         cout << "Failed to load texture image!" << endl;
         success = false;
     }
-    gSprites[FRIGATE] = loadTexture("CharSprites/frigate.png");
-    if (gSprites[FRIGATE] == 0) {
-        cout << "Failed to load texture image!" << endl;
-        success = false;
-    }
-    gSprites[DESTROYER] = loadTexture("CharSprites/destroyer.png");
-    if (gSprites[DESTROYER] == 0) {
-        cout << "Failed to load texture image!" << endl;
-        success = false;
-    }
-    gSprites[CRUISER] = loadTexture("CharSprites/cruiser.png");
-    if (gSprites[CRUISER] == 0) {
-        cout << "Failed to load texture image!" << endl;
-        success = false;
-    }
     
     // Loading enemies
     gSprites[EN_FIGHTER] = loadTexture("EnemySprites/en_fighter.png");
@@ -157,21 +148,6 @@ bool Graphics::loadMedia()
     }
     gSprites[EN_CORVETTE] = loadTexture("EnemySprites/en_corvette.png");
     if (gSprites[EN_CORVETTE] == 0) {
-        cout << "Failed to load texture image!" << endl;
-        success = false;
-    }
-    gSprites[EN_FRIGATE] = loadTexture("EnemySprites/en_fighter.png");
-    if (gSprites[EN_FRIGATE] == 0) {
-        cout << "Failed to load texture image!" << endl;
-        success = false;
-    }
-    gSprites[EN_DESTROYER] = loadTexture("EnemySprites/en_fighter.png");
-    if (gSprites[EN_DESTROYER] == 0) {
-        cout << "Failed to load texture image!" << endl;
-        success = false;
-    }
-    gSprites[EN_CRUISER] = loadTexture("EnemySprites/en_fighter.png");
-    if (gSprites[EN_CRUISER] == 0) {
         cout << "Failed to load texture image!" << endl;
         success = false;
     }
@@ -235,7 +211,7 @@ bool Graphics::loadMedia()
         success = false;
     }
     Mix_VolumeChunk(sZap, 64);
-    Mix_VolumeChunk(sBoom, 32);
+    Mix_VolumeChunk(sBoom, 48);
     Mix_VolumeChunk(sPortIn, 64);
     Mix_VolumeChunk(sPortOut, 64);
     
@@ -249,21 +225,26 @@ void Graphics::close()
         SDL_DestroyTexture(gTexture[i]);
         gTexture[i] = 0;
     }
-    
-    for (int i = 0; i<SHIP_TYPES; i++) {
+    // There are 4 ships
+    for (int i = 0; i<4; i++) {
         SDL_DestroyTexture(gSprites[i]);
         gSprites[i] = 0;
     }
-    
+    if (gScore) {
     SDL_DestroyTexture(gScore);
-    gScore = 0;
+    gScore = nullptr;
+    }
     
-    SDL_DestroyTexture(gPowerups);
-    gPowerups = 0;
+    if (gScore) {
+    SDL_DestroyTexture(gKills);
+    gKills = nullptr;
+    }
     
     //Remove font
+    if (gScore) {
     TTF_CloseFont(gFont);
-    gFont = 0;
+    gFont = nullptr;
+    }
     
     // Free sound FX
     Mix_FreeChunk(sZap);
@@ -338,22 +319,15 @@ SDL_Texture* Graphics::loadFromRenderedText(string textureText, SDL_Color textCo
 	return newTexture;
 }
 
-void Graphics::setView (Screens choice, Screens &lastDisplayed) {
-    if (lastDisplayed != choice) {
+void Graphics::setView (Screens choice) {
         SDL_RenderClear(gRenderer);
         SDL_RenderCopy(gRenderer, gTexture[choice], 0, 0);
-        lastDisplayed = choice;
-    }
-    else {
-        // This is basically redrawing everything, keeping the menus displayed. Otherwise the menus would disappear.
-        SDL_RenderClear(gRenderer);
-        SDL_RenderCopy(gRenderer, gTexture[choice], 0, 0);
-    }
+
 }
 
 // for now this one needs a rect, i'll have to learn how to get the width of the rendered texture
 void Graphics::printTextOnScreen (string txtInput, SDL_Rect* destination) {
-    SDL_Texture* tempTexture = loadFromRenderedText(txtInput, {0, 0, 0}); // NOTE: everything is black dabadee dabadack
+    SDL_Texture* tempTexture = loadFromRenderedText(txtInput, {255, 255, 0}); // NOTE: everything is black dabadee dabadack
     SDL_RenderCopy(gRenderer, tempTexture, 0, destination);
     SDL_DestroyTexture(tempTexture);
     tempTexture = 0;
@@ -375,37 +349,39 @@ string Graphics::intToString(int input) {
 }
 
 void Graphics::printScore(int score) {
-    gScore = loadFromRenderedText(intToString(score), {255, 255, 0});
+    gScore = loadFromRenderedText(intToString(score) + " points", {255, 255, 0});
     int width = 0;
     if (score == 0)
-        width = 30;
+        width = 180;
+    else if (score < 100)
+        width = 210;
     else if (score < 1000)
-        width = 90;
+        width = 240;
     else if (score < 10000)
-        width = 120;
+        width = 270;
     else
-        width = 150;
+        width = 300;
     SDL_Rect dst = {40, 10, width, 30};
     SDL_RenderCopy(gRenderer, gScore, 0, &dst);
     SDL_DestroyTexture(gScore);
-    gPowerups = 0;
+    gKills = 0;
 }
 
-void Graphics::printPowerups(int powerups) {
-    gPowerups = loadFromRenderedText(intToString(powerups), {255, 255, 0});
+void Graphics::printkills(int kills) {
+    gKills = loadFromRenderedText(intToString(kills) + " kills", {255, 255, 0});
     int width = 0;
-    if (powerups < 10)
-        width = 30;
-    else if (powerups < 100)
-        width = 60;
-    else if (powerups < 1000)
-        width = 90;
+    if (kills < 10)
+        width = 150;
+    else if (kills < 100)
+        width = 180;
+    else if (kills < 1000)
+        width = 210;
     else
-        width = 120;
+        width = 240;
     SDL_Rect dst = {760-width, 10, width, 30};
-    SDL_RenderCopy(gRenderer, gPowerups, 0, &dst);
-    SDL_DestroyTexture(gPowerups);
-    gPowerups = 0;
+    SDL_RenderCopy(gRenderer, gKills, 0, &dst);
+    SDL_DestroyTexture(gKills);
+    gKills = 0;
 }
 
 SDL_Window* Graphics::getWindow() {
@@ -431,8 +407,8 @@ SDL_Texture* Graphics::getScore() {
     return gScore;
 }
 
-SDL_Texture* Graphics::getPowerups() {
-    return gPowerups;
+SDL_Texture* Graphics::getkills() {
+    return gKills;
 }
 
 TTF_Font* Graphics::getFont() {

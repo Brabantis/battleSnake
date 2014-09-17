@@ -36,15 +36,14 @@ protected:
     bool isAllied;
     
     void calculateStats();
-    void explode();
     
 public:             // just base funcs
     
     Spaceship() {}
     Spaceship(int ba, int bd, int bh, Characters spritesrc, location pos = {0, 0});
     
-    void teleport(int dX, int dY);
     // teleport is the new move
+    void teleport(int dX, int dY);
     
     // to draw on scene, duh
     void drawOnScene(Graphics* graph);
@@ -64,8 +63,10 @@ public:             // just base funcs
     double getCenterX();
     double getCenterY();
     Characters getSprite();
+    bool isAlive();
     
     // the setters
+    void setAtk(int value);
     void setX(int value);
     void setY(int value);
     void setSprite(Characters spritesrc);

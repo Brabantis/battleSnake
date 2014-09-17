@@ -8,15 +8,11 @@
 
 #include "FleetMember.h"
 #include "Spaceship.h"
-#include "Item.h"
 
 FleetMember::FleetMember() {}
 
 FleetMember::FleetMember(int ba, int bd, int bh, Characters sprite, location pos) : Spaceship(ba, bd, bh, sprite, pos) {
     isAllied = true;
-    armor = 0;
-    weapon = 0;
-    accessory = 0;
 }
 
 string FleetMember::getClass() {
@@ -27,15 +23,6 @@ string FleetMember::getClass() {
             break;
         case CORVETTE:
             value = "Corvette";
-            break;
-        case FRIGATE:
-            value = "Frigate";
-            break;
-        case DESTROYER:
-            value = "Destroyer";
-            break;
-        case CRUISER:
-            value = "Cruiser";
             break;
         default:
             value = "NOT A VALID CLASS";

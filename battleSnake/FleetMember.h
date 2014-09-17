@@ -17,22 +17,16 @@
 #define __GiocoLabInf__PartyMember__
 
 #include "Spaceship.h"
-#include "Item.h"
 
 using namespace std;
 
 class FleetMember : public Spaceship {
 private:
-    // Find some clever way to use calculateStats just once, changing the atk, def and hp values as the fleetmember is created. The equipment will be selected from a menu.
-    Item* weapon;
-    Item* armor;
-    Item* accessory;
     
 public:
     FleetMember();
     FleetMember(int ba, int bd, int bh, Characters sprite, location pos = {0, 0});
     string getClass();
-    void equip(Item equip);
     void calculateStats();
 };
 
