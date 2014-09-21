@@ -33,7 +33,7 @@ protected:
     location position;
     Characters sprite;
     
-    bool isAllied;
+    bool allied;
     
     void calculateStats();
     
@@ -64,6 +64,7 @@ public:             // just base funcs
     double getCenterY();
     Characters getSprite();
     bool isAlive();
+    bool isAllied();
     
     // the setters
     void setAtk(int value);

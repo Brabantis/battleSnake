@@ -33,8 +33,6 @@ using namespace std;
 enum Pattern {
     MAIN_STAGE,
     BOSS_STAGE,
-    TYPHOON,
-    TEST_TEST
 };
 
 enum Event {
@@ -43,6 +41,11 @@ enum Event {
     MAIN_STAGE_CLEAR,
     BOSS_STAGE_CLEAR,
     EVE_DEFAULT
+};
+
+struct explosion {
+    int x, y;
+    int timer;
 };
 
 class Engine {
@@ -55,6 +58,11 @@ public:
     Graphics* getGraphicsEngine();
     
     void narrate(Screens narrator, int phase);
+    void waitForConfirmation();
+    void cleanStats();
+    
+    int getScore();
+    int getKills();
     
 private:
     int FPS;
@@ -86,12 +94,18 @@ private:
     vector<Laser*> lasersOnMap;         // I need something made so that I can BOTH access elements in order AND delete one in every position (pop).
     // These are needed for managing multiple movements and KILLS
     FleetMember* protagonist;
-        
+    
+    // Useful in the boss stage
+    bool floweringBoss = true;
+    int bossPosition = 0;
+    
     bool expiredEnemy0;
     bool expiredEnemy1;
     
+    vector<explosion> kabooms;
+    
     void coordsOfNearestEnemy(int &x, int &y, int index, bool shipSearch);
-    void addFleetMember(Characters choice);
+    void addProtagonist();
     void addEnemyFleetMember(double x, double y, Characters choice, float hM);
     void cleanEnemyFleet();
     void cleanLasers();
@@ -110,7 +124,6 @@ private:
     void mainMenu();                    // TODO: Select ship, buy kills
 
     // The functions that spawn enemies
-    Characters intToCharacterConvert(int input);
     int getRandInSpan(int lower, int upper);
     void spawnEnemy(int x, int y, Characters ch, float healthMod);
     int doubleToInt(double input);

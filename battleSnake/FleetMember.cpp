@@ -12,22 +12,5 @@
 FleetMember::FleetMember() {}
 
 FleetMember::FleetMember(int ba, int bd, int bh, Characters sprite, location pos) : Spaceship(ba, bd, bh, sprite, pos) {
-    isAllied = true;
+    allied = true;
 }
-
-string FleetMember::getClass() {
-    string value;
-    switch (sprite) {
-        case FIGHTER:
-            value = "Fighter";
-            break;
-        case CORVETTE:
-            value = "Corvette";
-            break;
-        default:
-            value = "NOT A VALID CLASS";
-            break;
-    }
-    return value;
-}
-

@@ -26,8 +26,6 @@ private:
 public:
     FleetMember();
     FleetMember(int ba, int bd, int bh, Characters sprite, location pos = {0, 0});
-    string getClass();
-    void calculateStats();
 };
 
 #endif /* defined(__GiocoLabInf__PartyMember__) */

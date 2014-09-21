@@ -34,18 +34,15 @@ enum Screens
     GAME_OVER,
     ADMIRAL_SPEAK,
     CHANCELLOR_SPEAK,
+    END_GAME,
     TEXTURES_TOTAL
 };
 
 enum Characters
 {
     FIGHTER,
-    CORVETTE,
     EN_FIGHTER,
     EN_CORVETTE,
-    FRIGATE,
-    DESTROYER,
-    CRUISER,
     SHIP_TYPES
 };
 
@@ -54,6 +51,8 @@ enum OtherSprites
     LASER_ALLIED,
     LASER_ENEMY,
     LASER_EXPLODE,
+    SHIP_EXPLODE_1,
+    SHIP_EXPLODE_2,
     SHIP_PORTING,
     OTHER_TOTAL
 };
@@ -83,6 +82,7 @@ private:
     Mix_Music *sStage = nullptr;
     Mix_Music *sBoss = nullptr;
     Mix_Music *sVictory = nullptr;
+    Mix_Music *sMenu = nullptr;
     
     Mix_Chunk *sZap = nullptr;
     Mix_Chunk *sBoom = nullptr;
@@ -117,18 +117,23 @@ public:
     SDL_Texture* getOtherSprite(OtherSprites sprite);
     SDL_Texture* getScore();
     SDL_Texture* getkills();
+    
     TTF_Font* getFont();
+    
     Mix_Chunk* getZap();
     Mix_Chunk* getBoom();
     Mix_Chunk* getPortIn();
     Mix_Chunk* getPortOut();
-    Mix_Music* getMainStage();
+    
+    Mix_Music* getMainTheme();
     Mix_Music* getBossTheme();
     Mix_Music* getVictoryTheme();
+    Mix_Music* getMenuTheme();
     
     string intToString(int input);    // Necessary for printing score and kills
-    void printScore(int score);
-    void printkills(int kills);
+    // These numbers are actually the result of careful calculations
+    void printScore(int score, int x = 40, int y = 10);
+    void printkills(int kills, int x = 580, int y = 10);
 };
 
 #endif /* defined(__GiocoLabInf__Graphics__) */

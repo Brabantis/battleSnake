@@ -41,12 +41,12 @@ Laser* Spaceship::shootLaser(int xdest, int ydest, OtherSprites sprt){
             angle = -pi/2;
         }
     }
-    Laser* tmp = new Laser(atk, (position.x-1) + SPRITE_WIDTH/2, (position.y-1) + SPRITE_HEIGHT/2, -angle, isAllied, sprt);
+    Laser* tmp = new Laser(atk, (position.x-1) + SPRITE_WIDTH/2, (position.y-1) + SPRITE_HEIGHT/2, -angle, allied, sprt);
     return tmp;
 }
 
 Laser* Spaceship::shootLaser(double angle, OtherSprites sprt) {
-    Laser* tmp = new Laser(atk, (position.x-1) + SPRITE_WIDTH/2, (position.y-1) + SPRITE_HEIGHT/2, angle, isAllied, sprt);
+    Laser* tmp = new Laser(atk, (position.x-1) + SPRITE_WIDTH/2, (position.y-1) + SPRITE_HEIGHT/2, angle, allied, sprt);
     return tmp;
 }
 
@@ -94,6 +94,9 @@ bool Spaceship::isAlive() {
     return hp>0 ? true : false;
 }
 
+bool Spaceship::isAllied() {
+    return allied;
+}
 
 void Spaceship::setAtk(int value) {
     atk = value;

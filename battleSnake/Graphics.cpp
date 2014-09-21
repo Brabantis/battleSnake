@@ -127,19 +127,19 @@ bool Graphics::loadMedia()
 		cout << "Failed to load texture image!" << endl;
 		success = false;
 	}
+    gTexture[END_GAME] = loadTexture("BGimages/end_game.png");
+    if( gTexture[END_GAME] == 0 )
+	{
+		cout << "Failed to load texture image!" << endl;
+		success = false;
+	}
     
     //Loading sprites
     gSprites[FIGHTER] = loadTexture("CharSprites/fighter.png");
     if (gSprites[FIGHTER] == 0) {
         cout << "Failed to load texture image!" << endl;
         success = false;
-    }
-    gSprites[CORVETTE] = loadTexture("CharSprites/corvette.png");
-    if (gSprites[CORVETTE] == 0) {
-        cout << "Failed to load texture image!" << endl;
-        success = false;
-    }
-    
+    }    
     // Loading enemies
     gSprites[EN_FIGHTER] = loadTexture("EnemySprites/en_fighter.png");
     if (gSprites[EN_FIGHTER] == 0) {
@@ -165,6 +165,16 @@ bool Graphics::loadMedia()
     }
     gOther[LASER_ENEMY] = loadTexture("OtherSprites/laser_ene_basic.png");
     if (gOther[LASER_ENEMY] == 0) {
+        cout << "Failed to load texture image!" << endl;
+        success = false;
+    }
+    gOther[SHIP_EXPLODE_1] = loadTexture("OtherSprites/explosion_ship_1.png");
+    if (gOther[SHIP_EXPLODE_1] == 0) {
+        cout << "Failed to load texture image!" << endl;
+        success = false;
+    }
+    gOther[SHIP_EXPLODE_2] = loadTexture("OtherSprites/explosion_ship_2.png");
+    if (gOther[SHIP_EXPLODE_2] == 0) {
         cout << "Failed to load texture image!" << endl;
         success = false;
     }
@@ -207,6 +217,11 @@ bool Graphics::loadMedia()
     }
     sVictory = Mix_LoadMUS("Music/victory.wav");
     if (sVictory == 0) {
+        cout << "Failed to load sound effect! SDL_mixer Error: " << Mix_GetError() << endl;
+        success = false;
+    }
+    sMenu = Mix_LoadMUS("Music/main_menu.wav");
+    if (sMenu == 0) {
         cout << "Failed to load sound effect! SDL_mixer Error: " << Mix_GetError() << endl;
         success = false;
     }
@@ -348,37 +363,17 @@ string Graphics::intToString(int input) {
     return s;
 }
 
-void Graphics::printScore(int score) {
+void Graphics::printScore(int score, int x, int y) {
     gScore = loadFromRenderedText(intToString(score) + " points", {255, 255, 0});
-    int width = 0;
-    if (score == 0)
-        width = 180;
-    else if (score < 100)
-        width = 210;
-    else if (score < 1000)
-        width = 240;
-    else if (score < 10000)
-        width = 270;
-    else
-        width = 300;
-    SDL_Rect dst = {40, 10, width, 30};
+    SDL_Rect dst = {x, y, 280, 30};
     SDL_RenderCopy(gRenderer, gScore, 0, &dst);
     SDL_DestroyTexture(gScore);
     gKills = 0;
 }
 
-void Graphics::printkills(int kills) {
+void Graphics::printkills(int kills, int x, int y) {
     gKills = loadFromRenderedText(intToString(kills) + " kills", {255, 255, 0});
-    int width = 0;
-    if (kills < 10)
-        width = 150;
-    else if (kills < 100)
-        width = 180;
-    else if (kills < 1000)
-        width = 210;
-    else
-        width = 240;
-    SDL_Rect dst = {760-width, 10, width, 30};
+    SDL_Rect dst = {x, y, 200, 30};
     SDL_RenderCopy(gRenderer, gKills, 0, &dst);
     SDL_DestroyTexture(gKills);
     gKills = 0;
@@ -431,7 +426,7 @@ Mix_Chunk* Graphics::getPortOut() {
     return sPortOut;
 }
 
-Mix_Music* Graphics::getMainStage() {
+Mix_Music* Graphics::getMainTheme() {
     return sStage;
 }
 
@@ -441,4 +436,8 @@ Mix_Music* Graphics::getBossTheme() {
 
 Mix_Music* Graphics::getVictoryTheme() {
     return sVictory;
+}
+
+Mix_Music* Graphics::getMenuTheme() {
+    return sMenu;
 }
